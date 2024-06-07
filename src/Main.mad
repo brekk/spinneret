@@ -1,0 +1,7 @@
+import { div, p, render } from "@/Nexus"
+
+
+
+main = () => {
+  render("app", <div><p>Hey this is magical!</p></div>)
+}

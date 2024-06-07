@@ -1,2 +1,4 @@
 .coverage
 .tests
+build
+node_modules
