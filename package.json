@@ -1,5 +1,5 @@
 {
-  "name": "nexus",
+  "name": "spinneret",
   "version": "0.0.1",
   "description": "hyperapp x madlib",
   "main": "bundle.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brekk/nexus.git"
+    "url": "git+https://github.com/brekk/spinneret.git"
   },
   "author": "Brekk Bockrath",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/brekk/nexus/issues"
+    "url": "https://github.com/brekk/spinneret/issues"
   },
-  "homepage": "https://github.com/brekk/nexus#readme",
+  "homepage": "https://github.com/brekk/spinneret#readme",
   "dependencies": {
     "hyperapp": "^2.0.22"
   }

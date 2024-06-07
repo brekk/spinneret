@@ -1,4 +1,4 @@
-import { div, p, render } from "@/Nexus"
+import { div, p, render } from "@/Spinneret"
 
 
 
