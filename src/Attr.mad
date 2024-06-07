@@ -176,4 +176,291 @@ export type Attribute a
   | AttributeBoolean(AttrBoolean, Boolean)
   | AttributeInteger(AttrInteger, Integer)
   | AttributeAction(AttrAction, Action a)
-  | AttributeStyle(Dictionary String String)
+  | AttributeDict(Dictionary String String)
+
+// TUPLE ATTRIBUTES
+
+stringAttribute :: #[String, String] -> Attribute a
+export stringAttribute = AttributeTuple
+
+draggable :: Boolean -> Attribute a
+export draggable = (canDrag) => AttributeTuple(#["draggable", canDrag ? "true" : "false"])
+
+// DICTIONARY ATTRIBUTES
+
+style :: Dictionary String String -> Attribute a
+export style = AttributeDict
+
+// BOOLEAN ATTRIBUTES
+
+export async = AttributeBoolean(Async)
+export autofocus = AttributeBoolean(AutoFocus)
+export autoplay = AttributeBoolean(AutoPlay)
+export checked = AttributeBoolean(Checked)
+export contenteditable = AttributeBoolean(ContentEditable)
+export controls = AttributeBoolean(Controls)
+export default = AttributeBoolean(Default)
+export defer = AttributeBoolean(Defer)
+export disabled = AttributeBoolean(Disabled)
+export download = AttributeBoolean(Download)
+export hidden = AttributeBoolean(Hidden)
+export ismap = AttributeBoolean(IsMap)
+export open = AttributeBoolean(Open)
+export readonly = AttributeBoolean(ReadOnly)
+export required = AttributeBoolean(Required)
+export reversed = AttributeBoolean(Reversed)
+export sandbox = AttributeBoolean(SandBox)
+export selected = AttributeBoolean(Selected)
+export loop = AttributeBoolean(Loop)
+export multiple = AttributeBoolean(Multiple)
+export muted = AttributeBoolean(Muted)
+export novalidate = AttributeBoolean(NoValidate)
+
+// INTEGER ATTRIBUTES
+
+export cols = AttributeInteger(Cols)
+export colspan = AttributeInteger(ColSpan)
+export height = AttributeInteger(Height)
+export high = AttributeInteger(High)
+export low = AttributeInteger(Low)
+export max = AttributeInteger(Max)
+export maxlength = AttributeInteger(MaxLength)
+export min = AttributeInteger(Min)
+export optimum = AttributeInteger(Optimum)
+export rows = AttributeInteger(Rows)
+export rowspan = AttributeInteger(RowSpan)
+export size = AttributeInteger(Size)
+export spanAttr = AttributeInteger(Span)
+export start = AttributeInteger(Start)
+export step = AttributeInteger(Step)
+export tabindex = AttributeInteger(TabIndex)
+export width = AttributeInteger(Width)
+
+// ACTION ATTRIBUTES
+
+export onAbort = AttributeAction(OnAbort)
+export onBlur = AttributeAction(OnBlur)
+export onCanPlay = AttributeAction(OnCanPlay)
+export onCanPlayThrough = AttributeAction(OnCanPlayThrough)
+export onChange = AttributeAction(OnChange)
+export onClick = AttributeAction(OnClick)
+export onContextMenu = AttributeAction(OnContextMenu)
+export onCopy = AttributeAction(OnCopy)
+export onCueChange = AttributeAction(OnCueChange)
+export onCut = AttributeAction(OnCut)
+export onDblClick = AttributeAction(OnDblClick)
+export onDrag = AttributeAction(OnDrag)
+export onDragEnd = AttributeAction(OnDragEnd)
+export onDragEnter = AttributeAction(OnDragEnter)
+export onDragLeave = AttributeAction(OnDragLeave)
+export onDragOver = AttributeAction(OnDragOver)
+export onDragStart = AttributeAction(OnDragStart)
+export onDrop = AttributeAction(OnDrop)
+export onDurationChange = AttributeAction(OnDurationChange)
+export onEmptied = AttributeAction(OnEmptied)
+export onEnded = AttributeAction(OnEnded)
+export onError = AttributeAction(OnError)
+export onFocus = AttributeAction(OnFocus)
+export onInput = AttributeAction(OnInput)
+export onInvalid = AttributeAction(OnInvalid)
+export onKeyPress = AttributeAction(OnKeyPress)
+export onKeyDown = AttributeAction(OnKeyDown)
+export onKeyUp = AttributeAction(OnKeyUp)
+export onLoad = AttributeAction(OnLoad)
+export onLoadedData = AttributeAction(OnLoadedData)
+export onLoadedMetaData = AttributeAction(OnLoadedMetaData)
+export onLoadStart = AttributeAction(OnLoadStart)
+export onMouseDown = AttributeAction(OnMouseDown)
+export onMouseEnter = AttributeAction(OnMouseEnter)
+export onMouseLeave = AttributeAction(OnMouseLeave)
+export onMouseMove = AttributeAction(OnMouseMove)
+export onMouseOut = AttributeAction(OnMouseOut)
+export onMouseOver = AttributeAction(OnMouseOver)
+export onMouseUp = AttributeAction(OnMouseUp)
+export onMouseWheel = AttributeAction(OnMouseWheel)
+export onPaste = AttributeAction(OnPaste)
+export onPause = AttributeAction(OnPause)
+export onPlay = AttributeAction(OnPlay)
+export onPlaying = AttributeAction(OnPlaying)
+export onProgress = AttributeAction(OnProgress)
+export onRateChange = AttributeAction(OnRateChange)
+export onReset = AttributeAction(OnReset)
+export onScroll = AttributeAction(OnScroll)
+export onSearch = AttributeAction(OnSearch)
+export onSeeked = AttributeAction(OnSeeked)
+export onSeeking = AttributeAction(OnSeeking)
+export onSelect = AttributeAction(OnSelect)
+export onStalled = AttributeAction(OnStalled)
+export onSubmit = AttributeAction(OnSubmit)
+export onSuspend = AttributeAction(OnSuspend)
+export onTimeUpdate = AttributeAction(OnTimeUpdate)
+export onToggle = AttributeAction(OnToggle)
+export onTransitionCancel = AttributeAction(OnTransitionCancel)
+export onTransitionEnd = AttributeAction(OnTransitionEnd)
+export onTransitionRun = AttributeAction(OnTransitionRun)
+export onTransitionStart = AttributeAction(OnTransitionStart)
+export onVolumeChange = AttributeAction(OnVolumeChange)
+export onWaiting = AttributeAction(OnWaiting)
+export onWheel = AttributeAction(OnWheel)
+
+// STRING ATTRIBUTES
+
+export accept = AttributeString(Accept)
+export acceptCharset = AttributeString(AcceptCharset)
+export accessKey = AttributeString(AccessKey)
+export action = AttributeString(Action)
+export altAttribute = AttributeString(Alt)
+export citeAttr = AttributeString(Cite)
+export className = AttributeString(Class)
+export coords = AttributeString(Coords)
+export dataAttr = AttributeString(Data)
+export datetime = AttributeString(DateTime)
+export dir = AttributeString(Dir)
+export dirname = AttributeString(DirName)
+export enctype = AttributeString(EncType)
+export forHtml = AttributeString(For)
+export formAttr = AttributeString(Form)
+export formaction = AttributeString(FormAction)
+export headers = AttributeString(Headers)
+export href = AttributeString(Href)
+export hreflang = AttributeString(HrefLang)
+export id = AttributeString(Id)
+export innerHTML = AttributeString(InnerHTML)
+export innerText = AttributeString(InnerText)
+export inputType = AttributeString(Type)
+export key = AttributeString(Key)
+export kind = AttributeString(Kind)
+export labelAttr = AttributeString(Label)
+export lang = AttributeString(Lang)
+export list = AttributeString(List)
+export media = AttributeString(Media)
+export name = AttributeString(Name)
+export pattern = AttributeString(Pattern)
+export placeholder = AttributeString(Placeholder)
+export poster = AttributeString(Poster)
+export rel = AttributeString(Rel)
+export src = AttributeString(Src)
+export srcdoc = AttributeString(SrcDoc)
+export srclang = AttributeString(SrcLang)
+export srcset = AttributeString(SrcSet)
+export target = AttributeString(Target)
+export titleAttr = AttributeString(Title)
+export to = AttributeString(To)
+export usemap = AttributeString(UseMap)
+export value = AttributeString(Value)
+
+autocomplete :: Boolean -> Attribute a
+export autocomplete = (on) => AttributeString(AutoComplete, on ? "on" : "off")
+
+method :: Method -> Attribute a
+export method = (mth) => {
+  attrMeth = AttributeString(Method)
+  return where(mth) {
+    GET =>
+      attrMeth("get")
+
+    POST =>
+      attrMeth("post")
+
+    PUT =>
+      attrMeth("put")
+
+    DELETE =>
+      attrMeth("delete")
+
+    PATCH =>
+      attrMeth("patch")
+
+    HEAD =>
+      attrMeth("head")
+
+    OPTIONS =>
+      attrMeth("options")
+
+    CONNECT =>
+      attrMeth("connect")
+
+    TRACE =>
+      attrMeth("trace")
+  }
+}
+
+export type AttrScope = Col | Row | ColGroup | RowGroup
+
+scope :: AttrScope -> Attribute a
+export scope = (sc) => {
+  attrScope = AttributeString(Scope)
+  return where(sc) {
+    Col =>
+      attrScope("col")
+
+    Row =>
+      attrScope("row")
+
+    ColGroup =>
+      attrScope("colgroup")
+
+    RowGroup =>
+      attrScope("rowgroup")
+  }
+}
+
+export type AttrShape = ShapeDefault | Rect | Circle | Poly
+
+shape :: AttrShape -> Attribute a
+export shape = (sh) => {
+  attrShape = AttributeString(Shape)
+  return where(sh) {
+    ShapeDefault =>
+      attrShape("default")
+
+    Rect =>
+      attrShape("rect")
+
+    Circle =>
+      attrShape("circle")
+
+    Poly =>
+      attrShape("poly")
+  }
+}
+
+spellcheck :: Boolean -> Attribute a
+export spellcheck = (truthy) => AttributeString(SpellCheck, truthy ? "true" : "false")
+
+translate :: Boolean -> Attribute a
+export translate = (yes) => AttributeString(Translate, yes ? "yes" : "no")
+
+export type AttrWrap = Soft | Hard
+
+wrap :: AttrWrap -> Attribute a
+export wrap = (wr) => {
+  attrWrap = AttributeString(Wrap)
+  return where(wr) {
+    Soft =>
+      attrWrap("soft")
+
+    Hard =>
+      attrWrap("hard")
+  }
+}
+
+export type AttrPreload = Auto | Metadata | None
+
+preload :: AttrPreload -> Attribute a
+export preload = (pr) => {
+  preAttr = AttributeString(Preload)
+  return where(pr) {
+    Auto =>
+      preAttr("auto")
+
+    Metadata =>
+      preAttr("metadata")
+
+    None =>
+      preAttr("none")
+  }
+}
+
+// TODO: see if we should make this a List Size or something
+export sizes = AttributeString(Sizes)
