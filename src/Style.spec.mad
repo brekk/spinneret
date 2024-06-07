@@ -1,0 +1,28 @@
+import { assertEquals, test } from "Test"
+
+import { be, bem, bems, bm, bms, joint } from "@/Style"
+
+
+
+test("joint", () => assertEquals(joint("->", "|", "@"), "|->@"))
+test("joint - empty", () => assertEquals(joint("->", "|", ""), "|"))
+test("be", () => assertEquals(be("x", "y"), "x__y"))
+test("bm", () => assertEquals(bm("x", "y"), "x--y"))
+test("bms", () => assertEquals(bms("cool", ["x", "y", "z"]), "cool cool--x cool--y cool--z"))
+test(
+  "bems",
+  () => assertEquals(
+    bems("cool", "beans", ["x", "y", "z"]),
+    "cool__beans cool__beans--x cool__beans--y cool__beans--z",
+  ),
+)
+
+test(
+  "bem",
+  () => do {
+    s = bem("Component")
+    _ <- assertEquals(s.e("input"), "Component__input")
+    _ <- assertEquals(s.em("input", ["dirty"]), "Component__input Component__input--dirty")
+    return assertEquals(s.m(["active"]), "Component Component--active")
+  },
+)

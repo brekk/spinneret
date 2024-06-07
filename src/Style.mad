@@ -1,0 +1,32 @@
+import { concat } from "List"
+import { isEmpty, join } from "String"
+
+
+
+joint :: String -> String -> String -> String
+export joint = (delimiter, left, right) => if (isEmpty(right)) {
+  left
+} else {
+  left ++ delimiter ++ right
+}
+
+be :: String -> String -> String
+export be = joint("__")
+
+bm :: String -> String -> String
+export bm = joint("--")
+
+bms :: String -> List String -> String
+export bms = (b, mods) => pipe(
+  map(bm(b)),
+  concat([b]),
+  join(" "),
+)(mods)
+
+bems :: String -> String -> List String -> String
+export bems = (b, el, mods) => pipe(
+  be($, el),
+  bms($, mods),
+)(b)
+
+export bem = (b) => ({ e: be(b), em: bems(b), m: bems(b, "") })

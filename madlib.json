@@ -1,0 +1,8 @@
+{
+  "name": "nexus",
+  "version": "0.0.1",
+  "main": "src/Main.mad",
+  "importAliases": {
+    ".": "src"
+  }
+}

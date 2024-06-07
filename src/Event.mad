@@ -1,0 +1,198 @@
+import type { Key } from "@/Key"
+
+import { getKeyFromCode } from "@/Key"
+
+
+
+alias BaseEvent = {
+  bubbles :: Boolean,
+  defaultPrevented :: Boolean,
+  eventType :: String,
+  preventDefault :: {} -> {},
+  stopImmediatePropagation :: {} -> {},
+  stopPropagation :: {} -> {},
+  timeStamp :: Integer,
+}
+
+export type Event
+  = AbstractEvent(BaseEvent)
+  | MouseEvent({ ...BaseEvent, clientX :: Integer, clientY :: Integer })
+  | InputEvent({
+    ...BaseEvent,
+    data :: String,
+    inputType :: String,
+    target :: { innerText :: String, value :: String },
+  })
+  | KeyboardEvent({
+    ...BaseEvent,
+    altKey :: Boolean,
+    ctrlKey :: Boolean,
+    key :: Key,
+    shiftKey :: Boolean,
+  })
+  | PopStateEvent({ ...BaseEvent, path :: String, url :: String })
+
+export buildKeyboardEvent = (e) => {
+  k = getKeyFromCode(e.keyCode)
+
+  return KeyboardEvent({
+    bubbles: e.bubbles,
+    defaultPrevented: e.defaultPrevented,
+    preventDefault: e.preventDefault,
+    stopImmediatePropagation: e.stopImmediatePropagation,
+    stopPropagation: e.stopPropagation,
+    timeStamp: e.timeStamp,
+    eventType: e.eventType,
+    key: k,
+    altKey: e.altKey,
+    ctrlKey: e.ctrlKey,
+    shiftKey: e.shiftKey,
+  })
+}
+
+
+export buildInputEvent = (e) => InputEvent({
+  bubbles: e.bubbles,
+  defaultPrevented: e.defaultPrevented,
+  preventDefault: e.preventDefault,
+  stopImmediatePropagation: e.stopImmediatePropagation,
+  stopPropagation: e.stopPropagation,
+  timeStamp: e.timeStamp,
+  eventType: e.eventType,
+  target: e.target,
+  data: e.data,
+  inputType: e.inputType,
+})
+
+
+addDataTransfer :: a -> b -> a
+addDataTransfer = (event, e) => #-{
+  return { ...event, dataTransfer: e.dataTransfer }
+}-#
+
+
+export buildMouseEvent = (e) => MouseEvent(
+  addDataTransfer({
+    bubbles: e.bubbles,
+    defaultPrevented: e.defaultPrevented,
+    preventDefault: e.preventDefault,
+    stopImmediatePropagation: e.stopImmediatePropagation,
+    stopPropagation: e.stopPropagation,
+    timeStamp: e.timeStamp,
+    eventType: e.eventType,
+    clientX: e.clientX,
+    clientY: e.clientY,
+  })(e),
+)
+
+
+export buildAbstractEvent = (e) => AbstractEvent({
+  bubbles: e.bubbles,
+  defaultPrevented: e.defaultPrevented,
+  preventDefault: e.preventDefault,
+  stopImmediatePropagation: e.stopImmediatePropagation,
+  stopPropagation: e.stopPropagation,
+  timeStamp: e.timeStamp,
+  eventType: e.eventType,
+})
+
+
+export buildPopStateEvent = (e) => PopStateEvent({
+  url: #- document.location.href -#,
+  path: #-
+    window.env.routingKind === "BasicRouting"
+      ? document.location.pathname
+      : document.location.hash.substr(1) || "/"
+  -#,
+  bubbles: e.bubbles,
+  defaultPrevented: e.defaultPrevented,
+  preventDefault: e.preventDefault,
+  stopImmediatePropagation: e.stopImmediatePropagation,
+  stopPropagation: e.stopPropagation,
+  timeStamp: e.timeStamp,
+  eventType: e.eventType,
+})
+
+// abstract events
+export abort = AbstractEvent
+export beforeprint = AbstractEvent
+export beforeunload = AbstractEvent
+export blur = AbstractEvent
+export canplay = AbstractEvent
+export canplaythrough = AbstractEvent
+export change = AbstractEvent
+export contextmenu = AbstractEvent
+export copy = AbstractEvent
+export cuechange = AbstractEvent
+export cut = AbstractEvent
+export durationchange = AbstractEvent
+export emptied = AbstractEvent
+export ended = AbstractEvent
+export error = AbstractEvent
+export focus = AbstractEvent
+export invalid = AbstractEvent
+export load = AbstractEvent
+export loadeddata = AbstractEvent
+export loadedmetadata = AbstractEvent
+export loadstart = AbstractEvent
+export offline = AbstractEvent
+export online = AbstractEvent
+export pagehide = AbstractEvent
+export pageshow = AbstractEvent
+export paste = AbstractEvent
+export pause = AbstractEvent
+export play = AbstractEvent
+export playing = AbstractEvent
+export progress = AbstractEvent
+export ratechange = AbstractEvent
+export reset = AbstractEvent
+export resize = AbstractEvent
+export scroll = AbstractEvent
+export search = AbstractEvent
+export seeked = AbstractEvent
+export seeking = AbstractEvent
+export select = AbstractEvent
+export stalled = AbstractEvent
+export storage = AbstractEvent
+export submit = AbstractEvent
+export suspend = AbstractEvent
+export timeupdate = AbstractEvent
+export toggle = AbstractEvent
+export transitioncancel = AbstractEvent
+export transitionend = AbstractEvent
+export transitionrun = AbstractEvent
+export transitionstart = AbstractEvent
+export unload = AbstractEvent
+export volumechange = AbstractEvent
+export waiting = AbstractEvent
+export wheel = AbstractEvent
+
+// mouse events
+
+export click = buildMouseEvent
+export dblclick = buildMouseEvent
+export drag = buildMouseEvent
+export dragend = buildMouseEvent
+export dragenter = buildMouseEvent
+export dragleave = buildMouseEvent
+export dragover = buildMouseEvent
+export dragstart = buildMouseEvent
+export drop = buildMouseEvent
+export mousedown = buildMouseEvent
+export mouseenter = buildMouseEvent
+export mouseleave = buildMouseEvent
+export mousemove = buildMouseEvent
+export mouseout = buildMouseEvent
+export mouseover = buildMouseEvent
+export mouseup = buildMouseEvent
+export mousewheel = buildMouseEvent
+
+// keyboard events
+
+export keydown = buildKeyboardEvent
+export keypress = buildKeyboardEvent
+export keyup = buildKeyboardEvent
+
+export popstate = buildPopStateEvent
+
+export input = buildInputEvent

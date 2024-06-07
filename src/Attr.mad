@@ -1,0 +1,179 @@
+import type { Method } from "Http"
+
+import type { Action } from "@/Action"
+
+import { CONNECT, DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, TRACE } from "Http"
+
+
+
+export type AttrString
+  = Accept
+  | AcceptCharset
+  | AccessKey
+  | Action
+  | Alt
+  | AutoComplete
+  | Cite
+  | Class
+  | Coords
+  | Data
+  | DateTime
+  | Dir
+  | DirName
+  | EncType
+  | For
+  | Form
+  | FormAction
+  | Headers
+  | Href
+  | HrefLang
+  | Id
+  | InnerHTML
+  | InnerText
+  | Key
+  | Kind
+  | Lang
+  | Label
+  | List
+  | Media
+  | Method
+  | Name
+  | Pattern
+  | Placeholder
+  | Poster
+  | Preload
+  | Rel
+  | Scope
+  | Shape
+  | Sizes
+  | SpellCheck
+  | Src
+  | SrcDoc
+  | SrcLang
+  | SrcSet
+  | Target
+  | Title
+  | To
+  | Translate
+  | Type
+  | UseMap
+  | Value
+  | Wrap
+
+export type AttrBoolean
+  = Async
+  | AutoFocus
+  | AutoPlay
+  | Checked
+  | ContentEditable
+  | Controls
+  | Default
+  | Defer
+  | Disabled
+  | Download
+  | Draggable
+  | Hidden
+  | IsMap
+  | Loop
+  | Multiple
+  | Muted
+  | NoValidate
+  | Open
+  | ReadOnly
+  | Required
+  | Reversed
+  | SandBox
+  | Selected
+
+export type AttrInteger
+  = Cols
+  | ColSpan
+  | Height
+  | High
+  | Low
+  | Max
+  | MaxLength
+  | Min
+  | Optimum
+  | Rows
+  | RowSpan
+  | Size
+  | Span
+  | Start
+  | Step
+  | TabIndex
+  | Width
+
+export type AttrAction
+  = OnAbort
+  | OnBlur
+  | OnCanPlay
+  | OnCanPlayThrough
+  | OnChange
+  | OnClick
+  | OnContextMenu
+  | OnCopy
+  | OnCueChange
+  | OnCut
+  | OnDblClick
+  | OnDrag
+  | OnDragEnd
+  | OnDragEnter
+  | OnDragLeave
+  | OnDragOver
+  | OnDragStart
+  | OnDrop
+  | OnDurationChange
+  | OnEmptied
+  | OnEnded
+  | OnError
+  | OnFocus
+  | OnInput
+  | OnInvalid
+  | OnKeyPress
+  | OnKeyDown
+  | OnKeyUp
+  | OnLoad
+  | OnLoadedData
+  | OnLoadedMetaData
+  | OnLoadStart
+  | OnMouseDown
+  | OnMouseEnter
+  | OnMouseLeave
+  | OnMouseMove
+  | OnMouseUp
+  | OnMouseWheel
+  | OnMouseOver
+  | OnMouseOut
+  | OnPaste
+  | OnPause
+  | OnPlay
+  | OnPlaying
+  | OnProgress
+  | OnRateChange
+  | OnReset
+  | OnScroll
+  | OnSearch
+  | OnSeeked
+  | OnSeeking
+  | OnSelect
+  | OnStalled
+  | OnSubmit
+  | OnSuspend
+  | OnTimeUpdate
+  | OnToggle
+  | OnTransitionCancel
+  | OnTransitionEnd
+  | OnTransitionRun
+  | OnTransitionStart
+  | OnVolumeChange
+  | OnWaiting
+  | OnWheel
+
+export type Attribute a
+  = AttributeTuple(#[String, String])
+  | AttributeString(AttrString, String)
+  | AttributeBoolean(AttrBoolean, Boolean)
+  | AttributeInteger(AttrInteger, Integer)
+  | AttributeAction(AttrAction, Action a)
+  | AttributeStyle(Dictionary String String)
