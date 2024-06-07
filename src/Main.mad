@@ -1,7 +1,10 @@
+import { className } from "@/Attr"
 import { div, p, render } from "@/Spinneret"
+import { bem } from "@/Style"
 
 
 
 main = () => {
-  render("app", <div><p>Hey this is magical!</p></div>)
+  s = bem("App")
+  render("app", <div className={s.e("core")}><p>Hey this is magical!</p></div>)
 }

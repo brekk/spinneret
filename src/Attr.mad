@@ -180,8 +180,8 @@ export type Attribute a
 
 // TUPLE ATTRIBUTES
 
-stringAttribute :: #[String, String] -> Attribute a
-export stringAttribute = AttributeTuple
+stringAttr :: #[String, String] -> Attribute a
+export stringAttr = AttributeTuple
 
 draggable :: Boolean -> Attribute a
 export draggable = (canDrag) => AttributeTuple(#["draggable", canDrag ? "true" : "false"])
@@ -309,7 +309,7 @@ export accept = AttributeString(Accept)
 export acceptCharset = AttributeString(AcceptCharset)
 export accessKey = AttributeString(AccessKey)
 export action = AttributeString(Action)
-export altAttribute = AttributeString(Alt)
+export altAttr = AttributeString(Alt)
 export citeAttr = AttributeString(Cite)
 export className = AttributeString(Class)
 export coords = AttributeString(Coords)

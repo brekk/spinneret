@@ -9,7 +9,7 @@ export tag = (textNode, tagName, props, kids) => {
   if (textNode) {
     children = Hyper.text(children)
   }
-  console.log("tag!", {textNode, tagName, props, children})
+  console.log("tag!", {textNode, tagName, props, props2: __listToJSArray__(props), children})
   -#
   return #- return Hyper.h(tagName, props || {}, children) -#
 }
