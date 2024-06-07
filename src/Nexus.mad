@@ -1,10 +1,68 @@
+import { toLower } from "String"
+
+
+
 export SSR_NODE = 1
 export TEXT_NODE = 3
 export SVG_NS = "http://www.w3.org/2000/svg"
 
-export type DomClass = 
+createVNode = (tag, obj, children, _type, node) => #- ({
+  tag,
+  props: obj.props,
+  key: obj.key,
+  children,
+  type: _type,
+  node
+}) -#
 
-createClass :: 
+text = (v, n) => createVNode(v, #- {} -#, [], TEXT_NODE, n)
+
+recycleNode = (node) => if (node.nodeType == TEXT_NODE) {
+  text(node.nodeValue, node)
+} else {
+  createVNode(toLower(node.nodeName), #- {} -#, map(recycleNode, node.childNodes), SSR_NODE, node)
+}
+
+app = (node, view, subscriber, dispatch, initial) => {
+  __node = recycleNode(node)
+  __subs = []
+  __state = initial
+  __busy = false
+
+  listener = (ev) => {
+    // dispatch(eventsByType(ev), ev)
+  }
+
+  render = () => {
+    __busy := false
+    __node := patch(
+      node.parentNode,
+      node,
+      __node,
+      pipe(
+        view,
+        (x) => {
+          __node := x
+          return x
+        },
+      )(__state),
+      listener,
+      __busy,
+    )
+  }
+
+  update = (newState) => if (state != newState) do {
+    __state := newState
+    __subs := patchSubs(__subs, subscriber(__state), dispatch)
+    if (!busy) do {
+      __busy := true
+      #- requestAnimationFrame(render) -#
+    }
+  }
+
+  return invokeDispatch
+}
+
 /*
 shouldRestart = (a, b) => {
   for (var k in { ...a, ...b }) {
