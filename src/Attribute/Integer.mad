@@ -1,0 +1,75 @@
+export type AttrInteger
+  = Cols
+  | ColSpan
+  | Height
+  | High
+  | Low
+  | Max
+  | MaxLength
+  | Min
+  | Optimum
+  | Rows
+  | RowSpan
+  | Size
+  | Span
+  | Start
+  | Step
+  | TabIndex
+  | Width
+
+unwrapIntegerAttribute :: AttrInteger -> Integer -> #[String, String]
+export unwrapIntegerAttribute = (x, i) => #[
+  where(x) {
+    Cols =>
+      "cols"
+
+    ColSpan =>
+      "colspan"
+
+    Height =>
+      "height"
+
+    High =>
+      "high"
+
+    Low =>
+      "low"
+
+    Max =>
+      "max"
+
+    MaxLength =>
+      "maxlength"
+
+    Min =>
+      "min"
+
+    Optimum =>
+      "optimum"
+
+    Rows =>
+      "rows"
+
+    RowSpan =>
+      "rowspan"
+
+    Size =>
+      "size"
+
+    Span =>
+      "span"
+
+    Start =>
+      "start"
+
+    Step =>
+      "step"
+
+    TabIndex =>
+      "tabindex"
+
+    Width =>
+      "width"
+  },
+  show(i),
+]

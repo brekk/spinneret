@@ -1,174 +1,182 @@
 import type { Method } from "Http"
 
 import type { Action } from "@/Action"
+import type { AttrAction } from "@/Attribute/Action"
+import type { AttrBoolean } from "@/Attribute/Boolean"
+import type { AttrInteger } from "@/Attribute/Integer"
+import type { AttrString } from "@/Attribute/String"
 
 import { CONNECT, DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, TRACE } from "Http"
 
+import {
+  OnAbort,
+  OnBlur,
+  OnCanPlay,
+  OnCanPlayThrough,
+  OnChange,
+  OnClick,
+  OnContextMenu,
+  OnCopy,
+  OnCueChange,
+  OnCut,
+  OnDblClick,
+  OnDrag,
+  OnDragEnd,
+  OnDragEnter,
+  OnDragLeave,
+  OnDragOver,
+  OnDragStart,
+  OnDrop,
+  OnDurationChange,
+  OnEmptied,
+  OnEnded,
+  OnError,
+  OnFocus,
+  OnInput,
+  OnInvalid,
+  OnKeyDown,
+  OnKeyPress,
+  OnKeyUp,
+  OnLoad,
+  OnLoadStart,
+  OnLoadedData,
+  OnLoadedMetaData,
+  OnMouseDown,
+  OnMouseEnter,
+  OnMouseLeave,
+  OnMouseMove,
+  OnMouseOut,
+  OnMouseOver,
+  OnMouseUp,
+  OnMouseWheel,
+  OnPaste,
+  OnPause,
+  OnPlay,
+  OnPlaying,
+  OnProgress,
+  OnRateChange,
+  OnReset,
+  OnScroll,
+  OnSearch,
+  OnSeeked,
+  OnSeeking,
+  OnSelect,
+  OnStalled,
+  OnSubmit,
+  OnSuspend,
+  OnTimeUpdate,
+  OnToggle,
+  OnTransitionCancel,
+  OnTransitionEnd,
+  OnTransitionRun,
+  OnTransitionStart,
+  OnVolumeChange,
+  OnWaiting,
+  OnWheel,
+} from "@/Attribute/Action"
+import {
+  Async,
+  AutoFocus,
+  AutoPlay,
+  Checked,
+  ContentEditable,
+  Controls,
+  Default,
+  Defer,
+  Disabled,
+  Download,
+  Draggable,
+  Hidden,
+  IsMap,
+  Loop,
+  Multiple,
+  Muted,
+  NoValidate,
+  Open,
+  ReadOnly,
+  Required,
+  Reversed,
+  Selected,
+  unwrapBooleanAttribute,
+} from "@/Attribute/Boolean"
+import {
+  ColSpan,
+  Cols,
+  Height,
+  High,
+  Low,
+  Max,
+  MaxLength,
+  Min,
+  Optimum,
+  RowSpan,
+  Rows,
+  Size,
+  Span,
+  Start,
+  Step,
+  TabIndex,
+  Width,
+  unwrapIntegerAttribute,
+} from "@/Attribute/Integer"
+import {
+  Accept,
+  AcceptCharset,
+  AccessKey,
+  Action,
+  Alt,
+  AutoComplete,
+  Cite,
+  Class,
+  Coords,
+  Data,
+  DateTime,
+  Dir,
+  DirName,
+  EncType,
+  For,
+  Form,
+  FormAction,
+  Headers,
+  Href,
+  HrefLang,
+  Id,
+  InnerHTML,
+  InnerText,
+  Key,
+  Kind,
+  Label,
+  Lang,
+  List,
+  Media,
+  Method,
+  Name,
+  Pattern,
+  Placeholder,
+  Poster,
+  Preload,
+  Rel,
+  SandBox,
+  Scope,
+  Shape,
+  Sizes,
+  SpellCheck,
+  Src,
+  SrcDoc,
+  SrcLang,
+  SrcSet,
+  Target,
+  Title,
+  To,
+  Translate,
+  Type,
+  UseMap,
+  Value,
+  Wrap,
+  unwrapStringAttribute,
+} from "@/Attribute/String"
 
 
-export type AttrString
-  = Accept
-  | AcceptCharset
-  | AccessKey
-  | Action
-  | Alt
-  | AutoComplete
-  | Cite
-  | Class
-  | Coords
-  | Data
-  | DateTime
-  | Dir
-  | DirName
-  | EncType
-  | For
-  | Form
-  | FormAction
-  | Headers
-  | Href
-  | HrefLang
-  | Id
-  | InnerHTML
-  | InnerText
-  | Key
-  | Kind
-  | Lang
-  | Label
-  | List
-  | Media
-  | Method
-  | Name
-  | Pattern
-  | Placeholder
-  | Poster
-  | Preload
-  | Rel
-  | Scope
-  | Shape
-  | Sizes
-  | SpellCheck
-  | Src
-  | SrcDoc
-  | SrcLang
-  | SrcSet
-  | Target
-  | Title
-  | To
-  | Translate
-  | Type
-  | UseMap
-  | Value
-  | Wrap
-
-export type AttrBoolean
-  = Async
-  | AutoFocus
-  | AutoPlay
-  | Checked
-  | ContentEditable
-  | Controls
-  | Default
-  | Defer
-  | Disabled
-  | Download
-  | Draggable
-  | Hidden
-  | IsMap
-  | Loop
-  | Multiple
-  | Muted
-  | NoValidate
-  | Open
-  | ReadOnly
-  | Required
-  | Reversed
-  | SandBox
-  | Selected
-
-export type AttrInteger
-  = Cols
-  | ColSpan
-  | Height
-  | High
-  | Low
-  | Max
-  | MaxLength
-  | Min
-  | Optimum
-  | Rows
-  | RowSpan
-  | Size
-  | Span
-  | Start
-  | Step
-  | TabIndex
-  | Width
-
-export type AttrAction
-  = OnAbort
-  | OnBlur
-  | OnCanPlay
-  | OnCanPlayThrough
-  | OnChange
-  | OnClick
-  | OnContextMenu
-  | OnCopy
-  | OnCueChange
-  | OnCut
-  | OnDblClick
-  | OnDrag
-  | OnDragEnd
-  | OnDragEnter
-  | OnDragLeave
-  | OnDragOver
-  | OnDragStart
-  | OnDrop
-  | OnDurationChange
-  | OnEmptied
-  | OnEnded
-  | OnError
-  | OnFocus
-  | OnInput
-  | OnInvalid
-  | OnKeyPress
-  | OnKeyDown
-  | OnKeyUp
-  | OnLoad
-  | OnLoadedData
-  | OnLoadedMetaData
-  | OnLoadStart
-  | OnMouseDown
-  | OnMouseEnter
-  | OnMouseLeave
-  | OnMouseMove
-  | OnMouseUp
-  | OnMouseWheel
-  | OnMouseOver
-  | OnMouseOut
-  | OnPaste
-  | OnPause
-  | OnPlay
-  | OnPlaying
-  | OnProgress
-  | OnRateChange
-  | OnReset
-  | OnScroll
-  | OnSearch
-  | OnSeeked
-  | OnSeeking
-  | OnSelect
-  | OnStalled
-  | OnSubmit
-  | OnSuspend
-  | OnTimeUpdate
-  | OnToggle
-  | OnTransitionCancel
-  | OnTransitionEnd
-  | OnTransitionRun
-  | OnTransitionStart
-  | OnVolumeChange
-  | OnWaiting
-  | OnWheel
 
 export type Attribute a
   = AttributeTuple(#[String, String])
@@ -209,7 +217,6 @@ export open = AttributeBoolean(Open)
 export readonly = AttributeBoolean(ReadOnly)
 export required = AttributeBoolean(Required)
 export reversed = AttributeBoolean(Reversed)
-export sandbox = AttributeBoolean(SandBox)
 export selected = AttributeBoolean(Selected)
 export loop = AttributeBoolean(Loop)
 export multiple = AttributeBoolean(Multiple)
@@ -339,6 +346,7 @@ export pattern = AttributeString(Pattern)
 export placeholder = AttributeString(Placeholder)
 export poster = AttributeString(Poster)
 export rel = AttributeString(Rel)
+export sandbox = AttributeString(SandBox)
 export src = AttributeString(Src)
 export srcdoc = AttributeString(SrcDoc)
 export srclang = AttributeString(SrcLang)
@@ -353,77 +361,77 @@ autocomplete :: Boolean -> Attribute a
 export autocomplete = (on) => AttributeString(AutoComplete, on ? "on" : "off")
 
 method :: Method -> Attribute a
-export method = (mth) => {
-  attrMeth = AttributeString(Method)
-  return where(mth) {
+export method = (mth) => AttributeString(
+  Method,
+  where(mth) {
     GET =>
-      attrMeth("get")
+      "get"
 
     POST =>
-      attrMeth("post")
+      "post"
 
     PUT =>
-      attrMeth("put")
+      "put"
 
     DELETE =>
-      attrMeth("delete")
+      "delete"
 
     PATCH =>
-      attrMeth("patch")
+      "patch"
 
     HEAD =>
-      attrMeth("head")
+      "head"
 
     OPTIONS =>
-      attrMeth("options")
+      "options"
 
     CONNECT =>
-      attrMeth("connect")
+      "connect"
 
     TRACE =>
-      attrMeth("trace")
-  }
-}
+      "trace"
+  },
+)
 
 export type AttrScope = Col | Row | ColGroup | RowGroup
 
 scope :: AttrScope -> Attribute a
-export scope = (sc) => {
-  attrScope = AttributeString(Scope)
-  return where(sc) {
+export scope = (sc) => AttributeString(
+  Scope,
+  where(sc) {
     Col =>
-      attrScope("col")
+      "col"
 
     Row =>
-      attrScope("row")
+      "row"
 
     ColGroup =>
-      attrScope("colgroup")
+      "colgroup"
 
     RowGroup =>
-      attrScope("rowgroup")
-  }
-}
+      "rowgroup"
+  },
+)
 
 export type AttrShape = ShapeDefault | Rect | Circle | Poly
 
 shape :: AttrShape -> Attribute a
-export shape = (sh) => {
-  attrShape = AttributeString(Shape)
-  return where(sh) {
+export shape = (sh) => AttributeString(
+  Shape,
+  where(sh) {
     ShapeDefault =>
-      attrShape("default")
+      "default"
 
     Rect =>
-      attrShape("rect")
+      "rect"
 
     Circle =>
-      attrShape("circle")
+      "circle"
 
     Poly =>
-      attrShape("poly")
-  }
-}
+      "poly"
+  },
+)
 
 spellcheck :: Boolean -> Attribute a
 export spellcheck = (truthy) => AttributeString(SpellCheck, truthy ? "true" : "false")
@@ -434,33 +442,54 @@ export translate = (yes) => AttributeString(Translate, yes ? "yes" : "no")
 export type AttrWrap = Soft | Hard
 
 wrap :: AttrWrap -> Attribute a
-export wrap = (wr) => {
-  attrWrap = AttributeString(Wrap)
-  return where(wr) {
+export wrap = (wr) => AttributeString(
+  Wrap,
+  where(wr) {
     Soft =>
-      attrWrap("soft")
+      "soft"
 
     Hard =>
-      attrWrap("hard")
-  }
-}
+      "hard"
+  },
+)
 
 export type AttrPreload = Auto | Metadata | None
 
 preload :: AttrPreload -> Attribute a
-export preload = (pr) => {
-  preAttr = AttributeString(Preload)
-  return where(pr) {
+export preload = (pr) => AttributeString(
+  Preload,
+  where(pr) {
     Auto =>
-      preAttr("auto")
+      "auto"
 
     Metadata =>
-      preAttr("metadata")
+      "metadata"
 
     None =>
-      preAttr("none")
-  }
-}
+      "none"
+  },
+)
 
 // TODO: see if we should make this a List Size or something
 export sizes = AttributeString(Sizes)
+
+// UNWRAPPER
+
+
+attribution :: Attribute a -> #[String, String]
+attribution = where {
+  AttributeTuple(raw) =>
+    raw
+
+  AttributeString(keyType, v) =>
+    unwrapStringAttribute(keyType, v)
+
+  AttributeBoolean(b) =>
+    unwrapBooleanAttribute(b)
+
+  AttributeInteger(a, i) =>
+    unwrapIntegerAttribute(a, i)
+}
+
+// | AttributeAction(AttrAction, Action a)
+// | AttributeDict(Dictionary String String)

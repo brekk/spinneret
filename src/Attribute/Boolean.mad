@@ -1,0 +1,95 @@
+export type AttrBoolean
+  = Async
+  | AutoFocus
+  | AutoPlay
+  | Checked
+  | ContentEditable
+  | Controls
+  | Default
+  | Defer
+  | Disabled
+  | Download
+  | Draggable
+  | Hidden
+  | IsMap
+  | Loop
+  | Multiple
+  | Muted
+  | NoValidate
+  | Open
+  | ReadOnly
+  | Required
+  | Reversed
+  | Selected
+
+unwrapBooleanAttribute :: AttrBoolean -> #[String, String]
+export unwrapBooleanAttribute = (b) => #[
+  where(b) {
+    Async =>
+      "async"
+
+    AutoFocus =>
+      "autofocus"
+
+    AutoPlay =>
+      "autoplay"
+
+    Checked =>
+      "checked"
+
+    ContentEditable =>
+      "contenteditable"
+
+    Controls =>
+      "controls"
+
+    Default =>
+      "default"
+
+    Defer =>
+      "defer"
+
+    Disabled =>
+      "disabled"
+
+    Download =>
+      "download"
+
+    Draggable =>
+      "draggable"
+
+    Hidden =>
+      "hidden"
+
+    IsMap =>
+      "isMap"
+
+    Loop =>
+      "loop"
+
+    Multiple =>
+      "multiple"
+
+    Muted =>
+      "muted"
+
+    NoValidate =>
+      "novalidate"
+
+    Open =>
+      "open"
+
+    ReadOnly =>
+      "readonly"
+
+    Required =>
+      "required"
+
+    Reversed =>
+      "reversed"
+
+    Selected =>
+      "selected"
+  },
+  "",
+]
