@@ -478,25 +478,25 @@ export sizes = AttributeString(Sizes)
 
 export type AppliedAttribute a = AFeature(String) | AFunction(a -> Action a -> {})
 
-attribution :: Attribute a -> #[String, AppliedAttribute a]
-export attribution = where {
-  AttributeTuple(#[k, v]) =>
-    #[k, AFeature(v)]
+attribution :: Show a => Attribute a -> #[String, AppliedAttribute a]
+export attribution = (x) => {
+  IO.pTrace("attributing...", x)
+  return where(x) {
+    AttributeTuple(#[k, v]) =>
+      #[k, AFeature(v)]
 
-  AttributeString(keyType, v) =>
-    #[unwrapStringAttribute(keyType), AFeature(v)]
+    AttributeString(keyType, v) =>
+      #[unwrapStringAttribute(keyType), AFeature(v)]
 
-  AttributeBoolean(b, v) =>
-    #[unwrapBooleanAttribute(b), AFeature(v ? "true" : "false")]
+    AttributeBoolean(b, v) =>
+      #[unwrapBooleanAttribute(b), AFeature(v ? "true" : "false")]
 
-  AttributeInteger(a, i) =>
-    #[unwrapIntegerAttribute(a), AFeature(show(i))]
+    AttributeInteger(a, i) =>
+      #[unwrapIntegerAttribute(a), AFeature(show(i))]
 
-  AttributeAction(_, _) =>
-    #["not", AFeature("supported")]
-
-  AttributeDict(_) =>
-    #["not", AFeature("supported")]
+    _ =>
+      #["not", AFeature("supported")]
+  }
 }
 
 // | AttributeAction(AttrAction, Action a)
