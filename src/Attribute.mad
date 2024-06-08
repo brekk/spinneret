@@ -186,6 +186,7 @@ export type Attribute a
   | AttributeInteger(AttrInteger, Integer)
   | AttributeAction(AttrAction, Action a)
   | AttributeDict(Dictionary String String)
+  | NoAttribute
 
 // TUPLE ATTRIBUTES
 

@@ -3,21 +3,23 @@ import type { AppliedAttribute, Attribute } from "@/Attribute"
 
 import IO from "IO"
 
-import { AttributeString, attribution } from "@/Attribute"
+import { AttributeString, NoAttribute, attribution } from "@/Attribute"
 
 
 
 export type Element a = __Element__
 
 
-_tag :: (Attribute a -> #[String, AppliedAttribute a])
-  -> Boolean
-  -> String
-  -> a
-  -> List (Element {})
-  -> Element {}
-export _tag = (consume, textNode, tagName, rawProps, kids) => #- { 
+// _tag :: (Attribute a -> #[String, AppliedAttribute a])
+//   -> Boolean
+//   -> String
+//   -> a
+//   -> List (Element {})
+//   -> Element {}
+export _tag = (other, consume, textNode, tagName, rawProps, kids) => #- { 
   const props = {}
+  rawProps = rawProps || other
+  console.log("enpropping", rawProps)
   if (rawProps && rawProps?.v && rawProps?.v?.__constructor === "AttributeString") {
     props[rawProps.v.__args[0].__constructor] = rawProps.v.__args[1]
     console.log(">>>", rawProps, consume(__listToJSArray__(rawProps)))
@@ -29,7 +31,7 @@ export _tag = (consume, textNode, tagName, rawProps, kids) => #- {
   return Hyper.h(tagName, props, children)
 } -#
 
-export tag = (t, n, props, k) => _tag(attribution, t, n, props, k)
+export tag = (t, n, props, k) => _tag(NoAttribute, attribution, t, n, props, k)
 
 export nonText = tag(false)
 export text = tag(true)
