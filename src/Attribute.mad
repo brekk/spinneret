@@ -7,6 +7,7 @@ import type { AttrInteger } from "@/Attribute/Integer"
 import type { AttrString } from "@/Attribute/String"
 
 import { CONNECT, DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, TRACE } from "Http"
+import IO from "IO"
 
 import {
   OnAbort,
@@ -475,20 +476,27 @@ export sizes = AttributeString(Sizes)
 
 // UNWRAPPER
 
+export type AppliedAttribute a = AFeature(String) | AFunction(a -> Action a -> {})
 
-attribution :: Attribute a -> #[String, String]
-attribution = where {
-  AttributeTuple(raw) =>
-    raw
+attribution :: Attribute a -> #[String, AppliedAttribute a]
+export attribution = where {
+  AttributeTuple(#[k, v]) =>
+    #[k, AFeature(v)]
 
   AttributeString(keyType, v) =>
-    unwrapStringAttribute(keyType, v)
+    #[unwrapStringAttribute(keyType), AFeature(v)]
 
-  AttributeBoolean(b) =>
-    unwrapBooleanAttribute(b)
+  AttributeBoolean(b, v) =>
+    #[unwrapBooleanAttribute(b), AFeature(v ? "true" : "false")]
 
   AttributeInteger(a, i) =>
-    unwrapIntegerAttribute(a, i)
+    #[unwrapIntegerAttribute(a), AFeature(show(i))]
+
+  AttributeAction(_, _) =>
+    #["not", AFeature("supported")]
+
+  AttributeDict(_) =>
+    #["not", AFeature("supported")]
 }
 
 // | AttributeAction(AttrAction, Action a)

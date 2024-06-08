@@ -1,3 +1,7 @@
+import type { Action } from "@/Action"
+
+
+
 export type AttrAction
   = OnAbort
   | OnBlur
@@ -63,3 +67,6 @@ export type AttrAction
   | OnVolumeChange
   | OnWaiting
   | OnWheel
+
+unwrapActionAttribute :: AttrAction -> Action a -> #[String, String]
+export unwrapActionAttribute = (attr, act) => #["", ""]

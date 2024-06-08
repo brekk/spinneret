@@ -17,59 +17,56 @@ export type AttrInteger
   | TabIndex
   | Width
 
-unwrapIntegerAttribute :: AttrInteger -> Integer -> #[String, String]
-export unwrapIntegerAttribute = (x, i) => #[
-  where(x) {
-    Cols =>
-      "cols"
+unwrapIntegerAttribute :: AttrInteger -> String
+export unwrapIntegerAttribute = where {
+  Cols =>
+    "cols"
 
-    ColSpan =>
-      "colspan"
+  ColSpan =>
+    "colspan"
 
-    Height =>
-      "height"
+  Height =>
+    "height"
 
-    High =>
-      "high"
+  High =>
+    "high"
 
-    Low =>
-      "low"
+  Low =>
+    "low"
 
-    Max =>
-      "max"
+  Max =>
+    "max"
 
-    MaxLength =>
-      "maxlength"
+  MaxLength =>
+    "maxlength"
 
-    Min =>
-      "min"
+  Min =>
+    "min"
 
-    Optimum =>
-      "optimum"
+  Optimum =>
+    "optimum"
 
-    Rows =>
-      "rows"
+  Rows =>
+    "rows"
 
-    RowSpan =>
-      "rowspan"
+  RowSpan =>
+    "rowspan"
 
-    Size =>
-      "size"
+  Size =>
+    "size"
 
-    Span =>
-      "span"
+  Span =>
+    "span"
 
-    Start =>
-      "start"
+  Start =>
+    "start"
 
-    Step =>
-      "step"
+  Step =>
+    "step"
 
-    TabIndex =>
-      "tabindex"
+  TabIndex =>
+    "tabindex"
 
-    Width =>
-      "width"
-  },
-  show(i),
-]
+  Width =>
+    "width"
+}

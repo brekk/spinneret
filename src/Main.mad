@@ -1,4 +1,6 @@
-import { className } from "@/Attr"
+import IO from "IO"
+
+import { className } from "@/Attribute"
 import { div, p, render } from "@/Spinneret"
 import { bem } from "@/Style"
 
@@ -6,5 +8,8 @@ import { bem } from "@/Style"
 
 main = () => {
   s = bem("App")
-  render("app", <div className={s.e("core")}><p>Hey this is magical!</p></div>)
+  name = s.e("core")
+  IO.put(name)
+  #- console.log("name", name) -#
+  render("app", <div className={name}><p>Hey this is magical!</p></div>)
 }

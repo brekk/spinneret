@@ -22,74 +22,71 @@ export type AttrBoolean
   | Reversed
   | Selected
 
-unwrapBooleanAttribute :: AttrBoolean -> #[String, String]
-export unwrapBooleanAttribute = (b) => #[
-  where(b) {
-    Async =>
-      "async"
+unwrapBooleanAttribute :: AttrBoolean -> String
+export unwrapBooleanAttribute = where {
+  Async =>
+    "async"
 
-    AutoFocus =>
-      "autofocus"
+  AutoFocus =>
+    "autofocus"
 
-    AutoPlay =>
-      "autoplay"
+  AutoPlay =>
+    "autoplay"
 
-    Checked =>
-      "checked"
+  Checked =>
+    "checked"
 
-    ContentEditable =>
-      "contenteditable"
+  ContentEditable =>
+    "contenteditable"
 
-    Controls =>
-      "controls"
+  Controls =>
+    "controls"
 
-    Default =>
-      "default"
+  Default =>
+    "default"
 
-    Defer =>
-      "defer"
+  Defer =>
+    "defer"
 
-    Disabled =>
-      "disabled"
+  Disabled =>
+    "disabled"
 
-    Download =>
-      "download"
+  Download =>
+    "download"
 
-    Draggable =>
-      "draggable"
+  Draggable =>
+    "draggable"
 
-    Hidden =>
-      "hidden"
+  Hidden =>
+    "hidden"
 
-    IsMap =>
-      "isMap"
+  IsMap =>
+    "isMap"
 
-    Loop =>
-      "loop"
+  Loop =>
+    "loop"
 
-    Multiple =>
-      "multiple"
+  Multiple =>
+    "multiple"
 
-    Muted =>
-      "muted"
+  Muted =>
+    "muted"
 
-    NoValidate =>
-      "novalidate"
+  NoValidate =>
+    "novalidate"
 
-    Open =>
-      "open"
+  Open =>
+    "open"
 
-    ReadOnly =>
-      "readonly"
+  ReadOnly =>
+    "readonly"
 
-    Required =>
-      "required"
+  Required =>
+    "required"
 
-    Reversed =>
-      "reversed"
+  Reversed =>
+    "reversed"
 
-    Selected =>
-      "selected"
-  },
-  "",
-]
+  Selected =>
+    "selected"
+}
