@@ -1,0 +1,33 @@
+html, body {
+  background-color: #232136;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  font-family: "Fira Code";
+}
+
+.App {
+  &__core {
+  }
+}
+
+.HowTo {
+  &__guide {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    border-radius: 1rem;
+    border: 1px solid #9ccfd8;
+    padding: 1rem;
+  }
+  &__image {
+    &--avatar {
+      border-radius: 1rem;
+      width: 4rem;
+    }
+  }
+  &__heading {
+    color: #f6c177;
+    font-weight: 400;
+  }
+}

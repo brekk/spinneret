@@ -18,5 +18,9 @@
   "homepage": "https://github.com/brekk/spinneret#readme",
   "dependencies": {
     "hyperapp": "^2.0.22"
+  },
+  "scripts": {
+    "build": "madlib compile -i src/Main.mad -t browser --bundle -o build/app.js --watch",
+    "style": "sass stylesheet.scss build/stylesheet.css"
   }
 }

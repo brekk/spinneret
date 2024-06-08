@@ -1,15 +1,31 @@
 import IO from "IO"
 
-import { className } from "@/Attribute"
-import { div, p, render } from "@/Spinneret"
+import { className, src } from "@/Attribute"
+import { div, header, img, mainElement, p, strong } from "@/Element"
+import { render } from "@/Spinneret"
 import { bem } from "@/Style"
 
 
 
 main = () => {
   s = bem("App")
-  name = s.e("core")
-  IO.put(name)
-  #- console.log("name", name) -#
-  render("app", <div className={name}><p>Hey this is magical!</p></div>)
+  t = bem("HowTo")
+  render(
+    "app",
+    <div className={s.e("core")}>
+      <div className={s.em("tutorial", ["core"])}>
+        <div className={t.e("guide")}>
+          <header>
+            <img
+              className={t.em("image", ["avatar"])}
+              src="https://avatars.githubusercontent.com/u/79449205?s=200&v=4"
+            />
+            <strong className={t.e("heading")}>
+              01 — It's a mad, mad, mad, mad world
+            </strong>
+          </header>
+        </div>
+      </div>
+    </div>,
+  )
 }

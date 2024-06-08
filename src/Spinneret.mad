@@ -1,57 +1,10 @@
-#- import * as Hyper from "hyperapp" -#
-import type { AppliedAttribute, Attribute } from "@/Attribute"
-
-import IO from "IO"
-
-import { AttributeString, NoAttribute, attributeKey, attributeValue } from "@/Attribute"
+#- import {h, app} from "hyperapp" -#
+import type { Element } from "@/Element"
 
 
-
-export type Element a = __Element__
-
-
-// _tag :: (Attribute a -> #[String, AppliedAttribute a])
-//   -> Boolean
-//   -> String
-//   -> a
-//   -> List (Element {})
-//   -> Element {}
-export _tag = (other, enkey, envalue, textNode, tagName, rawProps, kids) => #- { 
-  console.log("rawPROPS", rawProps)
-  const attrs = rawProps ? __listToJSArray__(rawProps) : [other]
-  console.log("enpropping", attrs)
-  const props = attrs.reduce(
-    (agg, attr) => {
-      const k = enkey(attr)
-      const v = envalue(attr)
-      if (k && v) {
-        return {...agg, [k]: v} 
-      }
-      return agg
-    },
-    {}
-  )
-  console.log("POST OP PROPS", props)
-  let children = __listToJSArray__(kids)
-  if (textNode) {
-    children = Hyper.text(children)
-  }
-  return Hyper.h(tagName, props, children)
-} -#
-
-export tag = (t, n, props, k) => _tag(NoAttribute, attributeKey, attributeValue, t, n, props, k)
-
-export nonText = tag(false)
-export text = tag(true)
-export p = text("p")
-export div = nonText("div")
 
 render :: String -> Element {} -> {}
-export render = (rootId, elem) => #- {
-    console.log({rootId, elem})
-    Hyper.app({
-      view: () => Hyper.h("main", {key: "app"}, [elem]),
-      node: document.getElementById(rootId)
-    })
-}
- -#
+export render = (rootId, elem) => #- app({
+  view: () => h("main", {key: "app"}, [elem]),
+  node: document.getElementById(rootId)
+}) -#
