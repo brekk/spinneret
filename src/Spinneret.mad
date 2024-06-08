@@ -19,13 +19,13 @@ export type Element a = __Element__
 export _tag = (other, enkey, textNode, tagName, rawProps, kids) => #- { 
   const props = {}
   console.log("rawPROPS", rawProps)
-  rawProps = rawProps || other
+  rawProps = rawProps ? __listToJSArray__(rawProps) : [other]
   console.log("enpropping", rawProps)
   if (rawProps && rawProps?.v && rawProps?.v?.__constructor === "AttributeString") {
     console.log("_________ ATTRIBUTE STRING")
     props[rawProps.v.__args[0].__constructor] = rawProps.v.__args[1]
   }
-  console.log("key!?!", enkey(rawProps))
+  console.log("key!?!", rawProps.map(enkey))
   let children = __listToJSArray__(kids)
   if (textNode) {
     children = Hyper.text(children)

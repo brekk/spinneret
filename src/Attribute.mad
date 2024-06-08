@@ -480,24 +480,21 @@ export sizes = AttributeString(Sizes)
 export type AppliedAttribute a = AFeature(String) | AFunction(a -> Action a -> {})
 
 attributeKey :: Show a => Attribute a -> String
-export attributeKey = (x) => {
-  IO.log(x)
-  return where(x) {
-    AttributeTuple(#[k, _]) =>
-      k
+export attributeKey = where {
+  AttributeTuple(#[k, _]) =>
+    k
 
-    AttributeString(keyType, _) =>
-      stringKey(keyType)
+  AttributeString(keyType, _) =>
+    stringKey(keyType)
 
-    AttributeBoolean(b, _) =>
-      booleanKey(b)
+  AttributeBoolean(b, _) =>
+    booleanKey(b)
 
-    AttributeInteger(a, _) =>
-      integerKey(a)
+  AttributeInteger(a, _) =>
+    integerKey(a)
 
-    _ =>
-      ""
-  }
+  _ =>
+    ""
 }
 
 // | AttributeAction(AttrAction, Action a)
