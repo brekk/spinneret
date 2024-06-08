@@ -3,7 +3,7 @@ import type { AppliedAttribute, Attribute } from "@/Attribute"
 
 import IO from "IO"
 
-import { AttributeString, NoAttribute, attributeKey } from "@/Attribute"
+import { AttributeString, NoAttribute, attributeKey, attributeValue } from "@/Attribute"
 
 
 
@@ -16,16 +16,22 @@ export type Element a = __Element__
 //   -> a
 //   -> List (Element {})
 //   -> Element {}
-export _tag = (other, enkey, textNode, tagName, rawProps, kids) => #- { 
-  const props = {}
+export _tag = (other, enkey, envalue, textNode, tagName, rawProps, kids) => #- { 
   console.log("rawPROPS", rawProps)
-  rawProps = rawProps ? __listToJSArray__(rawProps) : [other]
-  console.log("enpropping", rawProps)
-  if (rawProps && rawProps?.v && rawProps?.v?.__constructor === "AttributeString") {
-    console.log("_________ ATTRIBUTE STRING")
-    props[rawProps.v.__args[0].__constructor] = rawProps.v.__args[1]
-  }
-  console.log("key!?!", rawProps.map(enkey))
+  const attrs = rawProps ? __listToJSArray__(rawProps) : [other]
+  console.log("enpropping", attrs)
+  const props = attrs.reduce(
+    (agg, attr) => {
+      const k = enkey(attr)
+      const v = envalue(attr)
+      if (k && v) {
+        return {...agg, [k]: v} 
+      }
+      return agg
+    },
+    {}
+  )
+  console.log("POST OP PROPS", props)
   let children = __listToJSArray__(kids)
   if (textNode) {
     children = Hyper.text(children)
@@ -33,7 +39,7 @@ export _tag = (other, enkey, textNode, tagName, rawProps, kids) => #- {
   return Hyper.h(tagName, props, children)
 } -#
 
-export tag = (t, n, props, k) => _tag(NoAttribute, attributeKey, t, n, props, k)
+export tag = (t, n, props, k) => _tag(NoAttribute, attributeKey, attributeValue, t, n, props, k)
 
 export nonText = tag(false)
 export text = tag(true)

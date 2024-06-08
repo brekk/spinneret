@@ -479,7 +479,7 @@ export sizes = AttributeString(Sizes)
 
 export type AppliedAttribute a = AFeature(String) | AFunction(a -> Action a -> {})
 
-attributeKey :: Show a => Attribute a -> String
+attributeKey :: Attribute a -> String
 export attributeKey = where {
   AttributeTuple(#[k, _]) =>
     k
@@ -492,6 +492,18 @@ export attributeKey = where {
 
   AttributeInteger(a, _) =>
     integerKey(a)
+
+  _ =>
+    ""
+}
+
+attributeValue :: Attribute a -> String
+export attributeValue = where {
+  AttributeTuple(#[_, v]) =>
+    v
+
+  AttributeString(_, v) =>
+    v
 
   _ =>
     ""
