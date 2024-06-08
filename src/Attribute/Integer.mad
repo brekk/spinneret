@@ -17,8 +17,8 @@ export type AttrInteger
   | TabIndex
   | Width
 
-unwrapIntegerAttribute :: AttrInteger -> String
-export unwrapIntegerAttribute = where {
+integerKey :: AttrInteger -> String
+export integerKey = where {
   Cols =>
     "cols"
 

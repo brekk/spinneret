@@ -53,164 +53,171 @@ export type AttrString
   | Value
   | Wrap
 
-unwrapStringAttribute :: AttrString -> String
-export unwrapStringAttribute = where {
-  Accept =>
-    "accept"
+import IO from "IO"
 
-  AcceptCharset =>
-    "accept-charset"
 
-  AccessKey =>
-    "accesskey"
 
-  Action =>
-    "action"
+stringKey :: AttrString -> String
+export stringKey = pipe(
+  IO.pTrace("KEY"),
+  where {
+    Accept =>
+      "accept"
 
-  Alt =>
-    "alt"
+    AcceptCharset =>
+      "accept-charset"
 
-  AutoComplete =>
-    "autocomplete"
+    AccessKey =>
+      "accesskey"
 
-  Cite =>
-    "cite"
+    Action =>
+      "action"
 
-  Class =>
-    "class"
+    Alt =>
+      "alt"
 
-  Coords =>
-    "coords"
+    AutoComplete =>
+      "autocomplete"
 
-  Data =>
-    "data"
+    Cite =>
+      "cite"
 
-  DateTime =>
-    "datetime"
+    Class =>
+      "class"
 
-  Dir =>
-    "dir"
+    Coords =>
+      "coords"
 
-  DirName =>
-    "dirname"
+    Data =>
+      "data"
 
-  EncType =>
-    "enctype"
+    DateTime =>
+      "datetime"
 
-  For =>
-    "for"
+    Dir =>
+      "dir"
 
-  Form =>
-    "form"
+    DirName =>
+      "dirname"
 
-  FormAction =>
-    "formaction"
+    EncType =>
+      "enctype"
 
-  Headers =>
-    "headers"
+    For =>
+      "for"
 
-  Href =>
-    "href"
+    Form =>
+      "form"
 
-  HrefLang =>
-    "hreflang"
+    FormAction =>
+      "formaction"
 
-  Id =>
-    "id"
+    Headers =>
+      "headers"
 
-  InnerHTML =>
-    "innerHTML"
+    Href =>
+      "href"
 
-  InnerText =>
-    "innerText"
+    HrefLang =>
+      "hreflang"
 
-  Key =>
-    "key"
+    Id =>
+      "id"
 
-  Kind =>
-    "kind"
+    InnerHTML =>
+      "innerHTML"
 
-  Lang =>
-    "lang"
+    InnerText =>
+      "innerText"
 
-  Label =>
-    "label"
+    Key =>
+      "key"
 
-  List =>
-    "list"
+    Kind =>
+      "kind"
 
-  Media =>
-    "media"
+    Lang =>
+      "lang"
 
-  Method =>
-    "method"
+    Label =>
+      "label"
 
-  Name =>
-    "name"
+    List =>
+      "list"
 
-  Pattern =>
-    "pattern"
+    Media =>
+      "media"
 
-  Placeholder =>
-    "placeholder"
+    Method =>
+      "method"
 
-  Poster =>
-    "poster"
+    Name =>
+      "name"
 
-  Preload =>
-    "preload"
+    Pattern =>
+      "pattern"
 
-  Rel =>
-    "rel"
+    Placeholder =>
+      "placeholder"
 
-  SandBox =>
-    "sandBox"
+    Poster =>
+      "poster"
 
-  Scope =>
-    "scope"
+    Preload =>
+      "preload"
 
-  Shape =>
-    "shape"
+    Rel =>
+      "rel"
 
-  Sizes =>
-    "sizes"
+    SandBox =>
+      "sandBox"
 
-  SpellCheck =>
-    "spellcheck"
+    Scope =>
+      "scope"
 
-  Src =>
-    "src"
+    Shape =>
+      "shape"
 
-  SrcDoc =>
-    "srcdoc"
+    Sizes =>
+      "sizes"
 
-  SrcLang =>
-    "srclang"
+    SpellCheck =>
+      "spellcheck"
 
-  SrcSet =>
-    "srcset"
+    Src =>
+      "src"
 
-  Target =>
-    "target"
+    SrcDoc =>
+      "srcdoc"
 
-  Title =>
-    "title"
+    SrcLang =>
+      "srclang"
 
-  To =>
-    "to"
+    SrcSet =>
+      "srcset"
 
-  Translate =>
-    "translate"
+    Target =>
+      "target"
 
-  Type =>
-    "type"
+    Title =>
+      "title"
 
-  UseMap =>
-    "usemap"
+    To =>
+      "to"
 
-  Value =>
-    "value"
+    Translate =>
+      "translate"
 
-  Wrap =>
-    "wrap"
-}
+    Type =>
+      "type"
+
+    UseMap =>
+      "usemap"
+
+    Value =>
+      "value"
+
+    Wrap =>
+      "wrap"
+  },
+)

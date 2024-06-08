@@ -22,8 +22,8 @@ export type AttrBoolean
   | Reversed
   | Selected
 
-unwrapBooleanAttribute :: AttrBoolean -> String
-export unwrapBooleanAttribute = where {
+booleanKey :: AttrBoolean -> String
+export booleanKey = where {
   Async =>
     "async"
 

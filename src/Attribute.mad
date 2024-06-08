@@ -98,7 +98,7 @@ import {
   Required,
   Reversed,
   Selected,
-  unwrapBooleanAttribute,
+  booleanKey,
 } from "@/Attribute/Boolean"
 import {
   ColSpan,
@@ -118,7 +118,7 @@ import {
   Step,
   TabIndex,
   Width,
-  unwrapIntegerAttribute,
+  integerKey,
 } from "@/Attribute/Integer"
 import {
   Accept,
@@ -174,7 +174,7 @@ import {
   UseMap,
   Value,
   Wrap,
-  unwrapStringAttribute,
+  stringKey,
 } from "@/Attribute/String"
 
 
@@ -479,24 +479,24 @@ export sizes = AttributeString(Sizes)
 
 export type AppliedAttribute a = AFeature(String) | AFunction(a -> Action a -> {})
 
-attribution :: Show a => Attribute a -> #[String, AppliedAttribute a]
-export attribution = (x) => {
-  IO.pTrace("attributing...", x)
+attributeKey :: Show a => Attribute a -> String
+export attributeKey = (x) => {
+  IO.log(x)
   return where(x) {
-    AttributeTuple(#[k, v]) =>
-      #[k, AFeature(v)]
+    AttributeTuple(#[k, _]) =>
+      k
 
-    AttributeString(keyType, v) =>
-      #[unwrapStringAttribute(keyType), AFeature(v)]
+    AttributeString(keyType, _) =>
+      stringKey(keyType)
 
-    AttributeBoolean(b, v) =>
-      #[unwrapBooleanAttribute(b), AFeature(v ? "true" : "false")]
+    AttributeBoolean(b, _) =>
+      booleanKey(b)
 
-    AttributeInteger(a, i) =>
-      #[unwrapIntegerAttribute(a), AFeature(show(i))]
+    AttributeInteger(a, _) =>
+      integerKey(a)
 
     _ =>
-      #["not", AFeature("supported")]
+      ""
   }
 }
 
