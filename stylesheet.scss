@@ -1,6 +1,13 @@
+$bg: #232136;
+$fg: #e0def4;
+$color-0: #f6c177;
+$color-1:#9ccfd8;
+$color-2: #eb6f92;
+$color-3: #c4a7e7;
+
 html, body {
-  background-color: #232136;
-  color: #e0def4;
+  background-color: $bg;
+  color: $fg;
   font-size: 16px;
   padding: 0;
   margin: 0;
@@ -10,6 +17,11 @@ html, body {
 .App {
   &__core {
   }
+  &__guides {
+    display: flex;
+    flex-direction: row;
+    
+  }
 }
 
 .HowTo {
@@ -17,10 +29,16 @@ html, body {
     display: flex;
     flex-direction: column;
     margin: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     border-radius: 1rem;
-    border: 1px solid #9ccfd8;
+    border: 1px solid $color-1;
     padding: 1rem;
-    max-width: 20rem;
+    max-width: 16rem;
+    min-height: 16rem;
+    &:first-child {
+      margin-left: 1rem;
+    }
   }
   &__image {
     &--avatar {
@@ -29,24 +47,45 @@ html, body {
       margin-left: 1rem;
     }
   }
+  &__series-id {
+    font-family: Antonio;
+    font-weight: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $color-0;
+    color: $bg;
+    border-radius: 1rem;
+    // width: 4rem;
+    // height: 4rem;
+    padding: 0.85rem;
+    padding-top: 0.65rem;
+    line-height: 2rem;
+    font-size: 2rem;
+    text-align: center;
+    margin-right: 1rem;
+  }
   &__header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
   &__heading {
-    color: #eb6f92;
+    color: $color-2;
     font-weight: 100;
     font-family: Antonio;
     text-transform: uppercase;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    text-align: left;
   }
   &__steps {
     font-size: 1rem;
+    padding: 0;
+    padding-left: 1rem;
   }
   &__step-link {
-    color: #eb6f92;
+    color: $color-2;
     text-decoration: none;
   }
 }

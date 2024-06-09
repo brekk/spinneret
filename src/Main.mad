@@ -13,16 +13,15 @@ main = () => {
   render(
     "app",
     <div className={s.e("core")}>
-      <div className={s.em("tutorial", ["core"])}>
+      <div className={s.e("guides")}>
         <div className={t.e("guide")}>
           <header className={t.e("header")}>
+            <div className={t.e("series-id")}>
+              01
+            </div>
             <strong className={t.e("heading")}>
               It's a mad, mad, mad, mad world
             </strong>
-            <img
-              className={t.em("image", ["avatar"])}
-              src="https://avatars.githubusercontent.com/u/79449205?s=200&v=4"
-            />
           </header>
           <ul className={t.e("steps")}>
             <li className={t.e("step")}>
@@ -40,6 +39,90 @@ main = () => {
               <a className={t.e("step-link")} href="#">
                 REPL
               </a>
+            </li>
+            <li className={t.e("step")}>
+              <text>
+                {"Basic "}
+              </text>
+              <a className={t.e("step-link")} href="#">
+                arithmetic
+              </a>
+            </li>
+            <li className={t.e("step")}>
+              <a className={t.e("step-link")} href="#">
+                Boolean logic
+              </a>
+            </li>
+            <li className={t.e("step")}>
+              <a className={t.e("step-link")} href="#">
+                Expressions of equality
+              </a>
+            </li>
+            <li className={t.e("step")}>
+              <a className={t.e("step-link")} href="#">
+                Importing
+              </a>
+              <text>
+                {" and invoking functions from Prelude"}
+              </text>
+            </li>
+          </ul>
+        </div>
+        <div className={t.e("guide")}>
+          <header className={t.e("header")}>
+            <div className={t.e("series-id")}>
+              02
+            </div>
+            <strong className={t.e("heading")}>
+              Syntactic Tactics
+            </strong>
+          </header>
+          <ul className={t.e("steps")}>
+            <li className={t.e("step")}>
+              <text>
+                Annotating programs with 
+              </text>
+              <a className={t.e("step-link")} href="#">
+                comments
+              </a>
+            </li>
+            <li className={t.e("step")}>
+              <a className={t.e("step-link")} href="#">
+                Boolean logic
+              </a>
+            </li>
+            <li className={t.e("step")}>
+              <text>
+                {"Defining "}
+              </text>
+              <a className={t.e("step-link")} href="#">
+                conditionals
+              </a>
+            </li>
+            <li className={t.e("step")}>
+              <text>
+                {"Segmenting modules, using "}
+              </text>
+              <a className={t.e("step-link")} href="#">
+                imports
+              </a>
+              <text>
+                {" and "}
+              </text>
+              <a className={t.e("step-link")} href="#">
+                exports
+              </a>
+            </li>
+            <li className={t.e("step")}>
+              <text>
+                {"Defining and running a "}
+              </text>
+              <a className={t.e("step-link")} href="#">
+                main
+              </a>
+              <text>
+                {" function"}
+              </text>
             </li>
           </ul>
         </div>
