@@ -1,131 +1,86 @@
-import IO from "IO"
+import type { Element } from "@/Element"
 
-import { className, href, src } from "@/Attribute"
+import IO from "IO"
+import List from "List"
+
+import { className, href, key, src } from "@/Attribute"
 import { a, details, div, header, img, li, p, strong, summary, text, ul } from "@/Element"
 import { render } from "@/Spinneret"
 import { bem } from "@/Style"
 
 
 
+alias GuideSummary = { id :: String, steps :: List (List (Element {})), title :: String }
+
+guideDetails = [
+  {
+    id: "01",
+    title: "It's a mad, mad, mad, mad world",
+    steps: [
+      [<a href="#">Installing</a>, <text>{" Madlib"}</text>],
+      [<text>Using the </text>, <a href="#">REPL</a>],
+      [<text>{"Basic "}</text>, <a href="#">arithmetic</a>],
+      [<a href="#">Boolean logic</a>],
+      [<a href="#">Expressions of equality</a>],
+      [<a href="#">Importing</a>, <text>{" and invoking functions from Prelude"}</text>],
+    ],
+  },
+  {
+    id: "02",
+    title: "Syntactic Tactics",
+    steps: [
+      [<text>Annotating programs with </text>, <a href="#">comments</a>],
+      [<a href="#">Boolean logic</a>],
+      [<text>{"Defining "}</text>, <a href="#">conditionals</a>],
+      [
+        <text>
+          {"Segmenting modules, using "}
+        </text>,
+        <a href="#">
+          imports
+        </a>,
+        <text>
+          {" and "}
+        </text>,
+        <a href="#">
+          exports
+        </a>,
+      ],
+      [<text>{"Defining and running a "}</text>, <a href="#">main</a>, <text>{" function"}</text>],
+    ],
+  },
+]
+
+guide :: GuideSummary -> Element {}
+guide = (summ) => {
+  t = bem("HowTo")
+  return (
+    <div className={t.e("guide")} key={summ.title}>
+      <header className={t.e("header")}>
+        <div className={t.e("series-id")}>
+          {summ.id}
+        </div>
+        <strong className={t.e("heading")}>
+          {summ.title}
+        </strong>
+      </header>
+      <ul className={t.e("steps")}>
+        {...List.mapWithIndex(
+          (step, k) => (<li key={show(k)} className={t.e("step")}>{...step}</li>),
+          summ.steps,
+        )}
+      </ul>
+    </div>
+  )
+}
+
 main = () => {
   s = bem("App")
-  t = bem("HowTo")
   render(
     "app",
     <div className={s.e("core")}>
       <div className={s.e("guides")}>
-        <div className={t.e("guide")}>
-          <header className={t.e("header")}>
-            <div className={t.e("series-id")}>
-              01
-            </div>
-            <strong className={t.e("heading")}>
-              It's a mad, mad, mad, mad world
-            </strong>
-          </header>
-          <ul className={t.e("steps")}>
-            <li className={t.e("step")}>
-              <a className={t.e("step-link")} href="#">
-                Installing
-              </a>
-              <text>
-                {" Madlib"}
-              </text>
-            </li>
-            <li className={t.e("step")}>
-              <text>
-                Using the 
-              </text>
-              <a className={t.e("step-link")} href="#">
-                REPL
-              </a>
-            </li>
-            <li className={t.e("step")}>
-              <text>
-                {"Basic "}
-              </text>
-              <a className={t.e("step-link")} href="#">
-                arithmetic
-              </a>
-            </li>
-            <li className={t.e("step")}>
-              <a className={t.e("step-link")} href="#">
-                Boolean logic
-              </a>
-            </li>
-            <li className={t.e("step")}>
-              <a className={t.e("step-link")} href="#">
-                Expressions of equality
-              </a>
-            </li>
-            <li className={t.e("step")}>
-              <a className={t.e("step-link")} href="#">
-                Importing
-              </a>
-              <text>
-                {" and invoking functions from Prelude"}
-              </text>
-            </li>
-          </ul>
-        </div>
-        <div className={t.e("guide")}>
-          <header className={t.e("header")}>
-            <div className={t.e("series-id")}>
-              02
-            </div>
-            <strong className={t.e("heading")}>
-              Syntactic Tactics
-            </strong>
-          </header>
-          <ul className={t.e("steps")}>
-            <li className={t.e("step")}>
-              <text>
-                Annotating programs with 
-              </text>
-              <a className={t.e("step-link")} href="#">
-                comments
-              </a>
-            </li>
-            <li className={t.e("step")}>
-              <a className={t.e("step-link")} href="#">
-                Boolean logic
-              </a>
-            </li>
-            <li className={t.e("step")}>
-              <text>
-                {"Defining "}
-              </text>
-              <a className={t.e("step-link")} href="#">
-                conditionals
-              </a>
-            </li>
-            <li className={t.e("step")}>
-              <text>
-                {"Segmenting modules, using "}
-              </text>
-              <a className={t.e("step-link")} href="#">
-                imports
-              </a>
-              <text>
-                {" and "}
-              </text>
-              <a className={t.e("step-link")} href="#">
-                exports
-              </a>
-            </li>
-            <li className={t.e("step")}>
-              <text>
-                {"Defining and running a "}
-              </text>
-              <a className={t.e("step-link")} href="#">
-                main
-              </a>
-              <text>
-                {" function"}
-              </text>
-            </li>
-          </ul>
-        </div>
+        {...map(guide, guideDetails)}
       </div>
     </div>,
   )

@@ -7,9 +7,8 @@ import { NoAttribute, attributeKey, attributeValue } from "@/Attribute"
 export type Element a = __Element__
 
 export _tag = (other, enkey, envalue, textNode, tagName, rawProps, kids) => #- { 
-  console.log("rawPROPS", rawProps)
   const attrs = rawProps ? __listToJSArray__(rawProps) : [other]
-  console.log("enpropping", attrs)
+  console.log("ATTRS", attrs)
   const props = attrs.reduce(
     (agg, attr) => {
       const k = enkey(attr)
@@ -26,8 +25,8 @@ export _tag = (other, enkey, envalue, textNode, tagName, rawProps, kids) => #- {
   if (textNode || children.reduce((check, z) => check && typeof z == 'string', true)) {
     const raw = children.map(z => z.replace(/"/g, ''))
     children = Hyper.text(raw)
-    console.log("children", raw) 
   }
+  console.log({tagName, props, children})
   return Hyper.h(tagName, props, children)
 } -#
 
