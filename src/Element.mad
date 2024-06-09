@@ -6,7 +6,7 @@ import { NoAttribute, attributeKey, attributeValue } from "@/Attribute"
 
 export type Element a = __Element__
 
-export _tag = (other, enkey, envalue, tagName, rawProps, kids) => #- { 
+export _tag = (other, enkey, envalue, textNode, tagName, rawProps, kids) => #- { 
   console.log("rawPROPS", rawProps)
   const attrs = rawProps ? __listToJSArray__(rawProps) : [other]
   console.log("enpropping", attrs)
@@ -23,17 +23,26 @@ export _tag = (other, enkey, envalue, tagName, rawProps, kids) => #- {
   )
   let children = __listToJSArray__(kids)
   console.log("POST OP PROPS", props, "CHILDREN", children)
-  const textNode = children.reduce((check, z) => check && typeof z == 'string', true)
-  if (textNode) {
-    const raw = children.map(z => z.slice(1, -1))
+  if (textNode || children.reduce((check, z) => check && typeof z == 'string', true)) {
+    const raw = children.map(z => z.replace(/"/g, ''))
     children = Hyper.text(raw)
     console.log("children", raw) 
   }
   return Hyper.h(tagName, props, children)
 } -#
 
-export tag = (n, props, k) => _tag(NoAttribute, attributeKey, attributeValue, n, props, k)
+export rawtag = (textNode, n, props, k) => _tag(
+  NoAttribute,
+  attributeKey,
+  attributeValue,
+  textNode,
+  n,
+  props,
+  k,
+)
 
+export text = rawtag(true, "span")
+export tag = rawtag(false)
 
 export a = tag("a")
 export abbr = tag("abbr")
