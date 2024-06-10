@@ -7,7 +7,8 @@ $color-1: #a9b3ec;
 $color-2: #ff6f97;
 $color-3: #c4a7e7;
 
-$mq-1: 36rem;
+$mq-1: 38rem;
+$mq-2: 60rem;
 
 html,
 body {
@@ -20,14 +21,31 @@ body {
 }
 
 .App {
+  &__header {
+    width: 100%;
+    font-family: Antonio;
+    font-weight: 100;
+    text-transform: uppercase;
+    &--h1 {
+      font-size: 3rem;
+      line-height: 3rem;
+    }
+  }
   &__core {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
   }
   &__guides {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin: 1rem;
     @media (screen and min-width: $mq-1) {
       flex-direction: row;
+      flex-wrap: wrap;
     }
   }
 }
@@ -37,36 +55,54 @@ body {
     z-index: 30;
     display: flex;
     flex-direction: column;
-    margin: 1rem;
-    margin-bottom: 0;
+    margin: 0.5rem;
     border-radius: 1rem;
     border: 1px solid $color-1;
     padding: 1rem;
     min-height: 16rem;
+    box-shadow:
+      0 0 2rem rgba(0, 0, 0, 0),
+      1rem 1rem 12.2rem rgb(5, 3, 11, 0) inset;
     transition:
       color 0.3s ease-out,
       background 0.3s ease-out,
-      border 0.3s ease-out;
+      border 0.3s ease-out,
+      box-shadow 0.6s ease-out;
     cursor: pointer;
+    @media (screen and min-width: $mq-1) {
+      width: calc(50% - 2.625rem);
+      // width: 16rem;
+      margin: 0.5rem 0;
+      &:nth-of-type(2n + 1) {
+        margin-right: 0.5rem;
+      }
+      &:nth-of-type(2n + 2) {
+        margin-left: 0.5rem;
+      }
+    }
+    @media (screen and min-width: $mq-2) {
+      width: calc((100% / 3) - 2.8rem);
+      // width: 16rem;
+      margin: 0.5rem;
+      &:nth-of-type(2n + 1),
+      &:nth-of-type(2n + 2) {
+        margin: 0.5rem;
+      }
+      &:nth-of-type(3n + 1) {
+        margin-left: 0;
+      }
+      &:nth-of-type(3n + 3) {
+        margin-right: 0;
+      }
+    }
     &:hover {
       background-color: #270544;
       border: 1px solid transparent;
-      .HowTo__series-id {
-        background-color: $color-0;
+      box-shadow:
+        0 0 2rem rgba(0, 0, 0, 0.89),
+        1rem 1rem 12.2rem rgb(5, 3, 11) inset;.HowTo__series-id {
+        background-color: $color-3;
         color: $bg;
-        /*
-        background: linear-gradient(
-          135deg,
-          #1f005c,
-          #5b0060,
-          #870160,
-          #ac255e,
-          #ca485c,
-          #e16b5c,
-          #f39060,
-          #ffb56b
-        );
-        */
         transform: rotate(0);
         clip-path: polygon(
           100% 50%,
@@ -130,17 +166,6 @@ body {
           98.91% 39.6%,
           94.75% 45.3%
         );
-      }
-    }
-    @media (screen and min-width: $mq-1) {
-      width: 16rem;
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      &:first-child {
-        margin-left: 1rem;
-      }
-      &:last-child {
-        margin-right: 1rem;
       }
     }
   }

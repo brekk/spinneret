@@ -4,7 +4,7 @@ import IO from "IO"
 import List from "List"
 
 import { className, href, key, src } from "@/Attribute"
-import { a, details, div, header, img, li, p, strong, summary, text, ul } from "@/Element"
+import { a, details, div, h1, header, img, li, p, strong, summary, text, ul } from "@/Element"
 import { render } from "@/Spinneret"
 import { bem } from "@/Style"
 import { Guide } from "@/views/HowToGuide"
@@ -56,7 +56,28 @@ guideDetails = [
       [<a href="#">Type Inference</a>],
       [<a href="#">Literal</a>, <text>{" values"}</text>],
       [<a href="#">Aliases</a>],
-      [<a href="#">Pipe & Curry</a>],
+      [<text>{"Curried functions and their "}</text>, <a href="#">partial application</a>],
+    ],
+  },
+  {
+    id: "04",
+    title: "Writing functions, in the main",
+    steps: [
+      [<text>{"Composing "}</text>, <a href="#">functions</a>],
+      [<text>{"Function "}</text>, <a href="#">definitions</a>],
+      [<text>{"Applying functions to a List with "}</text>, <a href="#">map</a>],
+    ],
+  },
+  {
+    id: "05",
+    title: "The March of IDEs",
+    steps: [
+      [<text>{"Setting up an "}</text>, <a href="#">IDE</a>],
+      [<text>{"Creating a new "}</text>, <a href="#">Madlib project</a>],
+      [<text>{"File "}</text>, <a href="#">explorer</a>],
+      [<a href="#">Many common errors and warnings</a>],
+      [<text>{"Defining a "}</text>, <a href="#">custom type</a>],
+      [<text>{"Using "}</text>, <a href="#">pattern matching</a>],
     ],
   },
 ]
@@ -68,6 +89,9 @@ main = () => {
     "app",
     <div className={s.e("core")}>
       <div className={s.e("guides")}>
+        <h1 className={s.em("header", ["h1"])}>
+          How-To Guides
+        </h1>
         {...map(Guide, guideDetails)}
       </div>
     </div>,
