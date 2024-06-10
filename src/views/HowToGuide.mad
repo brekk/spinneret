@@ -1,0 +1,34 @@
+import type { Element } from "@/Element"
+
+import { mapWithIndex } from "List"
+
+import { className, key, stringAttr } from "@/Attribute"
+import { div, header, li, strong, text, ul } from "@/Element"
+import { bem } from "@/Style"
+
+
+
+export alias GuideSummary = { id :: String, steps :: List (List (Element {})), title :: String }
+
+Guide :: GuideSummary -> Element {}
+export Guide = (summ) => {
+  t = bem("HowTo")
+  return (
+    <div className={t.e("guide")} key={summ.title}>
+      <header className={t.e("header")}>
+        <div className={t.e("series-id")} stringAttr={#["data-hover", summ.id]}>
+          {summ.id}
+        </div>
+        <strong className={t.e("heading")}>
+          {summ.title}
+        </strong>
+      </header>
+      <ul className={t.e("steps")}>
+        {...mapWithIndex(
+          (step, k) => (<li key={show(k)} className={t.e("step")}>{...step}</li>),
+          summ.steps,
+        )}
+      </ul>
+    </div>
+  )
+}

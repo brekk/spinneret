@@ -193,6 +193,7 @@ export type Attribute a
 stringAttr :: #[String, String] -> Attribute a
 export stringAttr = AttributeTuple
 
+
 draggable :: Boolean -> Attribute a
 export draggable = (canDrag) => AttributeTuple(#["draggable", canDrag ? "true" : "false"])
 
