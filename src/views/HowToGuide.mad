@@ -15,11 +15,11 @@ export Guide = (summ) => {
   t = bem("HowTo")
   return (
     <div className={t.e("guide")} key={summ.title}>
+      <div className={t.e("series-id")} stringAttr={#["data-hover", summ.id]}>
+        {summ.id}
+      </div>
       <div className={t.e("guide-content")}>
         <header className={t.e("header")}>
-          <div className={t.e("series-id")} stringAttr={#["data-hover", summ.id]}>
-            {summ.id}
-          </div>
           <strong className={t.e("heading")}>
             {summ.title}
           </strong>

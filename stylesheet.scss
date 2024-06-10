@@ -108,29 +108,11 @@ body {
         margin-right: 0;
       }
     }
-    &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      content: "";
-      background: rgba(255,0,30, 0.1);
-      transition: transform 0.3s ease-out;
-      width: 160%;
-      left: -30%;
-      top: 100%;
-      transform: scale(100%, 1%) translate3d(0, 100%, 0);
-    }
     &:hover {
-      &::before {
-        top: 0;
-        transform: skew(30deg);
-      }
       background: linear-gradient(164deg, #380655, #270544 75%);
       border: 1px solid #451191;
       .HowTo__heading {
-        font-weight: 400;
+        font-weight: 300;
         color: $color-2;
       }
       a {
@@ -218,6 +200,9 @@ body {
     }
   }
   &__series-id {
+    position: absolute;
+    top: 0.5rem;
+    right: -0.5rem;
     transition:
       background 0.3s ease-in,
       color 0.3s ease-in,
@@ -237,7 +222,6 @@ body {
     font-size: 2rem;
     text-align: center;
     margin-right: 1rem;
-    position: relative;
     aspect-ratio: 1;
     transform: rotate(360deg);
     clip-path: polygon(
@@ -308,18 +292,24 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    position: relative;
   }
   &__heading {
     transition:
-      font-weight 0.3s ease-out,
+      font 0.3s ease-out,
       color 0.9s ease-out;
-    color: $color-3;
+    color: #a571e3;
     font-weight: 100;
     font-family: Antonio;
     text-transform: uppercase;
-    font-size: 1.5rem;
+    font-size: 3.4rem;
     text-align: left;
-    margin-right: 3rem;
+    margin-right: 2rem;
+    transform: skew(-8deg) rotate(-8deg);
+    line-height: 3.2rem;
+    margin-bottom: 1rem;
+    // margin-top: 0.75rem;
+    margin-top: 0.75rem;
   }
   &__steps {
     font-size: 1rem;
