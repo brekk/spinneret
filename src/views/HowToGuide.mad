@@ -23,6 +23,7 @@ export Guide = (summ) => {
           {summ.title}
         </strong>
       </header>
+      <div className={t.e("bookmark")} />
       <ul className={t.e("steps")}>
         {...mapWithIndex(
           (step, k) => (<li key={show(k)} className={t.e("step")}>{...step}</li>),
