@@ -61,7 +61,7 @@ guideDetails = [
   },
   {
     id: "04",
-    title: "Writing functions, in the main",
+    title: "Functional, in the main",
     steps: [
       [<text>{"Composing "}</text>, <a href="#">functions</a>],
       [<text>{"Function "}</text>, <a href="#">definitions</a>],
