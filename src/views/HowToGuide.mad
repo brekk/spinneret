@@ -1,36 +1,37 @@
 import type { Element } from "@/Element"
 
-import { mapWithIndex } from "List"
-
-import { className, key, stringAttr } from "@/Attribute"
-import { div, header, li, strong, text, ul } from "@/Element"
+import { className, id, key } from "@/Attribute"
+import { a, article, code, div, h1, h2, h3, p, pre, text } from "@/Element"
 import { bem } from "@/Style"
+import { slug } from "@/Text"
 
 
 
-export alias GuideSummary = { id :: String, steps :: List (List (Element {})), title :: String }
+export alias GuideContentBlock = { content :: List (Element {}), title :: String }
 
-Guide :: GuideSummary -> Element {}
-export Guide = (summ) => {
-  t = bem("HowTo")
-  return (
-    <div className={t.e("guide")} key={summ.title}>
-      <div className={t.e("series-id")} stringAttr={#["data-hover", summ.id]}>
-        {summ.id}
-      </div>
-      <div className={t.e("guide-content")}>
-        <header className={t.e("header")}>
-          <strong className={t.e("heading")}>
-            {summ.title}
-          </strong>
-        </header>
-        <ul className={t.e("steps")}>
-          {...mapWithIndex(
-            (step, k) => (<li key={show(k)} className={t.e("step")}>{...step}</li>),
-            summ.steps,
-          )}
-        </ul>
-      </div>
+export alias Guide = { blocks :: List GuideContentBlock, title :: String }
+
+
+
+s = bem("HowToGuide")
+export HowToContentBlock = (props) => (
+  <div className={s.e("block")} key={props.title}>
+    <h2 className={s.em("header", ["block"])}>
+      {props.title}
+    </h2>
+    <div className={s.e("block-content")}>
+      {...props.content}
     </div>
-  )
-}
+  </div>
+)
+
+export HowToGuide = (props) => (
+  <article className={s.e("")}>
+    <h1 className={s.em("header", ["title"])} id={slug(props.title)}>
+      {props.title}
+    </h1>
+    <div className={s.e("content")}>
+      {...map(HowToContentBlock, props.blocks)}
+    </div>
+  </article>
+)

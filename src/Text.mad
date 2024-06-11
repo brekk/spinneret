@@ -1,0 +1,12 @@
+import List from "List"
+import String from "String"
+
+
+
+slug :: String -> String
+export slug = pipe(
+  String.toLower,
+  String.split(" "),
+  List.slice(0, 10),
+  String.join("-"),
+)
