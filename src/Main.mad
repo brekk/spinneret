@@ -497,7 +497,7 @@ main = () => {
   render(
     "app",
     <div className={s.e("core")}>
-      {Logo()}
+      {Logo({ fill: "#ff6f97" })}
       <div className={s.e("guides")}>
         <h1 className={s.em("header", ["h1"])}>
           How-To Guides
