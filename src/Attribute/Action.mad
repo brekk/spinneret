@@ -1,72 +1,136 @@
-import type { Action } from "@/Action"
+import { AttributeAction } from "@/Attribute/Core"
+import {
+  OnAbort,
+  OnBlur,
+  OnCanPlay,
+  OnCanPlayThrough,
+  OnChange,
+  OnClick,
+  OnContextMenu,
+  OnCopy,
+  OnCueChange,
+  OnCut,
+  OnDblClick,
+  OnDrag,
+  OnDragEnd,
+  OnDragEnter,
+  OnDragLeave,
+  OnDragOver,
+  OnDragStart,
+  OnDrop,
+  OnDurationChange,
+  OnEmptied,
+  OnEnded,
+  OnError,
+  OnFocus,
+  OnInput,
+  OnInvalid,
+  OnKeyDown,
+  OnKeyPress,
+  OnKeyUp,
+  OnLoad,
+  OnLoadStart,
+  OnLoadedData,
+  OnLoadedMetaData,
+  OnMouseDown,
+  OnMouseEnter,
+  OnMouseLeave,
+  OnMouseMove,
+  OnMouseOut,
+  OnMouseOver,
+  OnMouseUp,
+  OnMouseWheel,
+  OnPaste,
+  OnPause,
+  OnPlay,
+  OnPlaying,
+  OnProgress,
+  OnRateChange,
+  OnReset,
+  OnScroll,
+  OnSearch,
+  OnSeeked,
+  OnSeeking,
+  OnSelect,
+  OnStalled,
+  OnSubmit,
+  OnSuspend,
+  OnTimeUpdate,
+  OnToggle,
+  OnTransitionCancel,
+  OnTransitionEnd,
+  OnTransitionRun,
+  OnTransitionStart,
+  OnVolumeChange,
+  OnWaiting,
+  OnWheel,
+} from "@/Attribute/DefAction"
 
 
 
-export type AttrAction
-  = OnAbort
-  | OnBlur
-  | OnCanPlay
-  | OnCanPlayThrough
-  | OnChange
-  | OnClick
-  | OnContextMenu
-  | OnCopy
-  | OnCueChange
-  | OnCut
-  | OnDblClick
-  | OnDrag
-  | OnDragEnd
-  | OnDragEnter
-  | OnDragLeave
-  | OnDragOver
-  | OnDragStart
-  | OnDrop
-  | OnDurationChange
-  | OnEmptied
-  | OnEnded
-  | OnError
-  | OnFocus
-  | OnInput
-  | OnInvalid
-  | OnKeyPress
-  | OnKeyDown
-  | OnKeyUp
-  | OnLoad
-  | OnLoadedData
-  | OnLoadedMetaData
-  | OnLoadStart
-  | OnMouseDown
-  | OnMouseEnter
-  | OnMouseLeave
-  | OnMouseMove
-  | OnMouseUp
-  | OnMouseWheel
-  | OnMouseOver
-  | OnMouseOut
-  | OnPaste
-  | OnPause
-  | OnPlay
-  | OnPlaying
-  | OnProgress
-  | OnRateChange
-  | OnReset
-  | OnScroll
-  | OnSearch
-  | OnSeeked
-  | OnSeeking
-  | OnSelect
-  | OnStalled
-  | OnSubmit
-  | OnSuspend
-  | OnTimeUpdate
-  | OnToggle
-  | OnTransitionCancel
-  | OnTransitionEnd
-  | OnTransitionRun
-  | OnTransitionStart
-  | OnVolumeChange
-  | OnWaiting
-  | OnWheel
+// ACTION ATTRIBUTES
 
-unwrapActionAttribute :: AttrAction -> Action a -> #[String, String]
-export unwrapActionAttribute = (attr, act) => #["", ""]
+export onAbort = AttributeAction(OnAbort)
+export onBlur = AttributeAction(OnBlur)
+export onCanPlay = AttributeAction(OnCanPlay)
+export onCanPlayThrough = AttributeAction(OnCanPlayThrough)
+export onChange = AttributeAction(OnChange)
+export onClick = AttributeAction(OnClick)
+export onContextMenu = AttributeAction(OnContextMenu)
+export onCopy = AttributeAction(OnCopy)
+export onCueChange = AttributeAction(OnCueChange)
+export onCut = AttributeAction(OnCut)
+export onDblClick = AttributeAction(OnDblClick)
+export onDrag = AttributeAction(OnDrag)
+export onDragEnd = AttributeAction(OnDragEnd)
+export onDragEnter = AttributeAction(OnDragEnter)
+export onDragLeave = AttributeAction(OnDragLeave)
+export onDragOver = AttributeAction(OnDragOver)
+export onDragStart = AttributeAction(OnDragStart)
+export onDrop = AttributeAction(OnDrop)
+export onDurationChange = AttributeAction(OnDurationChange)
+export onEmptied = AttributeAction(OnEmptied)
+export onEnded = AttributeAction(OnEnded)
+export onError = AttributeAction(OnError)
+export onFocus = AttributeAction(OnFocus)
+export onInput = AttributeAction(OnInput)
+export onInvalid = AttributeAction(OnInvalid)
+export onKeyPress = AttributeAction(OnKeyPress)
+export onKeyDown = AttributeAction(OnKeyDown)
+export onKeyUp = AttributeAction(OnKeyUp)
+export onLoad = AttributeAction(OnLoad)
+export onLoadedData = AttributeAction(OnLoadedData)
+export onLoadedMetaData = AttributeAction(OnLoadedMetaData)
+export onLoadStart = AttributeAction(OnLoadStart)
+export onMouseDown = AttributeAction(OnMouseDown)
+export onMouseEnter = AttributeAction(OnMouseEnter)
+export onMouseLeave = AttributeAction(OnMouseLeave)
+export onMouseMove = AttributeAction(OnMouseMove)
+export onMouseOut = AttributeAction(OnMouseOut)
+export onMouseOver = AttributeAction(OnMouseOver)
+export onMouseUp = AttributeAction(OnMouseUp)
+export onMouseWheel = AttributeAction(OnMouseWheel)
+export onPaste = AttributeAction(OnPaste)
+export onPause = AttributeAction(OnPause)
+export onPlay = AttributeAction(OnPlay)
+export onPlaying = AttributeAction(OnPlaying)
+export onProgress = AttributeAction(OnProgress)
+export onRateChange = AttributeAction(OnRateChange)
+export onReset = AttributeAction(OnReset)
+export onScroll = AttributeAction(OnScroll)
+export onSearch = AttributeAction(OnSearch)
+export onSeeked = AttributeAction(OnSeeked)
+export onSeeking = AttributeAction(OnSeeking)
+export onSelect = AttributeAction(OnSelect)
+export onStalled = AttributeAction(OnStalled)
+export onSubmit = AttributeAction(OnSubmit)
+export onSuspend = AttributeAction(OnSuspend)
+export onTimeUpdate = AttributeAction(OnTimeUpdate)
+export onToggle = AttributeAction(OnToggle)
+export onTransitionCancel = AttributeAction(OnTransitionCancel)
+export onTransitionEnd = AttributeAction(OnTransitionEnd)
+export onTransitionRun = AttributeAction(OnTransitionRun)
+export onTransitionStart = AttributeAction(OnTransitionStart)
+export onVolumeChange = AttributeAction(OnVolumeChange)
+export onWaiting = AttributeAction(OnWaiting)
+export onWheel = AttributeAction(OnWheel)

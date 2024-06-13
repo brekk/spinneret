@@ -1,88 +1,51 @@
-export type AttrInteger
-  = Cols
-  | ColSpan
-  | Height
-  | High
-  | Low
-  | Max
-  | MaxLength
-  | Min
-  | Optimum
-  | Rows
-  | RowSpan
-  | Size
-  | Span
-  | Start
-  | Step
-  | TabIndex
-  | Width
-  | SvgX1
-  | SvgX2
-  | SvgY1
-  | SvgY2
+import { AttributeInteger } from "@/Attribute/Core"
+import {
+  ColSpan,
+  Cols,
+  Height,
+  High,
+  Low,
+  Max,
+  MaxLength,
+  Min,
+  Optimum,
+  RowSpan,
+  Rows,
+  Size,
+  Span,
+  Start,
+  Step,
+  SvgX1,
+  SvgX2,
+  SvgY1,
+  SvgY2,
+  TabIndex,
+  Width,
+} from "@/Attribute/DefInteger"
 
-integerKey :: AttrInteger -> String
-export integerKey = where {
-  SvgX1 =>
-    "x1"
 
-  SvgY1 =>
-    "y1"
 
-  SvgX2 =>
-    "x2"
+// INTEGER ATTRIBUTES
 
-  SvgY2 =>
-    "y2"
+export cols = AttributeInteger(Cols)
+export colspan = AttributeInteger(ColSpan)
+export height = AttributeInteger(Height)
+export high = AttributeInteger(High)
+export low = AttributeInteger(Low)
+export max = AttributeInteger(Max)
+export maxlength = AttributeInteger(MaxLength)
+export min = AttributeInteger(Min)
+export optimum = AttributeInteger(Optimum)
+export rows = AttributeInteger(Rows)
+export rowspan = AttributeInteger(RowSpan)
+export size = AttributeInteger(Size)
+export spanAttr = AttributeInteger(Span)
+export start = AttributeInteger(Start)
+export step = AttributeInteger(Step)
+export tabindex = AttributeInteger(TabIndex)
+export width = AttributeInteger(Width)
 
-  Cols =>
-    "cols"
-
-  ColSpan =>
-    "colspan"
-
-  Height =>
-    "height"
-
-  High =>
-    "high"
-
-  Low =>
-    "low"
-
-  Max =>
-    "max"
-
-  MaxLength =>
-    "maxlength"
-
-  Min =>
-    "min"
-
-  Optimum =>
-    "optimum"
-
-  Rows =>
-    "rows"
-
-  RowSpan =>
-    "rowspan"
-
-  Size =>
-    "size"
-
-  Span =>
-    "span"
-
-  Start =>
-    "start"
-
-  Step =>
-    "step"
-
-  TabIndex =>
-    "tabindex"
-
-  Width =>
-    "width"
-}
+export x2 = AttributeInteger(SvgX2)
+export x1 = AttributeInteger(SvgX1)
+export y1 = AttributeInteger(SvgY1)
+export y2 = AttributeInteger(SvgY2)

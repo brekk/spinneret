@@ -1,6 +1,7 @@
 #- import * as Hyper from "hyperapp" -#
 
-import { NoAttribute, attributeKey, attributeValue } from "@/Attribute"
+import { attributeKey, attributeValue } from "@/Attribute"
+import { NoAttribute } from "@/Attribute/Core"
 
 
 

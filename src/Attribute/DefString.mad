@@ -1,0 +1,251 @@
+export type AttrString
+  = Accept
+  | AcceptCharset
+  | AccessKey
+  | Action
+  | Alt
+  | AutoComplete
+  | Cite
+  | Class
+  | Coords
+  | Data
+  | DateTime
+  | Dir
+  | DirName
+  | EncType
+  | For
+  | Form
+  | FormAction
+  | Headers
+  | Href
+  | HrefLang
+  | Id
+  | InnerHTML
+  | InnerText
+  | Key
+  | Kind
+  | Lang
+  | Label
+  | List
+  | Media
+  | Method
+  | Name
+  | Pattern
+  | Placeholder
+  | Poster
+  | Preload
+  | Rel
+  | SandBox
+  | Scope
+  | Shape
+  | Sizes
+  | SpellCheck
+  | Src
+  | SrcDoc
+  | SrcLang
+  | SrcSet
+  | Target
+  | Title
+  | To
+  | Translate
+  | Type
+  | UseMap
+  | Value
+  | Wrap
+  | SvgD
+  | SvgViewBox
+  | SvgFill
+  | SvgXMLNS
+  | SvgXLink
+  | SvgStopColor
+  | SvgOffset
+
+import IO from "IO"
+
+
+
+stringKey :: AttrString -> String
+export stringKey = pipe(
+  IO.pTrace("KEY"),
+  where {
+    SvgOffset =>
+      "offset"
+
+    SvgStopColor =>
+      "stop-color"
+
+    SvgD =>
+      "d"
+
+    SvgViewBox =>
+      "viewBox"
+
+    SvgFill =>
+      "fill"
+
+    SvgXMLNS =>
+      "xmlns"
+
+    SvgXLink =>
+      "xlink:href"
+
+    Accept =>
+      "accept"
+
+    AcceptCharset =>
+      "accept-charset"
+
+    AccessKey =>
+      "accesskey"
+
+    Action =>
+      "action"
+
+    Alt =>
+      "alt"
+
+    AutoComplete =>
+      "autocomplete"
+
+    Cite =>
+      "cite"
+
+    Class =>
+      "class"
+
+    Coords =>
+      "coords"
+
+    Data =>
+      "data"
+
+    DateTime =>
+      "datetime"
+
+    Dir =>
+      "dir"
+
+    DirName =>
+      "dirname"
+
+    EncType =>
+      "enctype"
+
+    For =>
+      "for"
+
+    Form =>
+      "form"
+
+    FormAction =>
+      "formaction"
+
+    Headers =>
+      "headers"
+
+    Href =>
+      "href"
+
+    HrefLang =>
+      "hreflang"
+
+    Id =>
+      "id"
+
+    InnerHTML =>
+      "innerHTML"
+
+    InnerText =>
+      "innerText"
+
+    Key =>
+      "key"
+
+    Kind =>
+      "kind"
+
+    Lang =>
+      "lang"
+
+    Label =>
+      "label"
+
+    List =>
+      "list"
+
+    Media =>
+      "media"
+
+    Method =>
+      "method"
+
+    Name =>
+      "name"
+
+    Pattern =>
+      "pattern"
+
+    Placeholder =>
+      "placeholder"
+
+    Poster =>
+      "poster"
+
+    Preload =>
+      "preload"
+
+    Rel =>
+      "rel"
+
+    SandBox =>
+      "sandBox"
+
+    Scope =>
+      "scope"
+
+    Shape =>
+      "shape"
+
+    Sizes =>
+      "sizes"
+
+    SpellCheck =>
+      "spellcheck"
+
+    Src =>
+      "src"
+
+    SrcDoc =>
+      "srcdoc"
+
+    SrcLang =>
+      "srclang"
+
+    SrcSet =>
+      "srcset"
+
+    Target =>
+      "target"
+
+    Title =>
+      "title"
+
+    To =>
+      "to"
+
+    Translate =>
+      "translate"
+
+    Type =>
+      "type"
+
+    UseMap =>
+      "usemap"
+
+    Value =>
+      "value"
+
+    Wrap =>
+      "wrap"
+  },
+)

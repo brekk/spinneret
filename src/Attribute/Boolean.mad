@@ -1,104 +1,54 @@
-export type AttrBoolean
-  = Async
-  | AutoFocus
-  | AutoPlay
-  | Checked
-  | ContentEditable
-  | Controls
-  | Default
-  | Defer
-  | Disabled
-  | Download
-  | Draggable
-  | Hidden
-  | IsMap
-  | Loop
-  | Multiple
-  | Muted
-  | NoValidate
-  | Open
-  | ReadOnly
-  | Required
-  | Reversed
-  | Selected
-  | AriaHidden
-  | Focusable
+import { AttributeBoolean } from "@/Attribute/Core"
+import {
+  AriaHidden,
+  Async,
+  AutoFocus,
+  AutoPlay,
+  Checked,
+  ContentEditable,
+  Controls,
+  Default,
+  Defer,
+  Disabled,
+  Download,
+  Focusable,
+  Hidden,
+  IsMap,
+  Loop,
+  Multiple,
+  Muted,
+  NoValidate,
+  Open,
+  ReadOnly,
+  Required,
+  Reversed,
+  Selected,
+} from "@/Attribute/DefBoolean"
 
-// TODO: Add more aria- attributes
 
-// https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes
 
-booleanKey :: AttrBoolean -> String
-export booleanKey = where {
-  Focusable =>
-    "focusable"
+// BOOLEAN ATTRIBUTES
 
-  AriaHidden =>
-    "aria-hidden"
-
-  Async =>
-    "async"
-
-  AutoFocus =>
-    "autofocus"
-
-  AutoPlay =>
-    "autoplay"
-
-  Checked =>
-    "checked"
-
-  ContentEditable =>
-    "contenteditable"
-
-  Controls =>
-    "controls"
-
-  Default =>
-    "default"
-
-  Defer =>
-    "defer"
-
-  Disabled =>
-    "disabled"
-
-  Download =>
-    "download"
-
-  Draggable =>
-    "draggable"
-
-  Hidden =>
-    "hidden"
-
-  IsMap =>
-    "isMap"
-
-  Loop =>
-    "loop"
-
-  Multiple =>
-    "multiple"
-
-  Muted =>
-    "muted"
-
-  NoValidate =>
-    "novalidate"
-
-  Open =>
-    "open"
-
-  ReadOnly =>
-    "readonly"
-
-  Required =>
-    "required"
-
-  Reversed =>
-    "reversed"
-
-  Selected =>
-    "selected"
-}
+export async = AttributeBoolean(Async)
+export autofocus = AttributeBoolean(AutoFocus)
+export autoplay = AttributeBoolean(AutoPlay)
+export checked = AttributeBoolean(Checked)
+export contenteditable = AttributeBoolean(ContentEditable)
+export controls = AttributeBoolean(Controls)
+export default = AttributeBoolean(Default)
+export defer = AttributeBoolean(Defer)
+export disabled = AttributeBoolean(Disabled)
+export download = AttributeBoolean(Download)
+export hidden = AttributeBoolean(Hidden)
+export ismap = AttributeBoolean(IsMap)
+export open = AttributeBoolean(Open)
+export readonly = AttributeBoolean(ReadOnly)
+export required = AttributeBoolean(Required)
+export reversed = AttributeBoolean(Reversed)
+export selected = AttributeBoolean(Selected)
+export loop = AttributeBoolean(Loop)
+export multiple = AttributeBoolean(Multiple)
+export muted = AttributeBoolean(Muted)
+export novalidate = AttributeBoolean(NoValidate)
+export focusable = AttributeBoolean(Focusable)
+export ariaHidden = AttributeBoolean(AriaHidden)

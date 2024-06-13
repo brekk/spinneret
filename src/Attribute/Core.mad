@@ -1,0 +1,18 @@
+import type { Action } from "@/Action"
+import type { AttrAction } from "@/Attribute/DefAction"
+import type { AttrBoolean } from "@/Attribute/DefBoolean"
+import type { AttrFloat } from "@/Attribute/DefFloat"
+import type { AttrInteger } from "@/Attribute/DefInteger"
+import type { AttrString } from "@/Attribute/DefString"
+
+
+
+export type Attribute a
+  = AttributeTuple(#[String, String])
+  | AttributeString(AttrString, String)
+  | AttributeBoolean(AttrBoolean, Boolean)
+  | AttributeInteger(AttrInteger, Integer)
+  | AttributeFloat(AttrFloat, Float)
+  | AttributeAction(AttrAction, Action a)
+  | AttributeDict(Dictionary String String)
+  | NoAttribute

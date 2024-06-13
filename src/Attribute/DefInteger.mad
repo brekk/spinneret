@@ -1,0 +1,88 @@
+export type AttrInteger
+  = Cols
+  | ColSpan
+  | Height
+  | High
+  | Low
+  | Max
+  | MaxLength
+  | Min
+  | Optimum
+  | Rows
+  | RowSpan
+  | Size
+  | Span
+  | Start
+  | Step
+  | TabIndex
+  | Width
+  | SvgX1
+  | SvgX2
+  | SvgY1
+  | SvgY2
+
+integerKey :: AttrInteger -> String
+export integerKey = where {
+  SvgX1 =>
+    "x1"
+
+  SvgY1 =>
+    "y1"
+
+  SvgX2 =>
+    "x2"
+
+  SvgY2 =>
+    "y2"
+
+  Cols =>
+    "cols"
+
+  ColSpan =>
+    "colspan"
+
+  Height =>
+    "height"
+
+  High =>
+    "high"
+
+  Low =>
+    "low"
+
+  Max =>
+    "max"
+
+  MaxLength =>
+    "maxlength"
+
+  Min =>
+    "min"
+
+  Optimum =>
+    "optimum"
+
+  Rows =>
+    "rows"
+
+  RowSpan =>
+    "rowspan"
+
+  Size =>
+    "size"
+
+  Span =>
+    "span"
+
+  Start =>
+    "start"
+
+  Step =>
+    "step"
+
+  TabIndex =>
+    "tabindex"
+
+  Width =>
+    "width"
+}
