@@ -21,9 +21,21 @@ export type AttrBoolean
   | Required
   | Reversed
   | Selected
+  | AriaHidden
+  | Focusable
+
+// TODO: Add more aria- attributes
+
+// https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes
 
 booleanKey :: AttrBoolean -> String
 export booleanKey = where {
+  Focusable =>
+    "focusable"
+
+  AriaHidden =>
+    "aria-hidden"
+
   Async =>
     "async"
 

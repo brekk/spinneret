@@ -5,6 +5,7 @@ import IO from "IO"
 import List from "List"
 
 import { className, href, key, src, stringAttr } from "@/Attribute"
+import { CG, COLOR1, COLOR2, COLOR3, FG } from "@/Colors"
 import {
   a,
   code,
@@ -27,7 +28,7 @@ import { render } from "@/Spinneret"
 import { bem } from "@/Style"
 import { Guide } from "@/views/GuideSummary"
 import { HowToGuide } from "@/views/HowToGuide"
-import { Logo } from "@/views/Logo"
+import { Logo, Medium } from "@/views/Logo"
 
 
 
@@ -497,7 +498,7 @@ main = () => {
   render(
     "app",
     <div className={s.e("core")}>
-      {Logo({ fill: "#ff6f97" })}
+      {Logo({ fill: COLOR2, size: Medium })}
       <div className={s.e("guides")}>
         <h1 className={s.em("header", ["h1"])}>
           How-To Guides

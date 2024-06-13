@@ -56,6 +56,9 @@ export type AttrString
   | SvgViewBox
   | SvgFill
   | SvgXMLNS
+  | SvgXLink
+  | SvgStopColor
+  | SvgOffset
 
 import IO from "IO"
 
@@ -65,6 +68,12 @@ stringKey :: AttrString -> String
 export stringKey = pipe(
   IO.pTrace("KEY"),
   where {
+    SvgOffset =>
+      "offset"
+
+    SvgStopColor =>
+      "stop-color"
+
     SvgD =>
       "d"
 
@@ -76,6 +85,9 @@ export stringKey = pipe(
 
     SvgXMLNS =>
       "xmlns"
+
+    SvgXLink =>
+      "xlink:href"
 
     Accept =>
       "accept"

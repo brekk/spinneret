@@ -51,7 +51,7 @@ h6 {
 
 html,
 body {
-  background-color: $bg;
+  background: linear-gradient(165deg, $bg, mix($bg, lighten($bg, 10)));
   color: $fg;
   font-size: 16px;
   padding: 0;
@@ -67,10 +67,10 @@ body {
   }
 }
 
-.App {
-  &__logo {
+.Logo {
     margin: 0 auto;
     padding: 3rem 1rem;
+    fill: url(#logo-gradient);
     &--large {
       width: 35.625rem;
       height: 6rem;
@@ -84,6 +84,9 @@ body {
       height: 3.25rem;
     }
   }
+
+.App {
+  
   &__header {
     width: 100%;
     text-align: center;

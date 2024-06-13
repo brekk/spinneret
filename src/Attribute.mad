@@ -76,6 +76,7 @@ import {
   OnWheel,
 } from "@/Attribute/Action"
 import {
+  AriaHidden,
   Async,
   AutoFocus,
   AutoPlay,
@@ -87,6 +88,7 @@ import {
   Disabled,
   Download,
   Draggable,
+  Focusable,
   Hidden,
   IsMap,
   Loop,
@@ -116,6 +118,8 @@ import {
   Span,
   Start,
   Step,
+  SvgX2,
+  SvgY2,
   TabIndex,
   Width,
   integerKey,
@@ -168,6 +172,8 @@ import {
   SrcSet,
   SvgD,
   SvgFill,
+  SvgOffset,
+  SvgStopColor,
   SvgViewBox,
   SvgXMLNS,
   Target,
@@ -230,6 +236,10 @@ export multiple = AttributeBoolean(Multiple)
 export muted = AttributeBoolean(Muted)
 export novalidate = AttributeBoolean(NoValidate)
 
+export focusable = AttributeBoolean(Focusable)
+
+export ariaHidden = AttributeBoolean(AriaHidden)
+
 // INTEGER ATTRIBUTES
 
 export cols = AttributeInteger(Cols)
@@ -249,6 +259,9 @@ export start = AttributeInteger(Start)
 export step = AttributeInteger(Step)
 export tabindex = AttributeInteger(TabIndex)
 export width = AttributeInteger(Width)
+
+export x2 = AttributeInteger(SvgX2)
+export y2 = AttributeInteger(SvgY2)
 
 // ACTION ATTRIBUTES
 
@@ -369,6 +382,8 @@ export d = AttributeString(SvgD)
 export viewBox = AttributeString(SvgViewBox)
 export fill = AttributeString(SvgFill)
 export xmlns = AttributeString(SvgXMLNS)
+export stopColor = AttributeString(SvgStopColor)
+export offset = AttributeString(SvgOffset)
 
 autocomplete :: Boolean -> Attribute a
 export autocomplete = (on) => AttributeString(AutoComplete, on ? "on" : "off")
@@ -518,6 +533,9 @@ export attributeValue = where {
 
   AttributeInteger(_, x) =>
     show(x)
+
+  AttributeBoolean(_, b) =>
+    b ? "true" : "false"
 
   _ =>
     ""

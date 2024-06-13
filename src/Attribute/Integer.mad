@@ -16,9 +16,17 @@ export type AttrInteger
   | Step
   | TabIndex
   | Width
+  | SvgX2
+  | SvgY2
 
 integerKey :: AttrInteger -> String
 export integerKey = where {
+  SvgX2 =>
+    "x2"
+
+  SvgY2 =>
+    "y2"
+
   Cols =>
     "cols"
 
