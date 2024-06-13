@@ -158,6 +158,10 @@ export wbr = tag("wbr")
 // SVG elements
 
 export svg = tag("svg")
+export defs = tag("defs")
 export path = tag("path")
 export linearGradient = tag("linearGradient")
+export radialGradient = tag("radialGradient")
 export stop = tag("stop")
+export rect = tag("rect")
+export svgText = tag("text")

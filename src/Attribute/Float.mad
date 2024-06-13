@@ -1,0 +1,19 @@
+export type AttrFloat = SvgCx | SvgCy | SvgR | SvgFx | SvgFy
+
+floatKey :: AttrFloat -> String
+export floatKey = where {
+  SvgCx =>
+    "cx"
+
+  SvgCy =>
+    "cy"
+
+  SvgR =>
+    "r"
+
+  SvgFx =>
+    "fx"
+
+  SvgFy =>
+    "fy"
+}

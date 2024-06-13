@@ -3,6 +3,7 @@ import type { Method } from "Http"
 import type { Action } from "@/Action"
 import type { AttrAction } from "@/Attribute/Action"
 import type { AttrBoolean } from "@/Attribute/Boolean"
+import type { AttrFloat } from "@/Attribute/Float"
 import type { AttrInteger } from "@/Attribute/Integer"
 import type { AttrString } from "@/Attribute/String"
 
@@ -102,6 +103,7 @@ import {
   Selected,
   booleanKey,
 } from "@/Attribute/Boolean"
+import { floatKey } from "@/Attribute/Float"
 import {
   ColSpan,
   Cols,
@@ -194,6 +196,7 @@ export type Attribute a
   | AttributeString(AttrString, String)
   | AttributeBoolean(AttrBoolean, Boolean)
   | AttributeInteger(AttrInteger, Integer)
+  | AttributeFloat(AttrFloat, Float)
   | AttributeAction(AttrAction, Action a)
   | AttributeDict(Dictionary String String)
   | NoAttribute
@@ -519,6 +522,9 @@ export attributeKey = where {
   AttributeInteger(a, _) =>
     integerKey(a)
 
+  AttributeFloat(f, _) =>
+    floatKey(f)
+
   _ =>
     ""
 }
@@ -533,6 +539,9 @@ export attributeValue = where {
 
   AttributeInteger(_, x) =>
     show(x)
+
+  AttributeFloat(_, f) =>
+    show(f)
 
   AttributeBoolean(_, b) =>
     b ? "true" : "false"

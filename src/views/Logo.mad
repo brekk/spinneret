@@ -16,7 +16,7 @@ import {
   y2,
 } from "@/Attribute"
 import { BG, COLOR0, COLOR2 } from "@/Colors"
-import { linearGradient, path, stop, svg } from "@/Element"
+import { defs, linearGradient, path, stop, svg } from "@/Element"
 import { bem } from "@/Style"
 
 
@@ -36,10 +36,12 @@ export Logo = (props) => {
       xmlns="http://www.w3.org/2000/svg"
       className={s.em("", ["medium"])}
     >
-      <linearGradient id={`logo-gradient`} x2={0} y2={1}>
-        <stop offset="0%" stopColor={COLOR0} />
-        <stop offset="100%" stopColor={COLOR2} />
-      </linearGradient>
+      <defs>
+        <linearGradient id={`logo-gradient`} x2={0} y2={1}>
+          <stop offset="0%" stopColor={COLOR0} />
+          <stop offset="100%" stopColor={COLOR2} />
+        </linearGradient>
+      </defs>
       <path
         d="M0.903999 96C4.73978 82.176 8.31984 68.224 13.4342 47.872C18.6764 26.88 22.1286 12.544 24.8137 0H72.5052C72.2495 8.32 72.1216 18.944 72.3773 30.848C72.1216 35.2 71.738 41.216 71.3544 46.976H71.8659C74.4231 41.088 76.9802 35.2 79.026 30.848C84.9075 19.328 90.5333 8.192 94.2412 0H140.271C136.946 12.544 133.238 26.88 127.996 47.872C122.882 68.224 119.43 82.176 116.489 96H80.3046C83.7568 84.48 86.1861 75.776 89.5104 63.36C90.9169 57.728 92.9626 51.072 95.0084 44.544L94.2412 44.416C90.789 51.584 87.209 58.496 84.5239 63.232L65.7286 96H48.8512L45.9105 62.592C45.6547 57.856 45.6547 50.944 45.5269 44.032L44.8876 44.16C43.609 50.688 42.5861 56.832 41.0518 63.36C37.9832 75.904 35.9374 84.864 33.5081 96H0.903999Z"
       />
