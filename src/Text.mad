@@ -6,6 +6,9 @@ import String from "String"
 slug :: String -> String
 export slug = pipe(
   String.toLower,
+  String.replace(",", ""),
+  String.replace("'", ""),
+  String.replace(`"`, ""),
   String.split(" "),
   List.slice(0, 10),
   String.join("-"),

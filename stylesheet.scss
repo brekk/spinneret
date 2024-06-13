@@ -10,6 +10,10 @@ $color-3: #a571e3;
 $mq-1: 40rem;
 $mq-2: 60rem;
 
+@mixin skewed {
+  transform: skew(-8deg) rotate(-8deg);
+}
+
 h1,
 h2,
 h3,
@@ -64,20 +68,39 @@ body {
 }
 
 .App {
+  &__logo {
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    &--large {
+      width: 35.625rem;
+      height: 6rem;
+    }
+    &--medium {
+      width: 25rem;
+      height: 4.375rem;
+    }
+    &--small {
+      width: 18.75rem;
+      height: 3.25rem;
+    }
+  }
   &__header {
     width: 100%;
+    text-align: center;
   }
   &__core {
     margin: 0;
     padding: 0;
     width: 100%;
     display: flex;
+    position: relative;
+    flex-direction: column;
   }
   &__guides {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: calc(100% - 2rem);
     margin: 1rem;
     @media (screen and min-width: $mq-1) {
       flex-direction: row;
@@ -91,18 +114,20 @@ body {
   display: flex;
   flex-direction: column;
   &__header {
+    width: 100%;
     &--title {
+      @include skewed;
       color: $color-2;
-      transform: skew(-8deg) rotate(-8deg) scale(120%);
-      // text-shadow: 0 0 0.5rem rgba(255,0,255,0.8);
-      margin: 2rem 0 1rem;
-      padding-left: 1.5rem;
+      margin: 2rem 10%;
+      width: 80%;
+      text-align: center;
     }
     &--block {
+      @include skewed;
+      font-size: 2.4rem;
       color: $color-0;
-      transform: skew(-8deg) rotate(-8deg);
       text-align: center;
-      margin: 3rem 0 2rem;
+      margin: 2rem 0 2rem;
     }
   }
   code {
@@ -113,25 +138,30 @@ body {
     border-radius: 0.25rem;
     display: inline-block;
     position: relative;
+    font-size: 0.8rem;
   }
   pre {
     width: 100%;
+    overflow: hidden;
+    position: relative;
+    &::before {
+      content: attr(data-language);
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: $color-1;
+      color: $bg;
+      font-size: 0.5rem;
+      border-top-right-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+      padding: 0.5em;
+      z-index: 20;
+    }
     code {
+      z-index: 10;
+      overflow-x: auto;
       display: block;
-      width: calc(100% - 1rem);
       padding: 0.5rem;
-      &::before {
-        content: attr(data-language);
-        position: absolute;
-        right: 0;
-        top: 0;
-        background-color: $color-1;
-        color: $bg;
-        font-size: 0.5rem;
-        border-top-right-radius: 0.25rem;
-        border-bottom-left-radius: 0.25rem;
-        padding: 0.5em;
-      }
     }
   }
 }

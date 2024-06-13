@@ -52,6 +52,10 @@ export type AttrString
   | UseMap
   | Value
   | Wrap
+  | SvgD
+  | SvgViewBox
+  | SvgFill
+  | SvgXMLNS
 
 import IO from "IO"
 
@@ -61,6 +65,18 @@ stringKey :: AttrString -> String
 export stringKey = pipe(
   IO.pTrace("KEY"),
   where {
+    SvgD =>
+      "d"
+
+    SvgViewBox =>
+      "viewBox"
+
+    SvgFill =>
+      "fill"
+
+    SvgXMLNS =>
+      "xmlns"
+
     Accept =>
       "accept"
 

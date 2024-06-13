@@ -16,7 +16,7 @@ export alias Guide = { blocks :: List GuideContentBlock, title :: String }
 s = bem("HowToGuide")
 export HowToContentBlock = (props) => (
   <div className={s.e("block")} key={props.title}>
-    <h2 className={s.em("header", ["block"])}>
+    <h2 className={s.em("header", ["block"])} id={slug(props.title)}>
       {props.title}
     </h2>
     <div className={s.e("block-content")}>

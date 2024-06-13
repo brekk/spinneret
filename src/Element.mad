@@ -23,7 +23,7 @@ export _tag = (other, enkey, envalue, textNode, tagName, rawProps, kids) => #- {
   let children = __listToJSArray__(kids)
   console.log("POST OP PROPS", props, "CHILDREN", children)
   if (textNode || children.reduce((check, z) => check && typeof z == 'string', true)) {
-    const raw = children.map(z => z.replace(/"/g, ''))
+    const raw = children.map(z => z.replace(/^"/g, '').replace(/"$/g, ''))
     children = Hyper.text(raw)
   }
   console.log({tagName, props, children})
@@ -154,3 +154,6 @@ export ul = tag("ul")
 export var = tag("var")
 export video = tag("video")
 export wbr = tag("wbr")
+
+export svg = tag("svg")
+export path = tag("path")

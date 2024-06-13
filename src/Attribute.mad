@@ -166,6 +166,10 @@ import {
   SrcDoc,
   SrcLang,
   SrcSet,
+  SvgD,
+  SvgFill,
+  SvgViewBox,
+  SvgXMLNS,
   Target,
   Title,
   To,
@@ -360,6 +364,12 @@ export to = AttributeString(To)
 export usemap = AttributeString(UseMap)
 export value = AttributeString(Value)
 
+
+export d = AttributeString(SvgD)
+export viewBox = AttributeString(SvgViewBox)
+export fill = AttributeString(SvgFill)
+export xmlns = AttributeString(SvgXMLNS)
+
 autocomplete :: Boolean -> Attribute a
 export autocomplete = (on) => AttributeString(AutoComplete, on ? "on" : "off")
 
@@ -505,6 +515,9 @@ export attributeValue = where {
 
   AttributeString(_, v) =>
     v
+
+  AttributeInteger(_, x) =>
+    show(x)
 
   _ =>
     ""
