@@ -1,0 +1,20 @@
+@import "./_colors";
+
+@keyframes hum {
+  0%,
+  100% {
+    fill: $color-fg;
+  }
+  20% {
+    fill: $color-yellow;
+  }
+  40% {
+    fill: $color-pink;
+  }
+  60% {
+    fill: $color-purple;
+  }
+  80% {
+    fill: $color-blue;
+  }
+}

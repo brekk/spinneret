@@ -4,7 +4,8 @@
   "description": "hyperapp x madlib",
   "main": "bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "styles": "sass --watch ./src/App.scss:build/stylesheet.css",
+    "build": "madlib compile -i src/Main.mad -t browser --bundle -o build/app.js --watch"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,5 @@
   "homepage": "https://github.com/brekk/spinneret#readme",
   "dependencies": {
     "hyperapp": "^2.0.22"
-  },
-  "scripts": {
-    "build": "madlib compile -i src/Main.mad -t browser --bundle -o build/app.js --watch",
-    "style": "sass stylesheet.scss build/stylesheet.css"
   }
 }
