@@ -1,7 +1,7 @@
 import type { Element } from "@/Element"
 
 import { className, id, key } from "@/Attribute"
-import { a, article, code, div, h1, h2, h3, p, pre, text } from "@/Element"
+import { article, div, h1, h2, text } from "@/Element"
 import { bem } from "@/Style"
 import { slug } from "@/Text"
 
@@ -14,6 +14,7 @@ export alias Guide = { blocks :: List GuideContentBlock, title :: String }
 
 
 s = bem("HowToGuide")
+HowToContentBlock :: GuideContentBlock -> Element {}
 export HowToContentBlock = (props) => (
   <div className={s.e("block")} key={props.title}>
     <h2 className={s.em("header", ["block"])} id={slug(props.title)}>
@@ -25,6 +26,7 @@ export HowToContentBlock = (props) => (
   </div>
 )
 
+HowToGuide :: Guide -> Element {}
 export HowToGuide = (props) => (
   <article className={s.e("")}>
     <h1 className={s.em("header", ["title"])} id={slug(props.title)}>

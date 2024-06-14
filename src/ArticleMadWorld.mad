@@ -2,7 +2,6 @@ import type { Guide } from "@/views/HowToGuide"
 
 import { href, stringAttr } from "@/Attribute"
 import { a, code, em, p, pre, strong, text } from "@/Element"
-import { Guide } from "@/views/GuideSummary"
 
 
 

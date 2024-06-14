@@ -6,7 +6,7 @@ import { guideDetails } from "@/GuideDetails"
 import { render } from "@/Spinneret"
 import { bem } from "@/Style"
 import { ContentDial } from "@/views/ContentDial"
-import { Guide } from "@/views/GuideSummary"
+import { HowToGuideSummary } from "@/views/GuideSummary"
 import { HowToGuide } from "@/views/HowToGuide"
 import { Logo, Medium } from "@/views/Logo"
 
@@ -38,7 +38,7 @@ main = () => {
         <h1 className={s.em("header", ["h1"])}>
           How-To Guides
         </h1>
-        {...map(Guide, guideDetails)}
+        {...map(HowToGuideSummary, guideDetails)}
         {HowToGuide(articleMadWorld)}
       </div>
     </div>,

@@ -10,9 +10,9 @@ import { bem } from "@/Style"
 
 export alias GuideSummary = { id :: String, steps :: List (List (Element {})), title :: String }
 
-Guide :: GuideSummary -> Element {}
-export Guide = (summ) => {
-  t = bem("HowTo")
+HowToGuideSummary :: GuideSummary -> Element {}
+export HowToGuideSummary = (summ) => {
+  t = bem("GuideSummary")
   return (
     <div className={t.e("guide")} key={summ.title}>
       <div className={t.e("series-id")} stringAttr={#["data-hover", summ.id]}>
