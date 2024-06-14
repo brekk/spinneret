@@ -1,0 +1,75 @@
+import { href } from "@/Attribute"
+import { a, text } from "@/Element"
+
+
+
+export guideDetails = [
+  {
+    id: "01",
+    title: "It's a mad, mad, mad, mad world",
+    steps: [
+      [<a href="#">Installing</a>, <text>{" Madlib"}</text>],
+      [<text>Using the </text>, <a href="#">REPL</a>],
+      [<text>{"Basic "}</text>, <a href="#">arithmetic</a>],
+      [<a href="#">Boolean logic</a>],
+      [<a href="#">Expressions of equality</a>],
+      [<a href="#">Importing</a>, <text>{" and invoking functions from Prelude"}</text>],
+    ],
+  },
+  {
+    id: "02",
+    title: "Syntactic Tactics",
+    steps: [
+      [<text>Annotating programs with </text>, <a href="#">comments</a>],
+      [<a href="#">Boolean logic</a>],
+      [<text>{"Defining "}</text>, <a href="#">conditionals</a>],
+      [
+        <text>
+          {"Segmenting modules, using "}
+        </text>,
+        <a href="#">
+          imports
+        </a>,
+        <text>
+          {" and "}
+        </text>,
+        <a href="#">
+          exports
+        </a>,
+      ],
+      [<text>{"Defining and running a "}</text>, <a href="#">main</a>, <text>{" function"}</text>],
+    ],
+  },
+  {
+    id: "03",
+    title: "Just My Type",
+    steps: [
+      [<a href="#">Types</a>],
+      [<a href="#">Type Inference</a>],
+      [<a href="#">Literal</a>, <text>{" values"}</text>],
+      [<a href="#">Aliases</a>],
+      [<text>{"Curried functions and their "}</text>, <a href="#">partial application</a>],
+    ],
+  },
+  {
+    id: "04",
+    title: "Functional, in the main",
+    steps: [
+      [<text>{"Composing "}</text>, <a href="#">functions</a>],
+      [<text>{"Function "}</text>, <a href="#">definitions</a>],
+      [<text>{"Applying functions to a List with "}</text>, <a href="#">map</a>],
+    ],
+  },
+  {
+    id: "05",
+    title: "The March of IDEs",
+    steps: [
+      [<text>{"Setting up an "}</text>, <a href="#">IDE</a>],
+      [<text>{"Creating a new "}</text>, <a href="#">Madlib project</a>],
+      [<text>{"File "}</text>, <a href="#">explorer</a>],
+      [<a href="#">Many common errors and warnings</a>],
+      [<text>{"Defining a "}</text>, <a href="#">custom type</a>],
+      [<text>{"Using "}</text>, <a href="#">pattern matching</a>],
+    ],
+  },
+]

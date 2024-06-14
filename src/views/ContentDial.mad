@@ -1,0 +1,19 @@
+import { id, inputType, labelAttr, list, max, min, step, value } from "@/Attribute"
+import { datalist, div, input, option, text } from "@/Element"
+
+
+
+export ContentDial = () => (
+  <div>
+    <input inputType="range" min={0} max={6} step={1} list="user" />
+    <datalist id="user">
+      <option value="0" labelAttr="Learning-focused" />
+      <option value="1" labelAttr="-2" />
+      <option value="2" labelAttr="-1" />
+      <option value="3" labelAttr="Neutral" />
+      <option value="4" labelAttr="1" />
+      <option value="5" labelAttr="2" />
+      <option value="6" labelAttr="Outcome-focused" />
+    </datalist>
+  </div>
+)

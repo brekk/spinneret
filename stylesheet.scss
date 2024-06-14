@@ -1,11 +1,12 @@
-$bg: #180e1c;
-$fg: #dee8f4;
-$cg: #393552;
-$cg2: #4d0b33;
-$color-0: #eac968;
-$color-1: #a9b3ec;
-$color-2: #ff6f97;
-$color-3: #a571e3;
+$color-bg: #180e1c;
+$color-fg: #dee8f4;
+// $cg: #393552;
+// $cg2: #4d0b33;
+$color-yellow: #eac968;
+$color-blue: #a9b3ec;
+$color-pink: #ff6f97;
+// $color-pink: #ff228a;
+$color-purple: #a571e3;
 
 $mq-1: 40rem;
 $mq-2: 60rem;
@@ -51,26 +52,49 @@ h6 {
 
 html,
 body {
-  background: linear-gradient(165deg, $bg, mix($bg, lighten($bg, 10)));
-  color: $fg;
+  background: linear-gradient(165deg, $color-bg, mix($color-bg, lighten($color-bg, 3)));
+  color: $color-fg;
   font-size: 16px;
   padding: 0;
   margin: 0;
   font-family: "Fira Code";
   a {
     transition: color 0.9s ease-out;
-    color: $color-3;
+    color: $color-purple;
     text-decoration: none;
     &:hover {
-      color: $color-0;
+      color: $color-yellow;
     }
+  }
+}
+
+@keyframes hum {
+  0%, 100% {
+    fill: $color-fg;
+  }
+
+  20% {
+    fill: $color-yellow;
+  }
+
+  40% {
+    fill: $color-pink;
+  }
+
+  60% {
+    fill: $color-purple;
+  }
+  80% {
+    fill: $color-blue;
   }
 }
 
 .Logo {
     margin: 0 auto;
     padding: 3rem 1rem;
-    fill: url(#logo-gradient);
+    fill: $color-fg;
+    animation: 10s infinite hum ease-in;
+    // fill: url(#logo-gradient);
     &--large {
       width: 35.625rem;
       height: 6rem;
@@ -120,7 +144,7 @@ body {
     width: 100%;
     &--title {
       @include skewed;
-      color: $color-2;
+      color: $color-pink;
       margin: 2rem 10%;
       width: 80%;
       text-align: center;
@@ -128,7 +152,7 @@ body {
     &--block {
       @include skewed;
       font-size: 2.4rem;
-      color: $color-0;
+      color: $color-yellow;
       text-align: center;
       margin: 2rem 0 2rem;
     }
@@ -152,8 +176,8 @@ body {
       position: absolute;
       right: 0;
       top: 0;
-      background-color: $color-1;
-      color: $bg;
+      background-color: $color-blue;
+      color: $color-bg;
       font-size: 0.5rem;
       border-top-right-radius: 0.25rem;
       border-bottom-left-radius: 0.25rem;
@@ -186,7 +210,7 @@ body {
     margin: 0;
     margin-bottom: 1rem;
     border-radius: 1rem;
-    border: 1px solid $color-1;
+    border: 1px solid $color-blue;
     padding: 1rem;
     min-height: 16rem;
     overflow: hidden;
@@ -228,18 +252,18 @@ body {
       background: linear-gradient(164deg, #380655, #270544 75%);
       border: 1px solid #451191;
       .HowTo__heading {
-        color: $color-2;
+        color: $color-pink;
       }
       a {
-        color: $color-2;
+        color: $color-pink;
         &:hover {
           transition: color 0.2s ease-out;
-          color: $color-0;
+          color: $color-yellow;
         }
       }
       .HowTo__series-id {
         background-color: #ddcaa6;
-        color: $bg;
+        color: $color-bg;
         transform: rotate(0);
         clip-path: polygon(
           100% 50%,
@@ -327,8 +351,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: $color-0;
-    color: $bg;
+    background-color: $color-yellow;
+    color: $color-bg;
     // border-radius: 1rem;
     border-radius: 100rem;
     padding: 0.85rem;
