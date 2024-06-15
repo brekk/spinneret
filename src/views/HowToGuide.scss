@@ -33,15 +33,13 @@
     width: 84%;
     margin: 0 8%;
     @media (screen and min-width: $mq-1) {
-      width: 46%;
-      margin: 0 0 1rem;
-      &:nth-of-type(odd) {
-        margin-right: 4%;
-      }
+      width: 74%;
+      margin: 0 16% 1rem;
+      max-width: 35rem;
     }
-    @media (screen and min-width: $mq-2) {
-      width: calc((100% / 3) - 1rem);
-    }
+    // @media (screen and min-width: $mq-2) {
+    //   width: calc((100% / 3) - 1rem);
+    // }
   }
   code {
     font-family: "Fira Code";
