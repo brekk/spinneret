@@ -23,18 +23,24 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    @media (screen and min-width: $mq-2) {
+    @media (screen and min-width: $mq-1) {
       flex-direction: row;
       align-items: space-between;
-      justify-content: space-between;
+      justify-content: center;
     }
   }
   &__block {
-    width: 100%;
-    margin: 0;
+    width: 84%;
+    margin: 0 8%;
+    @media (screen and min-width: $mq-1) {
+      width: 46%;
+      margin: 0 0 1rem;
+      &:nth-of-type(odd) {
+        margin-right: 4%;
+      }
+    }
     @media (screen and min-width: $mq-2) {
       width: calc((100% / 3) - 1rem);
-      
     }
   }
   code {

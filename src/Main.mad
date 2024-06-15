@@ -33,14 +33,13 @@ main = () => {
     "app",
     <div className={s.e("core")}>
       {Logo({ fill: COLOR2, size: Medium })}
-      {ContentDial()}
       <div className={s.e("guides")}>
         <h1 className={s.em("header", ["h1"])}>
           How-To Guides
         </h1>
         {...map(HowToGuideSummary, guideDetails)}
-        {HowToGuide(articleMadWorld)}
       </div>
+      {HowToGuide(articleMadWorld)}
     </div>,
   )
 }

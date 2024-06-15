@@ -35,12 +35,12 @@ h6 {
 
 html,
 body {
-  background: linear-gradient(165deg, $color-bg, mix($color-bg, lighten($color-bg, 3)));
   color: $color-fg;
   font-size: 16px;
   padding: 0;
   margin: 0;
   font-family: "Fira Code";
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
   a {
     transition: color 0.9s ease-out;
     color: $color-purple;
@@ -49,4 +49,12 @@ body {
       color: $color-yellow;
     }
   }
+}
+
+html {
+  background: linear-gradient(183deg, #180e1c, #0e0220);
+}
+body {
+  background-image: url(../assets/noise.svg);
+  background-repeat: repeat;
 }

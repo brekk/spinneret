@@ -3,18 +3,15 @@
 @keyframes hum {
   0%,
   100% {
-    fill: $color-fg;
-  }
-  20% {
     fill: $color-yellow;
   }
-  40% {
+  25% {
     fill: $color-pink;
   }
-  60% {
+  50% {
     fill: $color-purple;
   }
-  80% {
+  75% {
     fill: $color-blue;
   }
 }
