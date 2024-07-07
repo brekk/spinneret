@@ -1,0 +1,48 @@
+name: Generate Docs
+
+on: [workflow_dispatch, push]
+    
+env:
+  node-version: 20.x
+
+jobs:
+  docs:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛒 Checking out repository...
+        uses: actions/checkout@v4
+
+      - name: ⚙️  Setting up node...
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: 😈 Automatically generating documentation...
+        run: |
+          npm install -g @madlib-lang/madlib
+          mv madlib_modules magic
+          madlib install
+          mv magic madlib_modules
+          madlib compile --bundle -i madlib_modules/MadDocCli/src/Main.mad -o build/src/maddoc-cli.js
+          node build/src/maddoc-cli.js src
+          echo "wrapEventHandler..."
+          grep _wrapEventHandler_ -m 1 .docs/bundle.js | cut -d" " -f4
+          EH_TRANSPILED_NAME=$(grep _wrapEventHandler_ -m 1 .docs/bundle.js | cut -d" " -f4)
+          echo "EventConstructors..."
+          grep _EventConstructors_ -m 1 .docs/bundle.js | cut -d" " -f4
+          EC_TRANSPILED_NAME=$(grep _EventConstructors_ -m 1 .docs/bundle.js | cut -d" " -f4)
+          echo "LIST TRANSPILED VARIABLE NAMES"
+          echo "event constructor: $EC_TRANSPILED_NAME"
+          echo "event handler: $EH_TRANSPILED_NAME"
+          sed -i "s/const handler = wrapEventHandler/const wrapEventHandler = $(echo $EH_TRANSPILED_NAME);\nconst EventConstructors = $(echo $EC_TRANSPILED_NAME);\nconst handler = wrapEventHandler/g" .docs/bundle.js
+          echo "LIST CONTENTS OF DOCS"
+          grep "handler = wrapEventHandler" -C5 .docs/bundle.js
+
+      - name: 🩺 Deploying documentation...
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: docs
+          folder: .docs
+
