@@ -8,41 +8,19 @@ export alias Action a = a -> Event -> List (Wish (a -> a) (a -> a))
 
 export type GlobalAction a = GlobalAction(String, Action a)
 
-onAfterPrint :: Action a -> GlobalAction a
 export onAfterPrint = GlobalAction("afterprint")
-
-onBeforePrint :: Action a -> GlobalAction a
 export onBeforePrint = GlobalAction("beforeprint")
-
-onBeforeUnload :: Action a -> GlobalAction a
 export onBeforeUnload = GlobalAction("beforeunload")
-
-onDocumentLoad :: Action a -> GlobalAction a
-export onDocumentLoad = GlobalAction("load")
-
-onPageHide :: Action a -> GlobalAction a
-export onPageHide = GlobalAction("pagehide")
-
-onPageShow :: Action a -> GlobalAction a
-export onPageShow = GlobalAction("pageshow")
-
-onOffline :: Action a -> GlobalAction a
-export onOffline = GlobalAction("offline")
-
-onOnline :: Action a -> GlobalAction a
-export onOnline = GlobalAction("online")
-
-onResize :: Action a -> GlobalAction a
-export onResize = GlobalAction("resize")
-
-onBodyScroll :: Action a -> GlobalAction a
 export onBodyScroll = GlobalAction("scroll")
-
-onStorage :: Action a -> GlobalAction a
+export onDocumentLoad = GlobalAction("load")
+export onOffline = GlobalAction("offline")
+export onOnline = GlobalAction("online")
+export onPageHide = GlobalAction("pagehide")
+export onPageShow = GlobalAction("pageshow")
+export onResize = GlobalAction("resize")
 export onStorage = GlobalAction("storage")
-
-onUnload :: Action a -> GlobalAction a
 export onUnload = GlobalAction("unload")
-
-onUrlChanged :: Action a -> GlobalAction a
 export onUrlChanged = GlobalAction("popstate")
+
+syncAction :: (a -> Event -> a) -> Action a
+export syncAction = (update) => ((_, event) => [of(update($, event))])
