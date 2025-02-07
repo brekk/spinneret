@@ -1,4 +1,6 @@
+import { pipe, map, forEach } from "ramda"
 import { inscribe } from "@/function"
+import { NAMESPACES } from "@/constants"
 
 export const _attr = inscribe("createAttribute", (el, k, v) => {
   const a = document.createAttribute(k)
@@ -74,15 +76,12 @@ const dialect = inscribe(
   },
 )
 
-const elx = dialect(NAMESPACES.XHTML)
-const svgx = dialect(NAMESPACES.SVG)
+export const elx = dialect(NAMESPACES.XHTML)
+export const svgx = dialect(NAMESPACES.SVG)
 
-const svg = inscribe(
+export const svg = inscribe(
   "svg",
-  (
-    { className, height = "500", width = "500", points, style, ...rest },
-    children,
-  ) =>
+  ({ className, height = "500", width = "500", ...rest }, children) =>
     svgx(
       "svg",
       {

@@ -1,8 +1,7 @@
-import unusual from "https://esm.sh/unusual"
-
-const { curry, is, pipe, map, toPairs, forEach, __: $ } = R
-
 const Debug = (x) => elx("pre", {}, [elx("code", {}, safeStringify(x))])
+import { svgx, elx, svg } from "@/document"
+import { inscribe } from "@/function"
+import { safeStringify } from "@/json"
 
 //*
 

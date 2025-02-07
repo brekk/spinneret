@@ -1,4 +1,4 @@
-import { def, toString } from "@/object"
+import { def } from "@/object"
 import { SYMBOL, MARKED } from "@/constants"
 
 // NB: a number of functions here are full functions rather than
@@ -74,7 +74,7 @@ export function schonfinkel(desc, len, received, fn) {
       let result
       if (
         combinedIdx < received.length &&
-        (!_isPlaceholder(received[combinedIdx]) || argsIdx >= arguments.length)
+        (!isPlaceholder(received[combinedIdx]) || argsIdx >= arguments.length)
       ) {
         result = received[combinedIdx]
       } else {
@@ -82,7 +82,7 @@ export function schonfinkel(desc, len, received, fn) {
         argsIdx += 1
       }
       combined[combinedIdx] = result
-      if (!_isPlaceholder(result)) {
+      if (!isPlaceholder(result)) {
         left -= 1
       } else {
         hasPlaceholder = true
@@ -93,7 +93,7 @@ export function schonfinkel(desc, len, received, fn) {
       return fn.apply(this, combined)
     } else {
       const newLen = Math.max(0, left)
-      const funk = arity(newLen, currywurst(desc, len, combined, fn))
+      const funk = arity(newLen, schonfinkel(desc, len, combined, fn))
       const st = () => desc + `(${newLen})`
       funk.toString = st
       def(funk, Symbol.toStringTag, {
