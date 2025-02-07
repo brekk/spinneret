@@ -39,7 +39,7 @@
     "nps": "dotenv -- nps -c ./package-scripts.cjs",
     "autotest": "dotenv -- nps -c ./package-scripts.cjs autotest",
     "autotest:rebuild": "dotenv -- nps -c ./package-scripts.cjs autotest.rebuild",
-    "lint": "dotenv -- nps -c ./package-scripts.cjs lint",
+    "lint": "eslint --fix .",
     "meta": "dotenv -- nps -c ./package-scripts.cjs meta",
     "meta:graph": "dotenv -- nps -c ./package-scripts.cjs meta.graph",
     "test": "dotenv -- nps -c ./package-scripts.cjs test",

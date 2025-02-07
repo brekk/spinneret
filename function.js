@@ -1,7 +1,8 @@
 import { def, toString } from "@/object"
 import { SYMBOL, MARKED } from "@/constants"
 
-// NB: a number of functions here are full functions rather than arrow functions, this is done to try to improve the stacktrace
+// NB: a number of functions here are full functions rather than
+// arrow functions, this is done to try to improve the stacktrace
 // downstream from these functions, functions should be automagically "named"
 
 // ensure a function has a specific arity
