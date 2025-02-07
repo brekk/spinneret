@@ -1,0 +1,113 @@
+@use "sass:color";
+
+$color-bg: #b5c5d2;
+// $color-bg: #0fc;
+$color-fg: white;
+$color-accent: #cc007c;
+
+$color-panel: #000c6f;
+$color-button: #ff9b00;
+
+// $color-bg: #0f2444;
+// $color-fg: #d9e1f0;
+// $color-accent: #ff4545;
+
+// $color-red: #feccde;
+// $color-orange: #fedccc;
+// $color-yellow: #fefedc;
+// $color-green: #dcfedc;
+// $color-blue: #dcecfe;
+// $color-purple: #eedcee;
+
+
+$font: "Atkinson Hyperlegible Mono", serif;
+
+
+@mixin font {
+  font-family: $font, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin altfont {
+  font-family: "Michroma";
+  text-transform: uppercase;
+}
+
+.atkinson-hyperlegible-mono-typeface {
+  @include font;
+}
+
+// #cc007c & nnnoise-red
+
+html,
+body {
+  @include font;
+  font-size: 16px;
+  background-color: $color-panel;
+  background-size: contain;
+  color: $color-fg;
+  margin: 0;
+  padding: 0;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+*:visible {
+  box-sizing: border-box;
+}
+
+@keyframes bright-stroke {
+  0%,
+  100% {
+    stroke: #c00;
+  }
+  16.66666%,
+  83.33333% {
+    stroke: white;
+  }
+}
+@keyframes alarm {
+  0%,
+  100% {
+    fill: red;
+  }
+  16.66666%,
+  83.33333% {
+    fill: black;
+  }
+}
+
+.Logo {
+  display: inline-block;
+  max-width: 28rem;
+  width: 100%;
+  min-width: 10rem;
+  &__web-line {
+    transition: stroke 0.3s ease-out;
+    animation: bright-stroke 9s infinite;
+    // stroke: $color-accent !important;
+  }
+  &__spidro {
+    fill: black;
+    animation: alarm 8s infinite;
+  }
+  &__letter--s {
+    stroke: yellow;
+  }
+  &--dork-mode {
+  }
+  &__text {
+    fill: $color-accent;
+    // stroke: $color-accent;
+  }
+}
+a {
+  color: white;
+}
+

@@ -1,0 +1,102 @@
+@import "./base";
+
+.Debug,
+pre {
+  background-color: color.adjust($color-fg, $lightness: -10%);
+  color: $color-bg;
+  padding: 0.75rem;
+  overflow: auto;
+  &__code {
+  }
+}
+.App__code-inline {
+  background-color: color.adjust($color-fg, $lightness: -10%);
+  color: $color-bg;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.Disclosable {
+  border: 1px solid $color-fg;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  cursor: pointer;
+}
+
+
+.App {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__toc {
+    &-item {
+      padding: 0.25rem;
+    }
+  }
+  &__paragraph {
+    text-align: left;
+  }
+
+  &__section {
+    width: 100%;
+    max-width: 40rem;
+    margin: 0 auto;
+    & > *:not(.heading) {
+      padding: 0;
+      transition: padding 0.3s ease-out;
+      @media screen and (min-width: 40rem) {
+        padding: 0 2rem;
+      }
+    }
+    .head-link {
+      text-decoration: none;
+      color: $color-fg;
+    }
+    .heading {
+      border-bottom: 1px solid $color-fg;
+      padding-bottom: 1rem;
+      position: relative;
+      // overflow: hidden;
+      padding-left: 2rem;
+      transition: padding 0.3s ease-out;
+      margin-bottom: 2rem;
+      // background-color: red;
+      &::before {
+        content: "#";
+        display: inline;
+        font-size: 0.9rem;
+        width: 1rem;
+        margin-right: 0.5rem;
+        top: 0.5rem;
+        left: 0.75rem;
+        position: absolute;
+        opacity: 0;
+        transform: scale(4, 4);
+        transition:
+          opacity 0.15s ease-in,
+          transform 0.3s ease-in-out,
+          top 0.3s ease-in;
+      }
+      &:hover {
+        cursor: pointer;
+        &::before {
+          transform: scale(1, 1);
+          color: $color-accent;
+          top: 0.25rem;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

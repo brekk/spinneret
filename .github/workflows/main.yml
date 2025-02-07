@@ -7,9 +7,15 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: 🛒 Checking out repo...
@@ -26,11 +32,26 @@ jobs:
       - name: 🧪 Running tests...
         id: test
         run: |
-          yarn test
+          yarn test-ci
       - name: 🧼 Linting code...
         id: lint
         run: |
           yarn lint
+      - name: 🏗️ Building the library...
+        id: build-pages
+        run: |
+          yarn build-pages
+      - name: 📚 Setting up the pages...
+        id: pages
+        uses: actions/configure-pages@v4
+      - name: 🛸 Beaming data...
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+      - name: 🚢 Shipping to Github...
+        id: deployment
+        uses: actions/deploy-pages@v4
+
       - name: 🪵 Capturing changelog...
         id: changelog
         uses: TriPSs/conventional-changelog-action@v5
@@ -44,6 +65,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
+          skip-bump: true
+          fallback-version: "0.0.1"
           tag_name: ${{ steps.changelog.outputs.tag }}
           release_name: ${{ steps.changelog.outputs.tag }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
