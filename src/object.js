@@ -1,4 +1,9 @@
-export const toString = (x) => Object.prototype.toString.call(x)
+export const getSignature = (x) => x.signature
 
-export const def = (what, as, suchThat) =>
-  Object.defineProperty(what, as, suchThat)
+export const toString = (x) => {
+  const raw = Object.prototype.toString.call(x)
+  if (typeof x === "function" && x.signature) {
+    return `${x.name}(${x.length}) :: ${x.signature}`
+  }
+  return raw
+}

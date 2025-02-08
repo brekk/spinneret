@@ -1,5 +1,3 @@
-import { def } from "@/object"
-
 import { SYMBOL, MARKED } from "@/constants"
 import { toUpper, __, pipe, repeat, join } from "ramda"
 
@@ -9,78 +7,33 @@ export const $ = __
 // arrow functions, this is done to try to improve the stacktrace
 // downstream from these functions, functions should be automagically "named"
 
-const capitalize = (x) => toUpper(x[0]) + x.slice(1)
+const stamp = (x) =>
+  Object.defineProperty(x, MARKED, {
+    value: true,
+    enumerable: true,
+    writable: false,
+    configurable: false,
+  })
 
-// ensure a function has a specific arity
-export function arity(n, fn) {
-  /* eslint-disable no-unused-vars */
-  switch (n) {
-    case 0:
-      return function nullary() {
-        return fn.apply(this, arguments)
-      }
-    case 1:
-      return function unary(a0) {
-        return fn.apply(this, arguments)
-      }
-    case 2:
-      return function binary(a0, a1) {
-        return fn.apply(this, arguments)
-      }
-    case 3:
-      return function ternary(a0, a1, a2) {
-        return fn.apply(this, arguments)
-      }
-    case 4:
-      return function quaternary(a0, a1, a2, a3) {
-        return fn.apply(this, arguments)
-      }
-    case 5:
-      return function quinary(a0, a1, a2, a3, a4) {
-        return fn.apply(this, arguments)
-      }
-    case 6:
-      return function senary(a0, a1, a2, a3, a4, a5) {
-        return fn.apply(this, arguments)
-      }
-    case 7:
-      return function septenary(a0, a1, a2, a3, a4, a5, a6) {
-        return fn.apply(this, arguments)
-      }
-    case 8:
-      return function octonary(a0, a1, a2, a3, a4, a5, a6, a7) {
-        return fn.apply(this, arguments)
-      }
-    case 9:
-      return function nonary(a0, a1, a2, a3, a4, a5, a6, a7, a8) {
-        return fn.apply(this, arguments)
-      }
-    case 10:
-      return function denary(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
-        return fn.apply(this, arguments)
-      }
-    default:
-      throw new Error(
-        "First argument to arity must be a non-negative integer no greater than ten",
-      )
-  }
-}
+const placeholderToString = (z) =>
+  isPlaceholder(z) ? "__" : capitalize(typeof z)
 
 // curry a function!
 // now with a .toString and a Symbol.toStringTag hook!
 // taken almost verbatim from ramda
-export function schonfinkel(desc, len, received, fn) {
-  return function finkeled() {
+export function schonfinkel(name, len, received, fn) {
+  const FUN = function finkeled() {
+    const argLen = arguments.length
     let combined = []
     let argsIdx = 0
     let left = len
     let combinedIdx = 0
     let hasPlaceholder = false
-    while (combinedIdx < received.length || argsIdx < arguments.length) {
+    while (combinedIdx < received.length || argsIdx < argLen) {
       let result
       if (
         combinedIdx < received.length &&
-        (!isPlaceholder(received[combinedIdx]) || argsIdx >= arguments.length)
+        (!isPlaceholder(received[combinedIdx]) || argsIdx >= argLen)
       ) {
         result = received[combinedIdx]
       } else {
@@ -99,46 +52,51 @@ export function schonfinkel(desc, len, received, fn) {
       return fn.apply(this, combined)
     } else {
       const newLen = Math.max(0, left)
-      const funk = arity(newLen, schonfinkel(desc, len, combined, fn))
-      const _combined = combined
-        .map((z) => (isPlaceholder(z) ? "__" : capitalize(typeof z)))
-        .join(" -> ")
+      const funk = schonfinkel(name, len, combined, fn)
+      const _combined = combined.map(placeholderToString).join(" -> ")
       const remaining = pipe(repeat("?"), join(" -> "))(newLen)
-      const st = () => desc + ` :: ${_combined} -> ${remaining}`
+      const signature = `${_combined} -> ${remaining}`
+      const st = () => name
       funk.toString = st
-      def(funk, Symbol.toStringTag, {
+      Object.defineProperty(funk, "name", {
+        value: name,
+      })
+      Object.defineProperty(funk, Symbol.toStringTag, {
         get: st,
       })
-      def(funk, MARKED, {
-        value: true,
-        enumerable: true,
+      stamp(funk)
+      Object.defineProperty(funk, "signature", {
+        value: signature,
+        enumerable: false,
+        configurable: true,
+        writable: false,
       })
       return funk
     }
   }
+  Object.defineProperty(FUN, "name", {
+    value: name,
+  })
+  Object.defineProperty(FUN, "length", {
+    get: () => len,
+  })
+  stamp(FUN)
+  return FUN
 }
 
 // call schonfinkel / curry and add a specific typographic marker (used for debugging / searching)
 export function inscribe(msg, fn) {
   const len = fn.length
-  const str = SYMBOL + " " + msg
-  const inscribed = arity(len, schonfinkel(str, len, [], fn))
-  if (!inscribed[MARKED]) {
-    const st = () => str + `(${len})`
-    inscribed.toString = st
-    def(inscribed, Symbol.toStringTag, {
-      get: st,
-    })
-    def(inscribed, "name", {
-      value: msg,
-    })
-    return inscribed
-  }
+  const str = SYMBOL + msg
+  const inscribed = schonfinkel(str, len, [], fn)
+  return inscribed
 }
 
 // compatible with ramda
 export function isPlaceholder(a) {
-  return a && typeof a === "object" && a["@@functional/placeholder"] === true
+  return a && a["@@functional/placeholder"] === true
 }
 
-export default isPlaceholder
+export const getSignature = (x) => x.signature
+
+export const isMarked = (x) => x[MARKED]
