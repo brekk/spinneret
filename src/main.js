@@ -1,6 +1,7 @@
-import { setupCounter } from "./counter.js"
-import { elx, svg, svgx } from "./document.js"
-import { Debug } from "./components/Debug"
+import { setupCounter } from "@/counter.js"
+import { toString } from "@/object"
+import { elx, svg, svgx } from "@/document"
+import { Debug } from "@/components/Debug"
 
 const badKid = svgx("polygon", {
   points: "0,0 500,0 250,400",
@@ -17,17 +18,18 @@ const App = elx("main", {}, [
       svgx(
         "polygon",
         {
-          points: "0,0 500,0 250,400",
-          style: `fill:red;stroke:black;stroke-width:3;`,
+          points: "0,425 500,425 250,0",
+          fill: "red",
+          stroke: "black",
+          "stroke-width": 3,
         },
         [],
       ),
-      // this should fail in some way or use toString to make it clear it's wrong (missing children)
-      badKid,
     ],
   ),
 ])
 
-document.querySelector("#app").appendChild(App)
+document.querySelector("#app").append(App)
+//document.querySelector("#app").innerHTML = toString(App)
 
 //setupCounter(document.querySelector("#counter"))

@@ -1,5 +1,17 @@
-import { pipe, map, forEach } from "ramda"
+import {
+  when,
+  equals,
+  always,
+  is,
+  pipe,
+  cond,
+  map,
+  identity,
+  defaultTo,
+  forEach,
+} from "ramda"
 import { inscribe } from "@/function"
+import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
 
 export const _attr = inscribe("createAttribute", (el, k, v) => {
@@ -15,6 +27,15 @@ export const attr = inscribe("createAttributeTuple", (el, [k, v]) =>
 )
 
 export const text = document.createTextNode.bind(document)
+const textify = when(is(String), text)
+
+const remapAttributes = ([k, v]) => [
+  cond([
+    [equals("className"), always("class")],
+    [() => true, identity],
+  ])(k),
+  v,
+]
 
 const dialect = inscribe(
   "createElementOfNamespace",
@@ -26,52 +47,37 @@ const dialect = inscribe(
           : (_k) => document.createElementNS(ns, _k)
       const newEl = make(kind)
 
-      const newContent =
-        typeof children === "string" ? text(children) : children
+      const newContent = textify(children)
 
       if (children) {
-        if (children instanceof Array) {
+        if (Array.isArray(children)) {
           // closure needed
-          children.forEach(function appendChildToHelement(_kid) {
+          children.forEach(function appendChildToWeb(_kid) {
             try {
-              const kid =
-                typeof _kid === "function"
-                  ? text(
-                      `Unable to render function as node ${
-                        _kid.toString() || "<???>"
-                      }`,
-                    )
-                  : typeof _kid === "string"
-                    ? text(_kid)
-                    : _kid
+              const kid = cond([
+                [is(Function), pipe(toString, defaultTo("<???>"))],
+                [is(String), text],
+                [() => true, identity],
+              ])(_kid)
 
-              newEl.appendChild(kid)
+              newEl.append(kid)
             } catch (e) {
               console.warn("Error rendering child", e)
-              newEl.appendChild(text("Error rendering child: " + e.toString()))
+              newEl.append(text("Error rendering child: " + e.toString()))
             }
           })
         } else {
-          newEl.appendChild(newContent)
+          newEl.append(newContent)
         }
       }
       if (props) {
-        pipe(
-          Object.entries,
-          map(([k, v]) => {
-            if (k === "className") {
-              return ["class", v]
-            }
-            return [k, v]
-          }),
-          forEach(attr(newEl)),
-        )(props)
+        pipe(Object.entries, map(remapAttributes), forEach(attr(newEl)))(props)
       }
 
       return newEl
     } catch (e) {
-      console.warn("Error rendering helement", e)
-      return text("Error rendering helement")
+      console.warn("Error rendering element", e)
+      return text("Error rendering element")
     }
   },
 )
