@@ -1,5 +1,6 @@
 import {
   when,
+  join,
   equals,
   always,
   is,
@@ -10,6 +11,7 @@ import {
   defaultTo,
   forEach,
 } from "ramda"
+import { trace } from "@/log"
 import { inscribe } from "@/function"
 import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
@@ -34,7 +36,17 @@ const remapAttributes = ([k, v]) => [
     [equals("className"), always("class")],
     [() => true, identity],
   ])(k),
-  v,
+  cond([
+    [
+      (vv) => typeof vv !== "string" && k === "style",
+      pipe(
+        Object.entries,
+        map(([k, v]) => `${k}: ${v}`),
+        join("; "),
+      ),
+    ],
+    [() => true, identity],
+  ])(v),
 ]
 
 const dialect = inscribe(
@@ -71,7 +83,13 @@ const dialect = inscribe(
         }
       }
       if (props) {
-        pipe(Object.entries, map(remapAttributes), forEach(attr(newEl)))(props)
+        pipe(
+          Object.entries,
+          trace("hey!"),
+          map(remapAttributes),
+          trace("postRemap"),
+          forEach(attr(newEl)),
+        )(props)
       }
 
       return newEl
