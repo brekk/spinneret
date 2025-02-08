@@ -17,9 +17,7 @@ import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
 
 export const _attr = inscribe("createAttribute", (el, k, v) => {
-  const a = document.createAttribute(k)
-  a.value = v
-  el.setAttributeNode(a)
+  el.setAttribute(k, v)
   return el
 })
 
@@ -83,13 +81,7 @@ const dialect = inscribe(
         }
       }
       if (props) {
-        pipe(
-          Object.entries,
-          trace("hey!"),
-          map(remapAttributes),
-          trace("postRemap"),
-          forEach(attr(newEl)),
-        )(props)
+        pipe(Object.entries, map(remapAttributes), forEach(attr(newEl)))(props)
       }
 
       return newEl
@@ -103,18 +95,14 @@ const dialect = inscribe(
 export const elx = dialect(NAMESPACES.XHTML)
 export const svgx = dialect(NAMESPACES.SVG)
 
-export const svg = inscribe(
-  "svg",
-  ({ className, height = "500", width = "500", ...rest }, children) =>
-    svgx(
-      "svg",
-      {
-        xmlns: NAMESPACES.SVG,
-        height,
-        width,
-        className,
-        ...rest,
-      },
-      children,
-    ),
+export const svg = inscribe("svg", ({ className, ...rest }, children) =>
+  svgx(
+    "svg",
+    {
+      xmlns: NAMESPACES.SVG,
+      className,
+      ...rest,
+    },
+    children,
+  ),
 )
