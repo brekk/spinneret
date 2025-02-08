@@ -5,8 +5,9 @@ import pluginJs from "@eslint/js"
 //import pkg from "./package.json" with { type: "json" }
 
 export default [
+  pluginJs.configs.recommended,
   {
-    ignores: ["*.config.mjs", ".pnp*"],
+    ignores: ["*.config.mjs", ".pnp*", "dist/*"],
   },
   {
     languageOptions: {
@@ -41,20 +42,24 @@ export default [
       "consistent-this": 0,
       "func-names": [2],
       "generator-star-spacing": [2, "after"],
-      indent: [0, 0],
+      indent: [1, 2],
       "jsx-quotes": [1, "prefer-double"],
       "max-len": [1, 100, 2],
       "new-cap": [2, { capIsNew: false }],
       "no-trailing-spaces": [2, { skipBlankLines: true }],
-      "no-unused-vars": [2, { vars: "all", varsIgnorePattern: "^___" }],
+      "no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
       "object-curly-spacing": 0,
       "one-var": 0,
-      "operator-linebreak": [0, "before"],
       "prefer-reflect": 0,
-      "space-before-function-paren": [0, "never"],
+      "space-before-function-paren": [2, "never"],
       strict: 0,
       "no-shadow": [2, { builtinGlobals: false, hoist: "all" }],
     },
   },
-  pluginJs.configs.recommended,
 ]

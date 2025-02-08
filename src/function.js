@@ -1,5 +1,6 @@
 import { SYMBOL, MARKED } from "@/constants"
 import { toUpper, __, pipe, repeat, join } from "ramda"
+import { capitalize } from "@/string"
 
 export const $ = __
 
@@ -7,7 +8,7 @@ export const $ = __
 // arrow functions, this is done to try to improve the stacktrace
 // downstream from these functions, functions should be automagically "named"
 
-const stamp = (x) =>
+export const stamp = (x) =>
   Object.defineProperty(x, MARKED, {
     value: true,
     enumerable: true,
@@ -15,7 +16,7 @@ const stamp = (x) =>
     configurable: false,
   })
 
-const placeholderToString = (z) =>
+export const placeholderToString = (z) =>
   isPlaceholder(z) ? "__" : capitalize(typeof z)
 
 // curry a function!

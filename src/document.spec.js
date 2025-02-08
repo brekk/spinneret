@@ -1,12 +1,24 @@
-import { setupCounter } from "@/counter.js"
-import { toString } from "@/object"
-import { tag, svg, svgTag } from "@/document"
-import { Debug } from "@/components/Debug"
-import { inscribe, $ } from "@/function"
+import { text, attr, tag, svgTag, svg } from "@/document"
+import { times } from "ramda"
+import { test, expect } from "vitest"
+import Unusual from "unusual"
 
-const App = tag("main", {}, [
-  Debug({ cool: { nice: { great: { job: { yes: true } } } } }),
+import { getByTestId, queryByTestId } from "@testing-library/dom"
 
+const mount = (x) => {
+  const div = document.createElement("div")
+  div.innerHTML = x.outerHTML
+  return div
+}
+
+const rawtag = (raw) =>
+  tag(
+    "div",
+    { invalid: undefined, className: "test", "data-testid": "yoyoyo" },
+    [raw],
+  )
+
+const makeLogo = () =>
   svg(
     {
       "xml:space": "preserve",
@@ -28,10 +40,34 @@ const App = tag("main", {}, [
         [],
       ),
     ],
-  ),
-])
+  )
 
-document.querySelector("#app").append(App)
-//document.querySelector("#app").innerHTML = toString(App)
+test("tag", () => {
+  const u = Unusual("test")
+  const raw = times(
+    () => u.pick("abcdefghijklmnopqrstuvwxyz".split("")),
+    10,
+  ).join("")
+  const container = mount(rawtag(raw))
 
-//setupCounter(document.querySelector("#counter"))
+  const rendered = getByTestId(container, "yoyoyo")
+  expect(rendered).toHaveTextContent(raw)
+})
+
+test("dialect", () => {
+  const container = mount(rawtag([svgTag("huh")]))
+  const rendered = getByTestId(container, "yoyoyo")
+  expect(rendered).toHaveTextContent("⧗createElementOfNamespace")
+})
+
+test("svg", () => {
+  const logo = mount(makeLogo())
+  expect(logo.children.length).toEqual(1)
+})
+test("basic", () => {
+  const raw = mount(
+    tag("div", { className: "test", "data-testid": "yoyoyo" }, "test"),
+  )
+  const rendered = getByTestId(raw, "yoyoyo")
+  expect(rendered).toHaveTextContent("test")
+})

@@ -17,19 +17,25 @@ import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
 
 export const _attr = inscribe("createAttribute", (el, k, v) => {
+  // if (k.startsWith("data-")) {
+  //   const raw = k.slice(5)
+  //   console.log("setting...", raw)
+  //   el.dataset[raw] = v
+  // } else {
   el.setAttribute(k, v)
+  // }
   return el
 })
 
 export const attr = inscribe("createAttributeTuple", (el, [k, v]) =>
   // resilient™ to bad data
-  k && v ? _attr(el, k, v) : el,
+  k && typeof v !== "undefined" ? _attr(el, k, v) : el,
 )
 
-export const text = document.createTextNode.bind(document)
-const textify = when(is(String), text)
+export const text = (x) => document.createTextNode(x)
+export const _textify = when(is(String), text)
 
-const remapAttributes = ([k, v]) => [
+export const _remapAttributes = ([k, v]) => [
   cond([
     [equals("className"), always("class")],
     [() => true, identity],
@@ -47,56 +53,46 @@ const remapAttributes = ([k, v]) => [
   ])(v),
 ]
 
-const dialect = inscribe(
+export const _processChildren = cond([
+  [is(Function), pipe(toString, defaultTo("<???>"))],
+  [is(String), text],
+  [() => true, identity],
+])
+
+export const _dialect = inscribe(
   "createElementOfNamespace",
   function $__dialect(ns, kind, props, children) {
-    try {
-      const make =
-        ns === NAMESPACES.XHTML
-          ? (_k) => document.createElement(_k)
-          : (_k) => document.createElementNS(ns, _k)
-      const newEl = make(kind)
+    const make =
+      ns === NAMESPACES.XHTML
+        ? (_k) => document.createElement(_k)
+        : (_k) => document.createElementNS(ns, _k)
+    const newEl = make(kind)
 
-      const newContent = textify(children)
+    const newContent = _textify(children)
 
-      if (children) {
-        if (Array.isArray(children)) {
-          // closure needed
-          children.forEach(function appendChildToWeb(_kid) {
-            try {
-              const kid = cond([
-                [is(Function), pipe(toString, defaultTo("<???>"))],
-                [is(String), text],
-                [() => true, identity],
-              ])(_kid)
-
-              newEl.append(kid)
-            } catch (e) {
-              console.warn("Error rendering child", e)
-              newEl.append(text("Error rendering child: " + e.toString()))
-            }
-          })
-        } else {
-          newEl.append(newContent)
-        }
+    if (children) {
+      if (Array.isArray(children)) {
+        // closure needed
+        children.forEach(function appendChildToWeb(_kid) {
+          newEl.append(_processChildren(_kid))
+        })
+      } else {
+        newEl.append(_processChildren(newContent))
       }
-      if (props) {
-        pipe(Object.entries, map(remapAttributes), forEach(attr(newEl)))(props)
-      }
-
-      return newEl
-    } catch (e) {
-      console.warn("Error rendering element", e)
-      return text("Error rendering element")
     }
+    if (props) {
+      pipe(Object.entries, map(_remapAttributes), forEach(attr(newEl)))(props)
+    }
+
+    return newEl
   },
 )
 
-export const elx = dialect(NAMESPACES.XHTML)
-export const svgx = dialect(NAMESPACES.SVG)
+export const tag = _dialect(NAMESPACES.XHTML)
+export const svgTag = _dialect(NAMESPACES.SVG)
 
 export const svg = inscribe("svg", ({ className, ...rest }, children) =>
-  svgx(
+  svgTag(
     "svg",
     {
       xmlns: NAMESPACES.SVG,
