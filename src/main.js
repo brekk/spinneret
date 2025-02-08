@@ -2,11 +2,18 @@ import { setupCounter } from "@/counter.js"
 import { toString } from "@/object"
 import { elx, svg, svgx } from "@/document"
 import { Debug } from "@/components/Debug"
+import { inscribe, $ } from "@/function"
+
+const curried = inscribe("ternary", (a, b, c) => a + b / c)
+console.log("applied", curried(5).toString())
+console.log("applied two", curried(5, 6).toString())
+console.log("applied denominator", curried($, $, 2).toString())
 
 const badKid = svgx("polygon", {
   points: "0,0 500,0 250,400",
   style: `fill:red;stroke:black;stroke-width:3;`,
 })
+console.log("BADKID", badKid.toString())
 
 const App = elx("main", {}, [
   Debug({ cool: { nice: { great: { job: { yes: true } } } } }),

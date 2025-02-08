@@ -1,9 +1,15 @@
 import { def } from "@/object"
+
 import { SYMBOL, MARKED } from "@/constants"
+import { toUpper, __, pipe, repeat, join } from "ramda"
+
+export const $ = __
 
 // NB: a number of functions here are full functions rather than
 // arrow functions, this is done to try to improve the stacktrace
 // downstream from these functions, functions should be automagically "named"
+
+const capitalize = (x) => toUpper(x[0]) + x.slice(1)
 
 // ensure a function has a specific arity
 export function arity(n, fn) {
@@ -94,7 +100,11 @@ export function schonfinkel(desc, len, received, fn) {
     } else {
       const newLen = Math.max(0, left)
       const funk = arity(newLen, schonfinkel(desc, len, combined, fn))
-      const st = () => desc + `(${newLen})`
+      const _combined = combined
+        .map((z) => (isPlaceholder(z) ? "__" : capitalize(typeof z)))
+        .join(" -> ")
+      const remaining = pipe(repeat("?"), join(" -> "))(newLen)
+      const st = () => desc + ` :: ${_combined} -> ${remaining}`
       funk.toString = st
       def(funk, Symbol.toStringTag, {
         get: st,
