@@ -1,16 +1,89 @@
+$color-bg: #232325;
+$color-fg: #dedeec;
+$color-accent: #ffeb9f;
+
+$color-red: #feccde;
+$color-orange: #fedccc;
+$color-yellow: #fefedc;
+$color-green: #dcfedc;
+$color-blue: #dcecfe;
+$color-purple: #eedcee;
+
 html,
 body {
   font-family: "Fira Code", serif;
   font-size: 16px;
-  background-color: #ece3e6;
-  color: #111;
+  background-color: #232325;
+  color: #dedeec;
 }
 *:visible {
   box-sizing: border-box;
 }
+@keyframes rainbow-stroke {
+  0%,
+  100% {
+    stroke: $color-red;
+  }
+  16.66666% {
+    stroke: $color-orange;
+  }
+  33.33333% {
+    stroke: $color-yellow;
+  }
+  50% {
+    stroke: $color-green;
+  }
+  66.66666% {
+    stroke: $color-blue;
+  }
+  83.33333% {
+    stroke: $color-purple;
+  }
+}
 
-.logo {
-  width: 20rem;
+@keyframes rainbow-fill {
+  0%,
+  100% {
+    fill: $color-red;
+  }
+  16.66666% {
+    fill: $color-orange;
+  }
+  33.33333% {
+    fill: $color-yellow;
+  }
+  50% {
+    fill: $color-green;
+  }
+  66.66666% {
+    fill: $color-blue;
+  }
+  83.33333% {
+    fill: $color-purple;
+  }
+}
+
+.Logo {
+  max-width: 28rem;
+  width: 100%;
+  min-width: 10rem;
+  &__web-line {
+    // transition: stroke 0.3s ease-out;
+    animation: rainbow-stroke 9s infinite;
+  }
+  &__spidro {
+    fill: white;
+  }
+  &__letter--s {
+  }
+  &--dork-mode {
+  }
+  &__text {
+    fill: $color-accent;
+  }
+}
+a {
+  color: $color-accent;
 }
 .App {
   padding: 1rem;
@@ -18,7 +91,55 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   &__paragraph {
     text-align: left;
+  }
+
+  &__section {
+    width: 100%;
+    & > *:not(.heading) {
+      padding: 0 2rem;
+    }
+    .heading {
+      border-bottom: 1px solid $color-fg;
+      padding-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+      // background-color: red;
+      &::before {
+        content: "¶";
+        display: inline;
+        font-size: 0.9rem;
+        width: 1rem;
+        margin-right: 0.5rem;
+        top: 5rem;
+        left: 0;
+        position: absolute;
+        opacity: 0;
+        transform: scale(4, 0.5);
+        transition:
+          opacity 0.3s ease-out,
+          transform 0.3s ease-out,
+          top 0.3s ease-out;
+      }
+      &:hover {
+        cursor: pointer;
+        &::before {
+          transform: scale(1, 1);
+          color: $color-accent;
+          top: 0.25rem;
+          opacity: 1;
+        }
+      }
+    }
   }
 }

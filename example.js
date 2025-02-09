@@ -23,28 +23,9 @@ const stag = base("App")
 
 const para = stag("p", { em: "paragraph" })
 
-const App = stag("main", { em: "" }, [
-  header({ className: bem("header") }, [
-    Logo,
-    Flex({ className: bem("header-content") }, []),
-  ]),
-  Section({ title: "Examples", className: bem("section") }, [
-    para(
-      "Here we can see some simple examples that frame how to use Spinneret effectively",
-    ),
-    stag(
-      "ul",
-      { em: "list" },
-      map(
-        pipe(
-          (x) => stag("a", { em: "link", href: "#" + slugify(x) }, x),
-          stag("li", { em: "list-item" }),
-        ),
-        ["Debug and Disclosable", "FP is cool"],
-      ),
-    ),
-  ]),
-  Section({ title: "Debug and Disclosable", className: bem("section") }, [
+const DebugAndDisclose = Section(
+  { title: "Debug and Disclosable", className: bem("section") },
+  [
     para(
       "This is a reusable debugging component, it simply prints whatever props it is given",
     ),
@@ -67,20 +48,45 @@ const App = stag("main", { em: "" }, [
         this: { is: { detailed: { cool: { data: "so there" } } } },
       }),
     ),
-    Section({ title: "FP is cool", className: bem("section") }, [
-      para("Here's an example of why FP is awesome"),
-      ul(
-        { className: bem("list") },
-        map(li({ className: bem("list-item") }), ["alpha", "beta", "gamma"]),
-      ),
-      "This is the same as this longer-to-express version:",
-      ul({ className: bem("list") }, [
-        li({ className: bem("list-item") }, "alpha"),
-        li({ className: bem("list-item") }, "beta"),
-        li({ className: bem("list-item") }, "gamma"),
-      ]),
-    ]),
+  ],
+)
+const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [
+  para("Here's an example of why FP is awesome"),
+  ul(
+    { className: bem("list") },
+    map(li({ className: bem("list-item") }), ["alpha", "beta", "gamma"]),
+  ),
+  para("This is the same as this longer-to-express version:"),
+  ul({ className: bem("list") }, [
+    li({ className: bem("list-item") }, "alpha"),
+    li({ className: bem("list-item") }, "beta"),
+    li({ className: bem("list-item") }, "gamma"),
   ]),
+])
+
+const App = stag("main", { em: "" }, [
+  header({ className: bem("header") }, [
+    Logo,
+    Flex({ className: bem("header-content") }, []),
+  ]),
+  Section({ title: "Examples", className: bem("section") }, [
+    para(
+      "Here we can see some simple examples that frame how to use Spinneret effectively",
+    ),
+    stag(
+      "ul",
+      { em: "list" },
+      map(
+        pipe(
+          (x) => stag("a", { em: "link", href: "#" + slugify(x) }, x),
+          stag("li", { em: "list-item" }),
+        ),
+        ["Debug and Disclosable", "FP is cool"],
+      ),
+    ),
+  ]),
+  DebugAndDisclose,
+  FPIsCool,
 ])
 
 document.querySelector("#app").append(App)
