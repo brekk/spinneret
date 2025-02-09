@@ -2,10 +2,13 @@
   "name": "spinneret",
   "version": "0.0.1",
   "description": "functional web components",
+  "main": "./dist/spinneret.umd.js",
+  "module": "./dist/spinneret.es.js",
   "exports": {
-    ".": "./spinneret.js",
-    "./help.js": "./help.js",
-    "./log.js": "./log.js"
+    ".": {
+      "import": "./dist/spinneret.es.js",
+      "require": "./dist/spinneret.umd.js"
+    }
   },
   "type": "module",
   "repository": "brekk/spinneret",
@@ -48,13 +51,16 @@
     "vitest": "^3.0.5"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "vite --config vite.config.js",
+    "build-pages": "vite build --config vite.config.js",
+    "preview-pages": "vite preview --config vite.config.js",
+    "build-lib": "vite build --config vite.library.config.js",
+    "preview-lib": "vite build --config vite.library.config.js",
+    "build": "yarn build-pages && yarn build-lib",
     "lint": "eslint --fix .",
     "test": "vitest --coverage",
-    "test:ci": "vitest --run",
-    "care": "yarn lint && yarn test:ci && yarn build",
+    "test-ci": "vitest --run",
+    "care": "yarn lint && yarn test-ci && yarn build",
     "prepare": "husky install"
   },
   "packageManager": "yarn@4.5.1"

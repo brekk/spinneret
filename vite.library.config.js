@@ -6,22 +6,16 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 const local = (x) => path.resolve(dirname, x)
 
 export default defineConfig({
-  base: "/spinneret/",
   resolve: {
     alias: {
       "@": local("src"),
     },
   },
   build: {
-    rollupOptions: {
-      input: {
-        main: local("index.html"),
-      },
+    lib: {
+      entry: local("src/spinneret.js"),
+      name: "Spinneret",
+      fileName: "spinneret",
     },
-    // lib: {
-    //   entry: local("src/spinneret.js"),
-    //   name: "Spinneret",
-    //   fileName: "spinneret",
-    // },
   },
 })
