@@ -12,16 +12,18 @@ import Logo from "@/components/Logo"
 import Section from "@/components/Section"
 import { inscribe, $ } from "@/function"
 import { slugify } from "@/string"
+import * as transform from "@/transform"
+import { styled, base } from "@/style"
 
 import "./page.scss"
 
 const { div, header, ul, li, p } = htmlTags
-
 const bem = blem("App")
+const stag = base("App")
 
-const para = p({ className: bem("paragraph") })
+const para = stag("p", { em: "paragraph" })
 
-const App = tag("main", { className: bem("") }, [
+const App = stag("main", { em: "" }, [
   header({ className: bem("header") }, [
     Logo,
     Flex({ className: bem("header-content") }, []),
@@ -30,13 +32,13 @@ const App = tag("main", { className: bem("") }, [
     para(
       "Here we can see some simple examples that frame how to use Spinneret effectively",
     ),
-    ul(
-      { className: bem("list") },
+    stag(
+      "ul",
+      { em: "list" },
       map(
         pipe(
-          (x) =>
-            tag("a", { className: bem("link"), href: "#" + slugify(x) }, x),
-          li({ className: bem("list-item") }),
+          (x) => stag("a", { em: "link", href: "#" + slugify(x) }, x),
+          stag("li", { em: "list-item" }),
         ),
         ["Debug and Disclosable", "FP is cool"],
       ),
@@ -69,11 +71,7 @@ const App = tag("main", { className: bem("") }, [
       para("Here's an example of why FP is awesome"),
       ul(
         { className: bem("list") },
-        map(pipe(li({ className: bem("list-item") })), [
-          "alpha",
-          "beta",
-          "gamma",
-        ]),
+        map(li({ className: bem("list-item") }), ["alpha", "beta", "gamma"]),
       ),
       "This is the same as this longer-to-express version:",
       ul({ className: bem("list") }, [

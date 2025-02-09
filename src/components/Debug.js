@@ -1,10 +1,11 @@
 import blem from "blem"
 import { tag } from "@/dom"
 import { safeStringify } from "@/json"
+import { base } from "@/style"
 
 export default function Debug(x) {
-  const bem = blem("Debug")
-  return tag("pre", { className: bem("") }, [
-    tag("code", { className: bem("code") }, safeStringify(x)),
+  const stag = base("Debug")
+  return stag("pre", { em: "" }, [
+    stag("code", { em: "code" }, safeStringify(x)),
   ])
 }

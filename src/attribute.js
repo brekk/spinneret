@@ -1,4 +1,5 @@
 import { pipe, cond, equals, always, identity, map, join } from "ramda"
+import { styleAttr } from "@/style"
 import { inscribe } from "@/function"
 
 // TODO: not clear to me that there's a reason to use this
@@ -18,8 +19,6 @@ export const attr = inscribe("createAttributeTuple", (el, [k, v]) =>
   // resilient™ to bad data
   k && typeof v !== "undefined" ? _attr(el, k, v) : el,
 )
-
-export const styleAttr = pipe(Object.entries, map(join(": ")), join("; "))
 
 export const remap = ([k, v]) => [
   cond([
