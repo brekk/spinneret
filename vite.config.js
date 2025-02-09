@@ -6,7 +6,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 const local = (x) => path.resolve(dirname, x)
 
 export default defineConfig({
-  base: "/spinneret",
+  base: "/spinneret/",
   resolve: {
     alias: {
       "@": local("src"),
