@@ -23,4 +23,5 @@ test("inscribe", () => {
   expect(i(2, $, 2).signature).toEqual("Number -> __ -> Number -> ? -> ?")
   expect(i(1, $, 3, 4)(2)).toEqual(3.75)
   expect(i(1, 2, 3, 4)).toEqual(3.75)
+  expect(i($, $, 3, 4)(1, 2)).toEqual(3.75)
 })

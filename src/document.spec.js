@@ -1,15 +1,9 @@
-import { text, attr, tag, svgTag, svg } from "@/document"
+import { mount, text, attr, tag, svgTag, svg } from "@/document"
 import { times } from "ramda"
 import { test, expect } from "vitest"
 import Unusual from "unusual"
 
 import { getByTestId, queryByTestId } from "@testing-library/dom"
-
-const mount = (x) => {
-  const div = document.createElement("div")
-  div.innerHTML = x.outerHTML
-  return div
-}
 
 const rawtag = (raw) =>
   tag(

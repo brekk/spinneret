@@ -11,7 +11,7 @@ import {
   defaultTo,
   forEach,
 } from "ramda"
-import { trace } from "@/log"
+import { trace } from "@/side-effect"
 import { inscribe } from "@/function"
 import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
@@ -102,3 +102,9 @@ export const svg = inscribe("svg", ({ className, ...rest }, children) =>
     children,
   ),
 )
+
+export const mount = (x) => {
+  const div = tag("div", {}, [])
+  div.innerHTML = x.outerHTML
+  return div
+}

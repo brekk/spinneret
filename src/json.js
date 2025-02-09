@@ -6,7 +6,6 @@ export const safeStringifyWithIndent = inscribe(
     try {
       return JSON.stringify(x, null, indent)
     } catch (e) {
-      console.warn("Error stringifying", e.toString())
       return `{"invalid-json": true}`
     }
   },
