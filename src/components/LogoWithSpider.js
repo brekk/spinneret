@@ -1,6 +1,6 @@
-import { svg, svgTag } from "@/dom"
 import blem from "blem"
 import { map } from "ramda"
+import { svg, svgTag } from "@/dom"
 
 const bem = blem("Logo")
 
