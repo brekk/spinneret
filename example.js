@@ -1,5 +1,5 @@
 const Debug = (x) => tag("pre", {}, [tag("code", {}, safeStringify(x))])
-import { svgTag, tag, svg } from "@/document"
+import { svgTag, tag, svg } from "@/dom"
 import { inscribe } from "@/function"
 import { safeStringify } from "@/json"
 

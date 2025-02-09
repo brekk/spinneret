@@ -1,4 +1,4 @@
-import { mount, text, attr, tag, svgTag, svg } from "@/document"
+import { mount, text, attr, tag, svgTag, svg } from "@/dom"
 import { times } from "ramda"
 import { test, expect } from "vitest"
 import Unusual from "unusual"

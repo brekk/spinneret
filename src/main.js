@@ -1,6 +1,6 @@
-import { setupCounter } from "@/counter.js"
+import { setupCounter } from "@/counter"
 import { toString } from "@/object"
-import { tag, svg, svgTag } from "@/document"
+import { tag, svg, svgTag } from "@/dom"
 import { Debug } from "@/components/Debug"
 import { inscribe, $ } from "@/function"
 
