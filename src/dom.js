@@ -15,39 +15,10 @@ import { inscribe } from "@/function"
 import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
 
-export const _attr = inscribe("createAttribute", (el, k, v) => {
-  // TODO: not clear to me that there's a reason to use this
-  // alternative API, remove this in a couple commits if it's still around
-  // if (k.startsWith("data-")) {
-  //   const raw = k.slice(5)
-  //   console.log("setting...", raw)
-  //   el.dataset[raw] = v
-  // } else {
-  el.setAttribute(k, v)
-  return el
-})
-
-export const attr = inscribe("createAttributeTuple", (el, [k, v]) =>
-  // resilient™ to bad data
-  k && typeof v !== "undefined" ? _attr(el, k, v) : el,
-)
+import { remap, attr } from "@/attribute"
 
 export const text = (x) => document.createTextNode(x)
 export const _textify = when(is(String), text)
-
-export const _remapAttributes = ([k, v]) => [
-  cond([
-    [equals("className"), always("class")],
-    [() => true, identity],
-  ])(k),
-  cond([
-    [
-      (vv) => typeof vv !== "string" && k === "style",
-      pipe(Object.entries, map(join(": ")), join("; ")),
-    ],
-    [() => true, identity],
-  ])(v),
-]
 
 export const _processChildren = cond([
   [is(Function), pipe(toString, defaultTo("<???>"))],
@@ -77,7 +48,7 @@ export const _dialect = inscribe(
       }
     }
     if (props) {
-      pipe(Object.entries, map(_remapAttributes), forEach(attr(newEl)))(props)
+      pipe(Object.entries, map(remap), forEach(attr(newEl)))(props)
     }
 
     return newEl

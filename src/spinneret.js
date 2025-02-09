@@ -1,3 +1,10 @@
 export { htmlTags, svgTags } from "@/tag"
-export { tag, svgTag, attr } from "@/dom"
+export { tag, svgTag, svg } from "@/dom"
+export { attr } from "@/attribute"
 export { isPlaceholder, getSignature, isMarked, inscribe, $ } from "@/function"
+
+export * as Debug from "@/components/Debug"
+export * as Disclosable from "@/components/Disclosable"
+export * as Heading from "@/components/Heading"
+export * as Flex from "@/components/Flex"
+export * as Logo from "@/components/Logo"

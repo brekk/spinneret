@@ -1,7 +1,7 @@
 import { tag } from "@/dom"
-import { inscribed } from "@/function"
+import { inscribe } from "@/function"
 
-const Heading = inscribed("Heading", ({ as = "h1", ...rest }, children) =>
+const Heading = inscribe("Heading", ({ as = "h1", ...rest }, children) =>
   tag(as, rest, children),
 )
 
