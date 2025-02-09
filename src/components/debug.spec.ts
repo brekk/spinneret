@@ -2,6 +2,17 @@ import { Debug } from "@/components/Debug"
 import { mount } from "@/document"
 import { test, expect } from "vitest"
 
+import { getByTestId, queryByTestId } from "@testing-library/dom"
+
 test("Debug", () => {
-  expect(mount(Debug({ cool: { nested: { data: { rules: "yes" } } } }))).toHaveTextContent("")
+  const container = mount(Debug({ cool: { nested: { data: { rules: "yes" } } } }))
+  expect(container.outerHTML).toEqual(`<div><pre><code>{
+  \"cool\": {
+    \"nested\": {
+      \"data\": {
+        \"rules\": "yes"
+      }
+    }
+  }
+}</code></pre></div>`)
 })
