@@ -1,7 +1,7 @@
 import { pipe, map, join } from "ramda"
+import blem from "blem"
 import { inscribe, $ } from "@/function"
 import { tag } from "@/dom"
-import blem from "blem"
 
 export const styleAttr = pipe(Object.entries, map(join(": ")), join("; "))
 
