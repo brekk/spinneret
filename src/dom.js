@@ -17,13 +17,13 @@ import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
 
 export const _attr = inscribe("createAttribute", (el, k, v) => {
+  // TODO: not clear to me that there's a reason to use this alternative API, remove this in a couple commits if it's still around
   // if (k.startsWith("data-")) {
   //   const raw = k.slice(5)
   //   console.log("setting...", raw)
   //   el.dataset[raw] = v
   // } else {
   el.setAttribute(k, v)
-  // }
   return el
 })
 

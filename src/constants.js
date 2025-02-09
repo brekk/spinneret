@@ -6,7 +6,7 @@ export const NAMESPACES = {
   SVG: "http://www.w3.org/2000/svg",
 }
 
-export const XHTML_ELEMENTS = [
+export const HTML_TAGS = [
   "a",
   "abbr",
   "acronym",
@@ -130,7 +130,7 @@ export const XHTML_ELEMENTS = [
   "wbr",
 ]
 
-const SVG_ELEMENTS = [
+export const SVG_TAGS = [
   "a",
   "animate",
   "animateMotion",
