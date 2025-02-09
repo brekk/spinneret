@@ -1,0 +1,75 @@
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛒 Checking out repo...
+        uses: actions/checkout@v4
+      - name: 🍓 Enabling corepack...
+        run: corepack enable
+      - name: 🚂 Setting up node...
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: yarn
+      - name: 🧶 Installing dependencies...
+        run: yarn --immutable
+      - name: 🧪 Running tests...
+        id: test
+        run: |
+          yarn test:ci
+      - name: 🧼 Linting code...
+        id: lint
+        run: |
+          yarn lint
+      - name: 🏗️ Building the library...
+        id: build
+        run: |
+          yarn build
+      - name: 📚 Setting up the pages...
+        id: pages
+        uses: actions/configure-pages@v4
+      - name: 🛸 Beaming data...
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+      - name: 🚢 Shipping to Github...
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # - name: 🪵 Capturing changelog...
+      #   id: changelog
+      #   uses: TriPSs/conventional-changelog-action@v5
+      #   with:
+      #     preset: "conventionalcommits"
+      #     release-count: 0
+      #     github-token: ${{ secrets.github_token }}
+      # - name: 🐣 Creating release...
+      #   uses: actions/create-release@v1
+      #   if: ${{ steps.changelog.outputs.skipped == 'false' }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.github_token }}
+      #   with:
+      #     tag_name: ${{ steps.changelog.outputs.tag }}
+      #     release_name: ${{ steps.changelog.outputs.tag }}
+      #     body: ${{ steps.changelog.outputs.clean_changelog }}
+      # - name: 🖨️ Publishing package...
+      #   if: ${{ steps.changelog.outputs.skipped == 'false' }}
+      #   uses: JS-DevTools/npm-publish@v3
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}

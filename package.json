@@ -34,7 +34,9 @@
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-prettier": "^5.2.3",
     "globals": "^15.11.0",
+    "husky": "^8.0.0",
     "jsdom": "^26.0.0",
+    "lint-staged": "^15.4.3",
     "madge": "8.0.0",
     "nps": "^5.10.0",
     "prettier": "^3.4.2",
@@ -49,8 +51,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest",
-    "test:ci": "vitest --run"
+    "lint": "eslint --fix .",
+    "test": "vitest --coverage",
+    "test:ci": "vitest --run",
+    "care": "yarn lint && yarn test:ci && yarn build",
+    "prepare": "husky install"
   },
   "packageManager": "yarn@4.5.1"
 }

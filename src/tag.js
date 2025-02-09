@@ -1,6 +1,6 @@
+import { pipe, map } from "ramda"
 import { HTML_TAGS, SVG_TAGS } from "@/constants"
 import { tag, svgTag } from "@/dom"
-import { pipe, map } from "ramda"
 
 export const htmlTags = pipe(
   map((x) => [x, tag(x)]),

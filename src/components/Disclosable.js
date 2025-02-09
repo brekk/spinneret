@@ -1,6 +1,6 @@
+import blem from "blem"
 import { tag } from "@/dom"
 import { inscribe } from "@/function"
-import blem from "blem"
 
 const Disclosable = inscribe(
   "Disclosable",

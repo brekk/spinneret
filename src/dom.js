@@ -11,13 +11,13 @@ import {
   defaultTo,
   forEach,
 } from "ramda"
-import { trace } from "@/side-effect"
 import { inscribe } from "@/function"
 import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
 
 export const _attr = inscribe("createAttribute", (el, k, v) => {
-  // TODO: not clear to me that there's a reason to use this alternative API, remove this in a couple commits if it's still around
+  // TODO: not clear to me that there's a reason to use this
+  // alternative API, remove this in a couple commits if it's still around
   // if (k.startsWith("data-")) {
   //   const raw = k.slice(5)
   //   console.log("setting...", raw)
@@ -43,11 +43,7 @@ export const _remapAttributes = ([k, v]) => [
   cond([
     [
       (vv) => typeof vv !== "string" && k === "style",
-      pipe(
-        Object.entries,
-        map(([k, v]) => `${k}: ${v}`),
-        join("; "),
-      ),
+      pipe(Object.entries, map(join(": ")), join("; ")),
     ],
     [() => true, identity],
   ])(v),

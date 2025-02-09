@@ -1,9 +1,8 @@
-import { safeStringify } from "@/json"
 import { test, expect } from "vitest"
+import { safeStringify } from "@/json"
 
 test("safeStringify", () => {
   const two = { a: { b: { c: { d: "yo" } } } }
-  const one = { two }
   const three = { two: { ...two, two } }
   three.three = three
   expect(safeStringify(two)).toEqual(`{

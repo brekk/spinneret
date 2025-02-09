@@ -1,6 +1,6 @@
+import { test, expect } from "vitest"
 import { toString } from "@/object"
 import { inscribe } from "@/function"
-import { test, expect } from "vitest"
 
 test("toString", () => {
   const yo = inscribe("yo", (a, b, c) => a + b / c)

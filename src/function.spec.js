@@ -1,15 +1,6 @@
 import { test, expect } from "vitest"
 
-import {
-  $,
-  stamp,
-  placeholderToString,
-  inscribe,
-  isPlaceholder,
-  getSignature,
-  isMarked,
-} from "@/function"
-import { toString } from "@/object"
+import { $, stamp, inscribe, isMarked } from "@/function"
 
 test("stamp", () => {
   const blah = { cool: "yes" }

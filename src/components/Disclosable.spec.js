@@ -1,6 +1,6 @@
+import { test, expect } from "vitest"
 import Disclosable from "@/components/Disclosable"
 import { mount } from "@/dom"
-import { test, expect } from "vitest"
 
 test("Disclosable", () => {
   const container = mount(

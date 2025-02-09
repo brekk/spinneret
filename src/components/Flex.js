@@ -1,5 +1,5 @@
 import { tag } from "@/dom"
-import { inscribe, $ } from "@/function"
+import { inscribe } from "@/function"
 
 const Flex = inscribe("Flex", ({ row = false, className, ...rest }, children) =>
   tag(

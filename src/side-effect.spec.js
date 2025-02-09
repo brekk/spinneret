@@ -1,6 +1,5 @@
-import { xtrace } from "@/side-effect"
-
 import { vi, test, expect } from "vitest"
+import { xtrace } from "@/side-effect"
 
 test("xtrace", () => {
   const mock = vi.fn()

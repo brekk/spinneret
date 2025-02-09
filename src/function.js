@@ -1,5 +1,5 @@
+import { __, pipe, repeat, join } from "ramda"
 import { SYMBOL, MARKED } from "@/constants"
-import { toUpper, __, pipe, repeat, join } from "ramda"
 import { capitalize } from "@/string"
 
 export const $ = __

@@ -1,6 +1,6 @@
+import blem from "blem"
 import { tag } from "@/dom"
 import { safeStringify } from "@/json"
-import blem from "blem"
 
 export default function Debug(x) {
   const bem = blem("Debug")
