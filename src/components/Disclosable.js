@@ -4,7 +4,7 @@ import { inscribe } from "@/function"
 
 const Disclosable = inscribe(
   "Disclosable",
-  ({ className = "Disclosable" }, a, b) => {
+  ({ className = "Disclosable" }, [a, b]) => {
     const bem = blem(className)
     return tag("details", { className: bem("") }, [
       tag("summary", { className: bem("summary") }, a),

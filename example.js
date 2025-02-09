@@ -34,20 +34,18 @@ const DebugAndDisclose = Section(
       "This is a disclosable component, and it's written in a way where we can apply the values",
       " we need, but because things are curried, you can apply the values separately as well.",
     ]),
-    Disclosable(
-      { className: "nice" },
+    Disclosable({ className: "nice" }, [
       tag("span", { className: "divvular" }, "totally divular!"),
       tag("strong", {}, "whoa"),
-    ),
+    ]),
     "We can mix Debug and Disclosable",
-    Disclosable(
-      { className: bem("toggle") },
+    Disclosable({ className: bem("toggle") }, [
       tag("strong", {}, "Click to debug!"),
       Debug({
         className: bem("debug-disclose"),
         this: { is: { detailed: { cool: { data: "so there" } } } },
       }),
-    ),
+    ]),
   ],
 )
 const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [

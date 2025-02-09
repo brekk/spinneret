@@ -1,6 +1,9 @@
-$color-bg: #232325;
-$color-fg: #dedeec;
-$color-accent: #ffeb9f;
+// $color-bg: #3b424f;
+// $color-fg: #dedeec;
+// $color-accent: #ffeb9f;
+$color-bg: #dedeec;
+$color-fg: #3b424f;
+$color-accent: #0c2ca8;
 
 $color-red: #feccde;
 $color-orange: #fedccc;
@@ -13,12 +16,40 @@ html,
 body {
   font-family: "Fira Code", serif;
   font-size: 16px;
-  background-color: #232325;
-  color: #dedeec;
+  background-color: $color-bg;
+  color: $color-fg;
 }
 *:visible {
   box-sizing: border-box;
 }
+.Debug {
+  background-color: $color-fg;
+  color: $color-bg;
+  padding: 0.75rem;
+}
+
+@keyframes rainbow-stroke-hsl {
+  0%,
+  100% {
+    stroke: hsl(0, 100%, 50%);
+  }
+  16.66666% {
+    stroke: hsl(60deg, 100%, 50%);
+  }
+  33.33333% {
+    stroke: hsl(120deg, 100%, 50%);
+  }
+  50% {
+    stroke: hsl(180deg, 100%, 50%);
+  }
+  66.66666% {
+    stroke: hsl(240deg, 100%, 50%);
+  }
+  83.33333% {
+    stroke: hsl(300deg, 100%, 50%);
+  }
+}
+
 @keyframes rainbow-stroke {
   0%,
   100% {
@@ -68,18 +99,21 @@ body {
   width: 100%;
   min-width: 10rem;
   &__web-line {
-    // transition: stroke 0.3s ease-out;
-    animation: rainbow-stroke 9s infinite;
+    transition: stroke 0.3s ease-out;
+    animation: rainbow-stroke-hsl 9s infinite;
+    // stroke: $color-accent !important;
   }
   &__spidro {
-    fill: white;
+    fill: black;
   }
   &__letter--s {
+    stroke: yellow;
   }
   &--dork-mode {
   }
   &__text {
     fill: $color-accent;
+    // stroke: $color-accent;
   }
 }
 a {
@@ -104,32 +138,43 @@ a {
 
   &__section {
     width: 100%;
+    max-width: 40rem;
+    margin: 0 auto;
     & > *:not(.heading) {
-      padding: 0 2rem;
+      padding: 0;
+      transition: padding 0.3s ease-out;
+      @media screen and (min-width: 40rem) {
+        padding: 0 2rem;
+      }
+    }
+    .head-link {
+      text-decoration: none;
+      color: $color-fg;
     }
     .heading {
       border-bottom: 1px solid $color-fg;
       padding-bottom: 1rem;
       position: relative;
-      overflow: hidden;
-      padding-left: 1.5rem;
+      // overflow: hidden;
+      padding-left: 2rem;
+      transition: padding 0.3s ease-out;
       margin-bottom: 2rem;
       // background-color: red;
       &::before {
-        content: "¶";
+        content: "#";
         display: inline;
         font-size: 0.9rem;
         width: 1rem;
         margin-right: 0.5rem;
-        top: 5rem;
-        left: 0;
+        top: 0.5rem;
+        left: 0.75rem;
         position: absolute;
         opacity: 0;
-        transform: scale(4, 0.5);
+        transform: scale(4, 4);
         transition:
-          opacity 0.3s ease-out,
-          transform 0.3s ease-out,
-          top 0.3s ease-out;
+          opacity 0.15s ease-in,
+          transform 0.3s ease-in-out,
+          top 0.3s ease-in;
       }
       &:hover {
         cursor: pointer;
