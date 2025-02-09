@@ -38,9 +38,9 @@ jobs:
         run: |
           yarn lint
       - name: 🏗️ Building the library...
-        id: build
+        id: build-pages
         run: |
-          yarn build
+          yarn build-pages
       - name: 📚 Setting up the pages...
         id: pages
         uses: actions/configure-pages@v4
