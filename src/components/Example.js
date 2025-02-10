@@ -1,6 +1,6 @@
 import { svgTag, tag } from "@/dom"
 import { inscribe, $ } from "@/function"
-import { base } from "@/style"
+import { base } from "@/decorators/styled"
 
 export const forExample = inscribe(
   "forExample",

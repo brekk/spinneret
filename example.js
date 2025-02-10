@@ -13,7 +13,9 @@ import Section from "@/components/Section"
 import { inscribe, $ } from "@/function"
 import { slugify } from "@/string"
 import * as transform from "@/transform"
-import { styled, base } from "@/style"
+import { styled, base } from "@/decorators/styled"
+import { literalTag, literalSvg, literalWithScope } from "@/decorators/literal"
+
 import { forExample } from "@/components/Example"
 
 import "./page.scss"
@@ -35,12 +37,12 @@ const DebugAndDisclose = Section(
       "This is a disclosable component, and it's written in a way where we can apply the values",
       " we need, but because things are curried, you can apply the values separately as well.",
     ]),
-    Disclosable({ className: "nice" }, [
+    Disclosable({}, [
       tag("span", { className: "divvular" }, "totally divular!"),
       tag("strong", {}, "whoa"),
     ]),
     "We can mix Debug and Disclosable",
-    Disclosable({ className: bem("toggle") }, [
+    Disclosable({}, [
       tag("strong", {}, "Click to debug!"),
       Debug({
         className: bem("debug-disclose"),
@@ -56,10 +58,10 @@ const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [
     map(li({ className: bem("list-item") }), ["alpha", "beta", "gamma"]),
   ),
   para("This is the same as this longer-to-express version:"),
-  ul({ className: bem("list") }, [
+  literalTag("ul", { className: bem("list") }, [
     li({ className: bem("list-item") }, "alpha"),
-    li({ className: bem("list-item") }, "beta"),
-    li({ className: bem("list-item") }, "gamma"),
+    literalTag("li", { className: bem("list-item") }, "beta"),
+    literalTag("li", { className: bem("list-item") }, "gamma"),
   ]),
 ])
 
@@ -74,11 +76,11 @@ const App = stag("main", { em: "" }, [
     ),
     stag(
       "ul",
-      { em: "list" },
+      { em: "toc" },
       map(
         pipe(
-          (x) => stag("a", { em: "link", href: "#" + slugify(x) }, x),
-          stag("li", { em: "list-item" }),
+          (x) => stag("a", { em: "toc-link", href: "#" + slugify(x) }, x),
+          stag("li", { em: "toc-item" }),
         ),
         ["Debug and Disclosable", "FP is cool"],
       ),

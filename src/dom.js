@@ -1,4 +1,5 @@
 import {
+  reduce,
   when,
   join,
   equals,
@@ -11,7 +12,7 @@ import {
   defaultTo,
   forEach,
 } from "ramda"
-import { inscribe } from "@/function"
+import { inscribe, $ } from "@/function"
 import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
 
@@ -26,37 +27,75 @@ export const _processChildren = cond([
   [() => true, identity],
 ])
 
-export const _dialect = inscribe(
-  "createElementOfNamespace",
-  function $__dialect(ns, kind, props, children) {
-    const make =
-      ns === NAMESPACES.XHTML
-        ? (_k) => document.createElement(_k)
-        : (_k) => document.createElementNS(ns, _k)
-    const newEl = make(kind)
+const elOfSpace = inscribe("createElementOfNamespace", (ns, elName) =>
+  ns === NAMESPACES.XHTML
+    ? document.createElement(elName)
+    : document.createElementNS(ns, elName),
+)
 
-    const newContent = _textify(children)
+export const spin = inscribe(
+  "createElementOfNamespace",
+  function $__dialect(_ns, _scope, _kind, _props, _children) {
+    const {
+      __manual__ = identity,
+      __balloon__ = [() => false, identity],
+      childEffects = [],
+      effects = [],
+    } = _scope || {}
+    const firstProcessing = __manual__({
+      ns: _ns,
+      scope: _scope,
+      kind: _kind,
+      props: _props,
+      children: _children,
+    })
+    const [balloonCheck, balloonProcess] = __balloon__
+    if (balloonCheck(firstProcessing)) {
+      return balloonProcess(firstProcessing)
+    }
+    const { ns, scope, kind, props, children } = firstProcessing
+    const make = elOfSpace(ns)
+    const newEl = make(kind)
+    console.log(">>>", newEl, "<><>", children)
 
     if (children) {
-      if (Array.isArray(children)) {
+      const kids = Array.isArray(children) ? children : [children]
+      kids.forEach(
         // closure needed
-        children.forEach(function appendChildToWeb(_kid) {
+        function appendChildToWeb(_kid) {
           newEl.append(_processChildren(_kid))
-        })
-      } else {
-        newEl.append(_processChildren(newContent))
-      }
+        },
+      )
     }
     if (props) {
-      pipe(Object.entries, map(remap), forEach(attr(newEl)))(props)
+      // so we wanna reduce over the effects
+      pipe(
+        reduce(
+          function processEffect(agg, step) {
+            const [effectName, fn] = step || []
+            if (effectName && fn) {
+              //console.log("calling", effectName)
+              return fn(agg)
+            }
+            return agg
+          },
+          $,
+          scope.effects,
+        ),
+        Object.entries,
+        map(remap),
+        forEach(attr(newEl)),
+      )(props)
     }
-
     return newEl
   },
 )
 
-export const tag = _dialect(NAMESPACES.XHTML)
-export const svgTag = _dialect(NAMESPACES.SVG)
+export const tagWithScope = spin(NAMESPACES.XHTML)
+export const svgTagWithScope = spin(NAMESPACES.SVG)
+
+export const tag = tagWithScope({})
+export const svgTag = svgTagWithScope({})
 
 export const svg = inscribe("svg", ({ className, ...rest }, children) =>
   svgTag(

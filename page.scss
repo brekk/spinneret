@@ -2,8 +2,8 @@
 // $color-fg: #dedeec;
 // $color-accent: #ffeb9f;
 $color-bg: #0f2444;
-$color-fg: #bac4d7;
-$color-accent: #e84444;
+$color-fg: #d9e1f0;
+$color-accent: #ff4545;
 
 $color-red: #feccde;
 $color-orange: #fedccc;
@@ -113,6 +113,13 @@ body {
     fill: $color-purple;
   }
 }
+.Disclosable {
+  border: 1px solid $color-fg;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  cursor: pointer;
+}
 
 .Logo {
   max-width: 28rem;
@@ -152,6 +159,11 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  &__toc {
+    &-item{
+      padding: 0.25rem;
+    }
   }
   &__paragraph {
     text-align: left;
