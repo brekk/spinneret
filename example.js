@@ -1,5 +1,5 @@
 import blem from "blem"
-import { pipe, map } from "ramda"
+import { transduce, filter, reject, reduce, pipe, map } from "ramda"
 import { setupCounter } from "@/counter"
 import { toString } from "@/object"
 import { tag, svg, svgTag, tagWithScope } from "@/dom"
@@ -26,6 +26,12 @@ const bem = blem("App")
 const stag = base("App")
 
 const para = stag("p", { em: "paragraph" })
+
+// LET'S LEARN TRANSDUCE!
+const TransduceExercise = Section(
+  { title: "Learning how transduce works", className: bem("section") },
+  [para(`Ok, I will now attempt to learn about transduce over my lunch break`)],
+)
 
 const DebugAndDisclose = Section(
   { title: "Debug and Disclosable", className: bem("section") },
@@ -68,12 +74,12 @@ const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [
   ),
   para("This is identical to the longer to express form:"),
   Code({ className: "example" }, [
-    literalTag("ul", { className: bem("list") }, [
+    literalTag("ul", { important: true, className: bem("list") }, [
       literalTag("li", { className: bem("list-item") }, "alpha"),
       literalTag("li", { className: bem("list-item") }, "beta"),
       literalTag("li", { className: bem("list-item") }, "gamma"),
       // this currently fails, it'd be cool to have this work
-      li({ className: bem("list-item") }, "delta"),
+      li({ important: true, className: bem("list-item") }, "delta"),
     ]),
   ]),
   para(

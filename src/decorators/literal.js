@@ -5,7 +5,7 @@ import { tag, tagWithScope, spin } from "@/dom"
 import { NAMESPACES } from "@/constants"
 import { safeStringifyWithIndent } from "@/json"
 
-const renderToString = ({ ns, scope, kind, props, children }) => {
+const renderConfigToString = ({ ns, scope, kind, props, children }) => {
   const _ns = ns === NAMESPACES.SVG ? "svgTag" : "tag"
   const _scope = "{}"
   const _props = safeStringifyWithIndent(0, props)
@@ -22,19 +22,20 @@ const renderToString = ({ ns, scope, kind, props, children }) => {
     kind,
     props,
     children: rendered,
+    literal: rendered.literal,
   }
 }
 
 export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) => {
   const newScope = {
     ...s,
-    eject: [
-      ({ literal, children }) => children.literal,
-      ({ literal, children }) => children.literal,
-    ],
+    eject: {
+      check: ({ literal, children }) => literal || children.literal,
+      process: ({ literal, children }) => children.literal || literal,
+    },
     onChild: function literalChild(scope, parent, child) {
       console.log("huh", { scope, parent, child })
-      return renderToString({
+      return renderConfigToString({
         ns: n,
         scope,
         kind: t,
@@ -43,16 +44,22 @@ export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) => {
       })
     },
 
-    configure: ({ ns, scope, kind, props, children }) =>
-      renderToString({
+    configure: ({ ns, scope, kind, props, children }) => {
+      if (props.important) {
+        console.log("configuring...", { ns, scope, kind, props, children })
+      }
+      return renderConfigToString({
         ns,
-        scope: { ...s, ...scope },
+        scope: { ...s, ...scope, literal: true },
         kind,
         props,
         children,
-      }),
+      })
+    },
   }
-  console.log("RAW SCOPE INITIAL", s, newScope)
+  if (p.important) {
+    console.log("RAW SCOPE INITIAL", { newScope, s, t, p, k })
+  }
   return spin(n, newScope, t, p, k)
 })
 // this can eventually be cleaner ?

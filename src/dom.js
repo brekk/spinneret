@@ -77,10 +77,12 @@ export const spin = inscribe(
       props: _props,
       children: _children,
     })
-    if (eject && eject.length) {
-      const [balloonCheck, balloonProcess] = eject
-      if (balloonCheck(firstProcessing)) {
-        return balloonProcess(firstProcessing)
+    if (_props.important) {
+      console.log("FIRST PROCESSING", firstProcessing)
+    }
+    if (eject && eject.check && eject.process) {
+      if (eject.check(firstProcessing)) {
+        return eject.process(firstProcessing)
       }
     }
     const { ns, scope, kind, props, children } = firstProcessing
