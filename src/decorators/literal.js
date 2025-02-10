@@ -30,19 +30,18 @@ export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) => {
     n,
     {
       ...s,
-      __balloon__: [
+      eject: [
         ({ literal, children }) => literal || children.literal,
         ({ children }) => children.literal,
       ],
-      __manual__: ({ ns, scope, kind, props, children }) => {
-        return renderToString({
+      configure: ({ ns, scope, kind, props, children }) =>
+        renderToString({
           ns,
           scope: { ...s, ...scope },
           kind,
           props,
           children,
-        })
-      },
+        }),
     },
     t,
     p,
