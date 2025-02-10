@@ -14,6 +14,7 @@ import { inscribe, $ } from "@/function"
 import { slugify } from "@/string"
 import * as transform from "@/transform"
 import { styled, base } from "@/style"
+import { forExample } from "@/components/Example"
 
 import "./page.scss"
 

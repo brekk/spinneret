@@ -1,9 +1,9 @@
 // $color-bg: #3b424f;
 // $color-fg: #dedeec;
 // $color-accent: #ffeb9f;
-$color-bg: #dedeec;
-$color-fg: #3b424f;
-$color-accent: #0c2ca8;
+$color-bg: #0f2444;
+$color-fg: #bac4d7;
+$color-accent: #e84444;
 
 $color-red: #feccde;
 $color-orange: #fedccc;
@@ -23,7 +23,7 @@ body {
   box-sizing: border-box;
 }
 .Debug {
-  background-color: $color-fg;
+  background-color: darken($color-fg, 10%);
   color: $color-bg;
   padding: 0.75rem;
 }
@@ -71,6 +71,26 @@ body {
     stroke: $color-purple;
   }
 }
+@keyframes bright-stroke {
+  0%,
+  100% {
+    stroke: #c00;
+  }
+  16.66666%,
+  83.33333% {
+    stroke: white;
+  }
+}
+@keyframes alarm {
+  0%,
+  100% {
+    fill: red;
+  }
+  16.66666%,
+  83.33333% {
+    fill: black;
+  }
+}
 
 @keyframes rainbow-fill {
   0%,
@@ -100,11 +120,12 @@ body {
   min-width: 10rem;
   &__web-line {
     transition: stroke 0.3s ease-out;
-    animation: rainbow-stroke-hsl 9s infinite;
+    animation: bright-stroke 9s infinite;
     // stroke: $color-accent !important;
   }
   &__spidro {
     fill: black;
+    animation: alarm 8s infinite;
   }
   &__letter--s {
     stroke: yellow;
