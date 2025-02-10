@@ -1,5 +1,22 @@
 import blem from "blem"
-import { transduce, filter, reject, reduce, pipe, map } from "ramda"
+import {
+  range,
+  equals,
+  lt,
+  gt,
+  both,
+  append,
+  cond,
+  identity,
+  complement,
+  transduce,
+  reduced,
+  filter,
+  reject,
+  reduce,
+  pipe,
+  map,
+} from "ramda"
 import { setupCounter } from "@/counter"
 import { toString } from "@/object"
 import { tag, svg, svgTag, tagWithScope } from "@/dom"
@@ -15,6 +32,7 @@ import { inscribe, $ } from "@/function"
 import { slugify } from "@/string"
 import * as transform from "@/transform"
 import { styled, base } from "@/decorators/styled"
+import { safeStringify } from "@/json"
 import { literalTag, literalSvg, literalWithScope } from "@/decorators/literal"
 
 import { forExample } from "@/components/Example"
@@ -27,10 +45,55 @@ const stag = base("App")
 
 const para = stag("p", { em: "paragraph" })
 
+const transducer = map((x) => console.log("transduce!", x) || Math.floor(x * 2))
+const iter = (agg, x) => {
+  console.log("iter!", x)
+  if (x > 28) {
+    return reduced(agg)
+  }
+  return append(x, agg)
+}
+const initial = []
+const arr = range(10, 30)
+
+const value = transduce(transducer, iter, initial, arr)
+
 // LET'S LEARN TRANSDUCE!
 const TransduceExercise = Section(
   { title: "Learning how transduce works", className: bem("section") },
-  [para(`Ok, I will now attempt to learn about transduce over my lunch break`)],
+  [
+    para(
+      `Ok, I will now attempt to learn about transduce over my lunch break.`,
+    ),
+    Code(
+      {
+        id: "transduce-one",
+        className: bem("transduce", ["example", "one"]),
+      },
+      [
+        `const transducer = identity
+const iter = (agg, x) => [...agg, x]
+const initial = []
+const arr = range(10, 30)
+
+const value = transduce(
+  transducer,
+  iter,
+  initial,
+  arr
+)\n\n`,
+        safeStringify(value),
+      ],
+    ),
+    stag("p", { em: "para" }, [
+      stag("code", { em: "code-inline" }, "transduce"),
+      stag(
+        "span",
+        { em: "text" },
+        "provides a way to separate out iteration from transformation.",
+      ),
+    ]),
+  ],
 )
 
 const DebugAndDisclose = Section(
@@ -79,7 +142,7 @@ const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [
       literalTag("li", { className: bem("list-item") }, "beta"),
       literalTag("li", { className: bem("list-item") }, "gamma"),
       // this currently fails, it'd be cool to have this work
-      li({ important: true, className: bem("list-item") }, "delta"),
+      //li({ important: true, className: bem("list-item") }, "delta"),
     ]),
   ]),
   para(
@@ -116,6 +179,7 @@ const App = stag("main", { em: "" }, [
   ]),
   DebugAndDisclose,
   FPIsCool,
+  TransduceExercise,
 ])
 
 document.querySelector("#app").append(App)
