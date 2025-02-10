@@ -27,7 +27,7 @@ export const _processChildren = cond([
   [() => true, identity],
 ])
 
-const elOfSpace = inscribe("createElementOfNamespace", (ns, elName) =>
+const nsCreateElement = inscribe("createElementOfNamespace", (ns, elName) =>
   ns === NAMESPACES.XHTML
     ? document.createElement(elName)
     : document.createElementNS(ns, elName),
@@ -39,36 +39,37 @@ const elOfSpace = inscribe("createElementOfNamespace", (ns, elName) =>
 //  2. don't break the existing stuff
 //  3. refactor literal so a literalTag can have non-literal children and still render correctly
 
+/*
 const defaultScope = {
   // override all the values
-  configure: identity,
-  /*
-  ({ ns, scope, kind, props, children }) => ({
+  configure: ({ ns, scope, kind, props, children }) => ({
     ns,
     scope,
     kind,
     props,
     children,
   }),
-  */
   // what do we do when the baby is on board?
-  onChild: (scope, parent, child) => parent.append(_processChildren(child)),
   eject: [], // [checkEject, processEjection],
   // effects provide behavior on props, resolved at render time
   effects: [
     //["effectName", (oldProps) => newProps]
   ],
 }
+*/
+const appendOnChild = (scope, parent, child) =>
+  parent.append(_processChildren(child))
 
 export const spin = inscribe(
   "createElementOfNamespace",
   function $__dialect(_ns, _scope, _kind, _props, _children) {
+    const rawScope = _scope
     const {
-      configure,
+      configure = identity,
       eject,
-      onChild,
+      onChild = appendOnChild,
       effects = [],
-    } = { ...defaultScope, _scope }
+    } = rawScope
     const firstProcessing = configure({
       ns: _ns,
       scope: _scope,
@@ -83,7 +84,7 @@ export const spin = inscribe(
       }
     }
     const { ns, scope, kind, props, children } = firstProcessing
-    const make = elOfSpace(ns)
+    const make = nsCreateElement(ns)
     const newEl = make(kind)
     // we need to do more to wire the scope to the children, so that we can override what happens below
     // for something like the decorator literal

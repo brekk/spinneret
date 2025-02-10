@@ -73,7 +73,7 @@ const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [
       literalTag("li", { className: bem("list-item") }, "beta"),
       literalTag("li", { className: bem("list-item") }, "gamma"),
       // this currently fails, it'd be cool to have this work
-      // li({ className: bem("list-item") }, "delta"),
+      li({ className: bem("list-item") }, "delta"),
     ]),
   ]),
   para(
