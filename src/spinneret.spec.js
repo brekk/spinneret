@@ -1,6 +1,6 @@
-import * as Spinneret from "@/spinneret"
 import { expect, test } from "vitest"
 import { keys } from "ramda"
+import * as Spinneret from "@/spinneret"
 
 test("base exports", () => {
   expect(keys(Spinneret).sort()).toEqual([
