@@ -26,6 +26,9 @@ body {
   background-color: darken($color-fg, 10%);
   color: $color-bg;
   padding: 0.75rem;
+  overflow: auto;
+  &__code {
+  }
 }
 
 @keyframes rainbow-stroke-hsl {
@@ -161,7 +164,7 @@ a {
     justify-content: center;
   }
   &__toc {
-    &-item{
+    &-item {
       padding: 0.25rem;
     }
   }

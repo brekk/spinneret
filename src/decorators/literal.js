@@ -3,50 +3,41 @@ import blem from "blem"
 import { inscribe, $ } from "@/function"
 import { tag, tagWithScope, spin } from "@/dom"
 import { NAMESPACES } from "@/constants"
-import { safeStringify } from "@/json"
+import { safeStringifyWithIndent } from "@/json"
 
 const renderToString = ({ ns, scope, kind, props, children }) => {
   const _ns = ns === NAMESPACES.SVG ? "svgTag" : "tag"
   const _scope = "{}"
-  const _props = safeStringify(props)
+  const _props = safeStringifyWithIndent(0, props)
   const kids =
-    typeof children === "string" ? `"${children}"` : `[${children.join(", ")}]`
+    typeof children === "string"
+      ? `"${children}"`
+      : `[\n  ${children.join(",\n  ")}\n]`
   const rendered = {
     literal: `${_ns}(${_scope}, "${kind}", ${_props}, ${kids})`,
   }
-  console.log(
-    "how can we stringify the children?",
-    children,
-    ">>",
-    kids,
-    rendered,
-  )
   return {
     ns,
     scope,
     kind,
     props,
     children: rendered,
-    //processor: (k) => {
-    //  console.log("WHAT IS K?", k)
-    //  return renderToString({ ns, scope, kind, props, children: k })
-    //},
   }
 }
 
-export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) =>
-  spin(
+export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) => {
+  return spin(
     n,
     {
       ...s,
       __balloon__: [
-        ({ children }) => children.literal,
+        ({ literal, children }) => literal || children.literal,
         ({ children }) => children.literal,
       ],
       __manual__: ({ ns, scope, kind, props, children }) => {
         return renderToString({
           ns,
-          scope: { ...scope, ...s },
+          scope: { ...s, ...scope },
           kind,
           props,
           children,
@@ -56,8 +47,8 @@ export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) =>
     t,
     p,
     k,
-  ),
-)
+  )
+})
 // this can eventually be cleaner ?
 export const literalTagWithScope = literalWithScope(NAMESPACES.XHTML)
 export const literalSvgWithScope = literalWithScope(NAMESPACES.SVG)

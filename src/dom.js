@@ -56,7 +56,6 @@ export const spin = inscribe(
     const { ns, scope, kind, props, children } = firstProcessing
     const make = elOfSpace(ns)
     const newEl = make(kind)
-    console.log(">>>", newEl, "<><>", children)
 
     if (children) {
       const kids = Array.isArray(children) ? children : [children]
@@ -86,6 +85,9 @@ export const spin = inscribe(
         map(remap),
         forEach(attr(newEl)),
       )(props)
+    }
+    if (scope.post) {
+      return scope.post(newEl)
     }
     return newEl
   },

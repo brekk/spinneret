@@ -2,9 +2,10 @@ import blem from "blem"
 import { pipe, map } from "ramda"
 import { setupCounter } from "@/counter"
 import { toString } from "@/object"
-import { tag, svg, svgTag } from "@/dom"
+import { tag, svg, svgTag, tagWithScope } from "@/dom"
 import { htmlTags } from "@/tag"
 import Debug from "@/components/Debug"
+import Code from "@/components/Code"
 import Disclosable from "@/components/Disclosable"
 import Heading from "@/components/Heading"
 import Flex from "@/components/Flex"
@@ -53,16 +54,37 @@ const DebugAndDisclose = Section(
 )
 const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [
   para("Here's an example of why FP is awesome"),
-  ul(
-    { className: bem("list") },
-    map(li({ className: bem("list-item") }), ["alpha", "beta", "gamma"]),
+  Code(
+    { className: "example" },
+    literalTag(
+      "ul",
+      { className: bem("list") },
+      map(literalTag("li", { className: bem("list-item") }), [
+        "alpha",
+        "beta",
+        "gamma",
+      ]),
+    ),
   ),
-  para("This is the same as this longer-to-express version:"),
-  literalTag("ul", { className: bem("list") }, [
-    li({ className: bem("list-item") }, "alpha"),
-    literalTag("li", { className: bem("list-item") }, "beta"),
-    literalTag("li", { className: bem("list-item") }, "gamma"),
+  para("This is identical to the longer to express form:"),
+  Code({ className: "example" }, [
+    literalTag("ul", { className: bem("list") }, [
+      literalTag("li", { className: bem("list-item") }, "alpha"),
+      literalTag("li", { className: bem("list-item") }, "beta"),
+      literalTag("li", { className: bem("list-item") }, "gamma"),
+      // this currently fails, it'd be cool to have this work
+      // li({ className: bem("list-item") }, "delta"),
+    ]),
   ]),
+  para(
+    "NB: We're working on our literal render, which renders both of the above as the same, which proves the point, but in a roundabout way. Both examples above will render this:",
+  ),
+  tagWithScope(
+    { post: (x) => x.outerHTML },
+    "ul",
+    { className: bem("list") },
+    map(tag("li", { className: bem("list-item") }), ["alpha", "beta", "gamma"]),
+  ),
 ])
 
 const App = stag("main", { em: "" }, [
