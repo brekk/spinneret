@@ -1,4 +1,3 @@
-//export { htmlTags, svgTags } from "@/tag"
 export { tag, svgTag, svg } from "@/dom"
 export { attr } from "@/attribute"
 export { isPlaceholder, getSignature, isMarked, inscribe, $ } from "@/function"

@@ -20,7 +20,6 @@ import {
 import { setupCounter } from "@/counter"
 import { toString } from "@/object"
 import { tag, svg, svgTag, tagWithScope } from "@/dom"
-import { htmlTags } from "@/tag"
 import Debug from "@/components/Debug"
 import Code from "@/components/Code"
 import Disclosable from "@/components/Disclosable"
@@ -39,9 +38,9 @@ import { forExample } from "@/components/Example"
 
 import "./page.scss"
 
-const { div, header, ul, li, p } = htmlTags
 const bem = blem("App")
 const stag = base("App")
+const [div, header] = map(stag, ["div", "header"])
 
 const para = stag("p", { em: "paragraph" })
 

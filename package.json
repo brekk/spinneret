@@ -59,8 +59,8 @@
     "preview-lib": "vite build --config vite.library.config.js",
     "build": "yarn build-pages && yarn build-lib",
     "lint": "eslint --fix .",
-    "test": "vitest --coverage",
-    "test-ci": "vitest --run",
+    "test": "vitest --coverage src",
+    "test-ci": "vitest --run src",
     "care": "yarn lint && yarn test-ci && yarn build",
     "prepare": "husky install"
   },
