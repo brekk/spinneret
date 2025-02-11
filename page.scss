@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // $color-bg: #3b424f;
 // $color-fg: #dedeec;
 // $color-accent: #ffeb9f;
@@ -22,8 +24,9 @@ body {
 *:visible {
   box-sizing: border-box;
 }
-.Debug, pre {
-  background-color: darken($color-fg, 10%);
+.Debug,
+pre {
+  background-color: color.adjust($color-fg, $lightness: -10%);
   color: $color-bg;
   padding: 0.75rem;
   overflow: auto;
@@ -31,11 +34,11 @@ body {
   }
 }
 .App__code-inline {
-  background-color: darken($color-fg, 10%);
+  background-color: color.adjust($color-fg, $lightness: -10%);
   color: $color-bg;
- padding: 0.125rem 0.5rem; 
- border-radius: 0.25rem;
- margin-right: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-right: 0.5rem;
 }
 
 @keyframes rainbow-stroke-hsl {
