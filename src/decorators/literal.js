@@ -1,7 +1,7 @@
 import { pipe, map, join } from "ramda"
 import blem from "blem"
 import { inscribe, $ } from "@/function"
-import { tag, tagWithScope, spin } from "@/dom"
+import { spin } from "@/dom"
 import { NAMESPACES } from "@/constants"
 import { safeStringifyWithIndent } from "@/json"
 

@@ -1,12 +1,14 @@
 import { pipe, map, join } from "ramda"
 import blem from "blem"
+import { NAMESPACES } from "@/constants"
 import { inscribe, $ } from "@/function"
-import { tag, tagWithScope } from "@/dom"
+import { spin } from "@/dom"
 
 export const styledWithScope = inscribe(
   "bemTag",
-  (fn, scope, _tag, props, kids) =>
-    tagWithScope(
+  (fn, ns, scope, _tag, props, kids) =>
+    spin(
+      ns,
       {
         ...scope,
         effects: [
@@ -25,6 +27,8 @@ export const styledWithScope = inscribe(
       kids,
     ),
 )
-export const styled = styledWithScope($, {})
+export const styled = styledWithScope($, $, {})
+export const styledTag = styled($, NAMESPACES.XHTML)
+export const styledSvgTag = styled($, NAMESPACES.SVG)
 
-export const base = pipe(blem, styled)
+export const base = pipe(blem, styledTag)

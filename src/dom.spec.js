@@ -3,7 +3,8 @@ import { test, expect } from "vitest"
 import Unusual from "unusual"
 
 import { getByTestId } from "@testing-library/dom"
-import { mount, tag, svgTag, svg } from "@/dom"
+import { mount, tag, tagWithScope, svgTag, svg } from "@/dom"
+import { styledTag, base } from "@/decorators/styled"
 
 const rawtag = (raw) =>
   tag(
@@ -48,10 +49,38 @@ test("tag", () => {
   expect(rendered).toHaveTextContent(raw)
 })
 
-test("dialect", () => {
+test("spin", () => {
   const container = mount(rawtag([svgTag("huh")]))
   const rendered = getByTestId(container, "yoyoyo")
   expect(rendered).toHaveTextContent("⧗createElementOfNamespace")
+  const stag = base("Spin")
+  const container2 = mount(stag("em", { em: "test" }, "this is an output"))
+  expect(container2.outerHTML).toEqual(
+    `<div><em class="Spin__test">this is an output</em></div>`,
+  )
+  const ejectable = tagWithScope(
+    { eject: { check: () => true, process: () => "ejected!" } },
+    "details",
+    {},
+    "oh hey",
+  )
+  expect(ejectable).toEqual("ejected!")
+  const finalized = tagWithScope(
+    {
+      configure: ({ ...raw }) => ({
+        ...raw,
+        props: { ...raw.props, className: "pew" + raw.props.className },
+        kind: "em",
+      }),
+      // bad effects
+      effects: [false],
+      post: (z) => z.outerHTML,
+    },
+    "div",
+    { className: "pew" },
+    ["pew2furious"],
+  )
+  expect(finalized).toEqual(`<em class="pewpew">pew2furious</em>`)
 })
 
 test("svg", () => {

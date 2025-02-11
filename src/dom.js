@@ -27,6 +27,7 @@ export const _processChildren = cond([
   [() => true, identity],
 ])
 
+// we could eventually replace this string -> fn lookup with a raw "gimme a unary creation thing, whatever you want"
 const nsCreateElement = inscribe("createElementOfNamespace", (ns, elName) =>
   ns === NAMESPACES.XHTML
     ? document.createElement(elName)
@@ -41,7 +42,7 @@ const nsCreateElement = inscribe("createElementOfNamespace", (ns, elName) =>
 
 /*
 const defaultScope = {
-  // override all the values
+  // override all the values (1)
   configure: ({ ns, scope, kind, props, children }) => ({
     ns,
     scope,
@@ -49,12 +50,20 @@ const defaultScope = {
     props,
     children,
   }),
+
   // what do we do when the baby is on board?
   eject: [], // [checkEject, processEjection],
+
+
   // effects provide behavior on props, resolved at render time
   effects: [
     //["effectName", (oldProps) => newProps]
   ],
+
+  // side-effects do stuff as elements are added to the web
+  sideEffects: [
+    // ["sideEffectname", ({element, ns, scope, kind, props, children}) => void ]
+  ]
 }
 */
 const appendOnChild = (scope, parent, child) =>
@@ -63,13 +72,12 @@ const appendOnChild = (scope, parent, child) =>
 export const spin = inscribe(
   "createElementOfNamespace",
   function $__dialect(_ns, _scope, _kind, _props, _children) {
-    const rawScope = _scope
     const {
       configure = identity,
       eject,
       onChild = appendOnChild,
       effects = [],
-    } = rawScope
+    } = _scope
     const firstProcessing = configure({
       ns: _ns,
       scope: _scope,
@@ -77,9 +85,6 @@ export const spin = inscribe(
       props: _props,
       children: _children,
     })
-    if (_props.important) {
-      console.log("FIRST PROCESSING", firstProcessing)
-    }
     if (eject && eject.check && eject.process) {
       if (eject.check(firstProcessing)) {
         return eject.process(firstProcessing)
@@ -100,9 +105,7 @@ export const spin = inscribe(
       )
     }
     if (props) {
-      // so we wanna reduce over the effects but later we can do that
-      // trickier whatchamacallitfold -- trampoline? magic compose thing
-      // TODO: look that up
+      // TODO: replace this with a transduce
       pipe(
         reduce(
           function processEffect(agg, step) {
