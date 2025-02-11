@@ -34,7 +34,6 @@ export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) => {
       process: ({ literal, children }) => children.literal || literal,
     },
     onChild: function literalChild(scope, parent, child) {
-      console.log("huh", { scope, parent, child })
       return renderConfigToString({
         ns: n,
         scope,
@@ -45,9 +44,6 @@ export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) => {
     },
 
     configure: ({ ns, scope, kind, props, children }) => {
-      if (props.important) {
-        console.log("configuring...", { ns, scope, kind, props, children })
-      }
       return renderConfigToString({
         ns,
         scope: { ...s, ...scope, literal: true },
@@ -60,7 +56,7 @@ export const literalWithScope = inscribe("renderAsString", (n, s, t, p, k) => {
   if (p.important) {
     console.log("RAW SCOPE INITIAL", { newScope, s, t, p, k })
   }
-  return spin(n, newScope, t, p, k)
+  return spin(newScope, t, p, k)
 })
 // this can eventually be cleaner ?
 export const literalTagWithScope = literalWithScope(NAMESPACES.XHTML)

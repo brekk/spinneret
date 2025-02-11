@@ -19,7 +19,7 @@ import {
 } from "ramda"
 import { setupCounter } from "@/counter"
 import { toString } from "@/object"
-import { tag, svg, svgTag, tagWithScope } from "@/dom"
+import { spin, tag, svg, svgTag } from "@/dom"
 import Debug from "@/components/Debug"
 import Code from "@/components/Code"
 import Disclosable from "@/components/Disclosable"
@@ -147,7 +147,7 @@ const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [
   para(
     "NB: We're working on our literal render, which renders both of the above as the same, which proves the point, but in a roundabout way. Both examples above will render this:",
   ),
-  tagWithScope(
+  spin(
     { post: (x) => x.outerHTML },
     "ul",
     { className: bem("list") },

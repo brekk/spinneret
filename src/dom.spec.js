@@ -3,7 +3,7 @@ import { test, expect } from "vitest"
 import Unusual from "unusual"
 
 import { getByTestId } from "@testing-library/dom"
-import { mount, tag, tagWithScope, svgTag, svg } from "@/dom"
+import { mount, tag, svgTag, svg, spin } from "@/dom"
 import { styledTag, base } from "@/decorators/styled"
 
 const rawtag = (raw) =>
@@ -58,14 +58,14 @@ test("spin", () => {
   expect(container2.outerHTML).toEqual(
     `<div><em class="Spin__test">this is an output</em></div>`,
   )
-  const ejectable = tagWithScope(
+  const ejectable = spin(
     { eject: { check: () => true, process: () => "ejected!" } },
     "details",
     {},
     "oh hey",
   )
   expect(ejectable).toEqual("ejected!")
-  const finalized = tagWithScope(
+  const finalized = spin(
     {
       configure: ({ ...raw }) => ({
         ...raw,

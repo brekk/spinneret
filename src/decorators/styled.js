@@ -6,9 +6,8 @@ import { spin } from "@/dom"
 
 export const styledWithScope = inscribe(
   "bemTag",
-  (fn, ns, scope, _tag, props, kids) =>
+  (fn, scope, _tag, props, kids) =>
     spin(
-      ns,
       {
         ...scope,
         effects: [
@@ -27,8 +26,6 @@ export const styledWithScope = inscribe(
       kids,
     ),
 )
-export const styled = styledWithScope($, $, {})
-export const styledTag = styled($, NAMESPACES.XHTML)
-export const styledSvgTag = styled($, NAMESPACES.SVG)
+export const styled = styledWithScope($, {})
 
-export const base = pipe(blem, styledTag)
+export const base = pipe(blem, styled)

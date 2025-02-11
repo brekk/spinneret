@@ -26,13 +26,13 @@ export const _processChildren = cond([
   [is(String), text],
   [() => true, identity],
 ])
-
-// we could eventually replace this string -> fn lookup with a raw "gimme a unary creation thing, whatever you want"
+/*
 const nsCreateElement = inscribe("createElementOfNamespace", (ns, elName) =>
   ns === NAMESPACES.XHTML
     ? document.createElement(elName)
     : document.createElementNS(ns, elName),
 )
+*/
 
 // ok, scopes have gotten rather large and we need better names for shit
 // our core goals
@@ -43,8 +43,7 @@ const nsCreateElement = inscribe("createElementOfNamespace", (ns, elName) =>
 /*
 const defaultScope = {
   // override all the values (1)
-  configure: ({ ns, scope, kind, props, children }) => ({
-    ns,
+  configure: ({ scope, kind, props, children }) => ({
     scope,
     kind,
     props,
@@ -69,9 +68,19 @@ const defaultScope = {
 const appendOnChild = (scope, parent, child) =>
   parent.append(_processChildren(child))
 
+export const nsFromString = (x) =>
+  x.toLowerCase() === "svg" ? NAMESPACES.SVG : NAMESPACES.XHTML
+
+export const createElementNS = inscribe("createElementNS", (_ns, elName) => {
+  if (!_ns || _ns === NAMESPACES.XHTML) {
+    return document.createElement(elName)
+  }
+  return document.createElementNS(_ns, elName)
+})
+
 export const spin = inscribe(
   "createElementOfNamespace",
-  function $__dialect(_ns, _scope, _kind, _props, _children) {
+  function $__dialect(_scope, _kind, _props, _children) {
     const {
       configure = identity,
       eject,
@@ -79,7 +88,7 @@ export const spin = inscribe(
       effects = [],
     } = _scope
     const firstProcessing = configure({
-      ns: _ns,
+      ns: NAMESPACES.XHTML,
       scope: _scope,
       kind: _kind,
       props: _props,
@@ -90,9 +99,16 @@ export const spin = inscribe(
         return eject.process(firstProcessing)
       }
     }
-    const { ns, scope, kind, props, children } = firstProcessing
-    const make = nsCreateElement(ns)
-    const newEl = make(kind)
+    const {
+      ns = NAMESPACES.XHTML,
+      onCreate: __onCreate,
+      scope,
+      kind,
+      props,
+      children,
+      createWebElement = createElementNS,
+    } = firstProcessing
+    const newEl = createWebElement(ns, kind)
     // we need to do more to wire the scope to the children, so that we can override what happens below
     // for something like the decorator literal
     if (children) {
@@ -131,12 +147,10 @@ export const spin = inscribe(
   },
 )
 
-export const tagWithScope = spin(NAMESPACES.XHTML)
-export const svgTagWithScope = spin(NAMESPACES.SVG)
-
-export const tag = tagWithScope({})
-export const svgTag = svgTagWithScope({})
-
+export const tag = spin({})
+export const svgTag = spin({
+  configure: (ext) => ({ ...ext, ns: NAMESPACES.SVG }),
+})
 export const svg = inscribe("svg", ({ className, ...rest }, children) =>
   svgTag(
     "svg",
