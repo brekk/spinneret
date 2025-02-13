@@ -1,5 +1,6 @@
 import blem from "blem"
 import {
+  mergeRight,
   range,
   equals,
   lt,
@@ -11,12 +12,16 @@ import {
   complement,
   transduce,
   reduced,
+  prepend,
   filter,
   reject,
   reduce,
+  objOf,
   pipe,
   map,
 } from "ramda"
+import { get2dContext, clearRect } from "@/canvas"
+import { listenTo } from "@/events"
 import { setupCounter } from "@/counter"
 import { toString } from "@/object"
 import { spin, tag, svg, svgTag } from "@/dom"
@@ -28,10 +33,11 @@ import Flex from "@/components/Flex"
 import Logo from "@/components/LogoWithSpider"
 import Section from "@/components/Section"
 import { inscribe, $ } from "@/function"
-import { slugify } from "@/string"
+import { slugify, prependString } from "@/string"
 import * as transform from "@/transform"
 import { styled, base } from "@/decorators/styled"
 import { safeStringify } from "@/json"
+import { trace } from "@/side-effect"
 import { literalTag, literalSvg, literalWithScope } from "@/decorators/literal"
 
 import { forExample } from "@/components/Example"
@@ -40,146 +46,91 @@ import "./page.scss"
 
 const bem = blem("App")
 const stag = base("App")
-const [div, header] = map(stag, ["div", "header"])
+const [div, header, nav, ul, li, link, span] = map(stag, [
+  "div",
+  "header",
+  "nav",
+  "ul",
+  "li",
+  "a",
+  "span",
+])
 
 const para = stag("p", { em: "paragraph" })
 
-const transducer = map((x) => console.log("transduce!", x) || Math.floor(x * 2))
-const iter = (agg, x) => {
-  console.log("iter!", x)
-  if (x > 28) {
-    return reduced(agg)
-  }
-  return append(x, agg)
-}
-const initial = []
-const arr = range(10, 30)
-
-const value = transduce(transducer, iter, initial, arr)
-
-// LET'S LEARN TRANSDUCE!
-const TransduceExercise = Section(
-  { title: "Learning how transduce works", className: bem("section") },
-  [
-    para(
-      `Ok, I will now attempt to learn about transduce over my lunch break.`,
-    ),
-    Code(
-      {
-        id: "transduce-one",
-        className: bem("transduce", ["example", "one"]),
-      },
-      [
-        `const transducer = identity
-const iter = (agg, x) => [...agg, x]
-const initial = []
-const arr = range(10, 30)
-
-const value = transduce(
-  transducer,
-  iter,
-  initial,
-  arr
-)\n\n`,
-        safeStringify(value),
-      ],
-    ),
-    stag("p", { em: "para" }, [
-      stag("code", { em: "code-inline" }, "transduce"),
-      stag(
-        "span",
-        { em: "text" },
-        "provides a way to separate out iteration from transformation.",
-      ),
-    ]),
-  ],
-)
-
-const DebugAndDisclose = Section(
-  { title: "Debug and Disclosable", className: bem("section") },
-  [
-    para(
-      "This is a reusable debugging component, it simply prints whatever props it is given",
-    ),
-    Debug({ cool: { nice: { great: { job: { yes: true } } } } }),
-    para([
-      "This is a disclosable component, and it's written in a way where we can apply the values",
-      " we need, but because things are curried, you can apply the values separately as well.",
-    ]),
-    Disclosable({}, [
-      tag("span", { className: "divvular" }, "totally divular!"),
-      tag("strong", {}, "whoa"),
-    ]),
-    "We can mix Debug and Disclosable",
-    Disclosable({}, [
-      tag("strong", {}, "Click to debug!"),
-      Debug({
-        className: bem("debug-disclose"),
-        this: { is: { detailed: { cool: { data: "so there" } } } },
-      }),
-    ]),
-  ],
-)
-const FPIsCool = Section({ title: "FP is cool", className: bem("section") }, [
-  para("Here's an example of why FP is awesome"),
-  Code(
-    { className: "example" },
-    literalTag(
-      "ul",
-      { className: bem("list") },
-      map(literalTag("li", { className: bem("list-item") }), [
-        "alpha",
-        "beta",
-        "gamma",
-      ]),
-    ),
-  ),
-  para("This is identical to the longer to express form:"),
-  Code({ className: "example" }, [
-    literalTag("ul", { important: true, className: bem("list") }, [
-      literalTag("li", { className: bem("list-item") }, "alpha"),
-      literalTag("li", { className: bem("list-item") }, "beta"),
-      literalTag("li", { className: bem("list-item") }, "gamma"),
-      // this currently fails, it'd be cool to have this work
-      //li({ important: true, className: bem("list-item") }, "delta"),
-    ]),
-  ]),
-  para(
-    "NB: We're working on our literal render, which renders both of the above as the same, which proves the point, but in a roundabout way. Both examples above will render this:",
-  ),
-  spin(
-    { post: (x) => x.outerHTML },
-    "ul",
-    { className: bem("list") },
-    map(tag("li", { className: bem("list-item") }), ["alpha", "beta", "gamma"]),
-  ),
-])
+const actionCanvasWipe = (_) =>
+  pipe(get2dContext, (x) =>
+    clearRect(x, 0, 0, x.canvas.width, x.canvas.height),
+  )(document.getElementById("canvas"))
 
 const App = stag("main", { em: "" }, [
-  header({ className: bem("header") }, [
+  header({ em: "header" }, [
     Logo,
-    Flex({ className: bem("header-content") }, []),
-  ]),
-  Section({ title: "Examples", className: bem("section") }, [
-    para(
-      "Here we can see some simple examples that frame how to use Spinneret effectively",
-    ),
-    stag(
-      "ul",
-      { em: "toc" },
-      map(
-        pipe(
-          (x) => stag("a", { em: "toc-link", href: "#" + slugify(x) }, x),
-          stag("li", { em: "toc-item" }),
-        ),
-        ["Debug and Disclosable", "FP is cool"],
+    Flex(
+      { em: "header-content" },
+      ul(
+        { em: "header-items" },
+        map(([action, icon, onClick]) =>
+          pipe(
+            prependString("#"),
+            objOf("href"),
+            mergeRight({
+              em: ["header-link", onClick ? "" : "disabled"],
+              onClick,
+            }),
+            link($, [span({ em: "header-icon" }, icon), action]),
+            li({ em: "header-item" }),
+          )(action),
+        )([
+          ["new", "🆕", actionCanvasWipe],
+          ["save", "💾"],
+          ["load", "📂"],
+          ["duplicate", "👬"],
+        ]),
       ),
     ),
+    stag("canvas", { em: "canvas", id: "canvas" }, []),
   ]),
-  DebugAndDisclose,
-  FPIsCool,
-  TransduceExercise,
 ])
+window.onload = () => {
+  const canvasEl = document.getElementById("canvas")
+  const ctx = get2dContext(canvasEl)
+
+  const cursor = { x: 0, y: 0 }
+
+  const relativePoint = (e) => {
+    const { offsetX: x, offsetY: y } = e
+    const x2 = (x * ctx.canvas.width) / ctx.canvas.clientWidth
+    const y2 = (y * ctx.canvas.height) / ctx.canvas.clientHeight
+    return { x: x2, y: y2 }
+  }
+
+  const onPosition = ({ x, y }) => {
+    cursor.x = x
+    cursor.y = y
+  }
+
+  const onResize = () => {}
+
+  const onMove = (e) => {
+    const pos = relativePoint(e)
+    const { buttons } = e
+    if (buttons !== 1) return
+    ctx.beginPath()
+    ctx.lineWidth = 2
+    ctx.lineCap = "round"
+    ctx.strokeStyle = "#000"
+    ctx.moveTo(pos.x, pos.y)
+    onPosition(pos)
+    ctx.lineTo(pos.x, pos.y)
+    ctx.stroke()
+  }
+
+  //listenTo("resize", onResize, window)
+  listenTo("mousemove", onMove, canvasEl)
+  listenTo("mousedown", onPosition, canvasEl)
+  listenTo("mouseenter", onPosition, canvasEl)
+}
 
 document.querySelector("#app").append(App)
 // document.querySelector("#app").innerHTML = App.outerHTML

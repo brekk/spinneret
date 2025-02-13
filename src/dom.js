@@ -12,10 +12,12 @@ import {
   defaultTo,
   forEach,
 } from "ramda"
+import { autobox } from "@/array"
 import { inscribe, $ } from "@/function"
 import { toString } from "@/object"
 import { NAMESPACES } from "@/constants"
 
+import { captureListeners } from "@/events"
 import { remap, attr } from "@/attribute"
 
 export const text = (x) => document.createTextNode(x)
@@ -65,6 +67,8 @@ const defaultScope = {
   ]
 }
 */
+// though we could curry this, that would require the user also curry /
+// closure their function, so we will eschew that for now
 const appendOnChild = (scope, parent, child) =>
   parent.append(_processChildren(child))
 
@@ -100,25 +104,27 @@ export const spin = inscribe(
       }
     }
     const {
-      ns = NAMESPACES.XHTML,
+      ns,
       onCreate: __onCreate,
       scope,
       kind,
       props,
       children,
-      createWebElement = createElementNS,
+      createStrand = createElementNS,
     } = firstProcessing
-    const newEl = createWebElement(ns, kind)
+    const newEl = createStrand(ns, kind)
     // we need to do more to wire the scope to the children, so that we can override what happens below
     // for something like the decorator literal
     if (children) {
-      const kids = Array.isArray(children) ? children : [children]
-      kids.forEach(
-        // closure needed
-        function appendChildToWeb(_kid) {
-          onChild(scope, newEl, _kid)
-        },
-      )
+      pipe(
+        autobox,
+        forEach(
+          // closure needed
+          function appendChildToWeb(_kid) {
+            onChild(scope, newEl, _kid)
+          },
+        ),
+      )(children)
     }
     if (props) {
       // TODO: replace this with a transduce
@@ -137,6 +143,7 @@ export const spin = inscribe(
         ),
         Object.entries,
         map(remap),
+        map(captureListeners(newEl)),
         forEach(attr(newEl)),
       )(props)
     }

@@ -41,49 +41,6 @@ pre {
   margin-right: 0.5rem;
 }
 
-@keyframes rainbow-stroke-hsl {
-  0%,
-  100% {
-    stroke: hsl(0, 100%, 50%);
-  }
-  16.66666% {
-    stroke: hsl(60deg, 100%, 50%);
-  }
-  33.33333% {
-    stroke: hsl(120deg, 100%, 50%);
-  }
-  50% {
-    stroke: hsl(180deg, 100%, 50%);
-  }
-  66.66666% {
-    stroke: hsl(240deg, 100%, 50%);
-  }
-  83.33333% {
-    stroke: hsl(300deg, 100%, 50%);
-  }
-}
-
-@keyframes rainbow-stroke {
-  0%,
-  100% {
-    stroke: $color-red;
-  }
-  16.66666% {
-    stroke: $color-orange;
-  }
-  33.33333% {
-    stroke: $color-yellow;
-  }
-  50% {
-    stroke: $color-green;
-  }
-  66.66666% {
-    stroke: $color-blue;
-  }
-  83.33333% {
-    stroke: $color-purple;
-  }
-}
 @keyframes bright-stroke {
   0%,
   100% {
@@ -105,27 +62,6 @@ pre {
   }
 }
 
-@keyframes rainbow-fill {
-  0%,
-  100% {
-    fill: $color-red;
-  }
-  16.66666% {
-    fill: $color-orange;
-  }
-  33.33333% {
-    fill: $color-yellow;
-  }
-  50% {
-    fill: $color-green;
-  }
-  66.66666% {
-    fill: $color-blue;
-  }
-  83.33333% {
-    fill: $color-purple;
-  }
-}
 .Disclosable {
   border: 1px solid $color-fg;
   border-radius: 0.25rem;
@@ -172,65 +108,61 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  &__toc {
-    &-item {
-      padding: 0.25rem;
-    }
-  }
-  &__paragraph {
-    text-align: left;
-  }
-
-  &__section {
-    width: 100%;
-    max-width: 40rem;
-    margin: 0 auto;
-    & > *:not(.heading) {
+    &-items {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       padding: 0;
-      transition: padding 0.3s ease-out;
-      @media screen and (min-width: 40rem) {
-        padding: 0 2rem;
-      }
+      margin: 1rem 0.5rem;
     }
-    .head-link {
-      text-decoration: none;
-      color: $color-fg;
-    }
-    .heading {
-      border-bottom: 1px solid $color-fg;
-      padding-bottom: 1rem;
-      position: relative;
-      // overflow: hidden;
-      padding-left: 2rem;
-      transition: padding 0.3s ease-out;
-      margin-bottom: 2rem;
-      // background-color: red;
-      &::before {
-        content: "#";
-        display: inline;
-        font-size: 0.9rem;
-        width: 1rem;
-        margin-right: 0.5rem;
-        top: 0.5rem;
-        left: 0.75rem;
-        position: absolute;
-        opacity: 0;
-        transform: scale(4, 4);
-        transition:
-          opacity 0.15s ease-in,
-          transform 0.3s ease-in-out,
-          top 0.3s ease-in;
+    &-item {
+      list-style: none;
+      margin: 0.25rem 0;
+      &:first-of-type {
+        .App__header-link {
+          border-top-left-radius: 0.25rem;
+          border-bottom-left-radius: 0.25rem;
+        }
       }
-      &:hover {
-        cursor: pointer;
-        &::before {
-          transform: scale(1, 1);
-          color: $color-accent;
-          top: 0.25rem;
-          opacity: 1;
+      &:last-of-type {
+        .App__header-link {
+          border-top-right-radius: 0.25rem;
+          border-bottom-right-radius: 0.25rem;
+          border-right: 1px solid $color-accent;
         }
       }
     }
+    &-icon {
+      margin-right: 0.25rem;
+    }
+    &-link {
+      padding: 0.5rem;
+      background-color: transparent;
+      border: 1px solid $color-accent;
+      color: $color-accent;
+      text-transform: capitalize;
+      text-decoration: none;
+      transition:
+        color 0.3s ease-out,
+        background 0.2s ease-out;
+      border-right: 0px solid $color-accent;
+      // border-left: 1px solid rgba(0,0,0,0.3);
+      &:hover {
+        background-color: $color-fg;
+      }
+      &--disabled {
+        cursor: not-allowed;
+        color: rgba(255,255,255,0.2);
+        &:hover {
+          background-color: rgba(255,255,255,0.22);
+        }
+      }
+    }
+  }
+  &__canvas {
+    width: 80vw;
+    height: 50vh;
+    background-color: $color-fg;
   }
 }
