@@ -89,12 +89,17 @@ const App = stag("main", { em: "" }, [
         ]),
       ),
     ),
-    stag("canvas", { em: "canvas", id: "canvas" }, []),
+    stag(
+      "canvas",
+      { em: "canvas", width: "800", height: "600", id: "canvas" },
+      [],
+    ),
   ]),
 ])
 window.onload = () => {
   const canvasEl = document.getElementById("canvas")
   const ctx = get2dContext(canvasEl)
+  ctx.imageSmoothingEnabled = false
 
   const cursor = { x: 0, y: 0 }
 
@@ -117,13 +122,17 @@ window.onload = () => {
     const { buttons } = e
     if (buttons !== 1) return
     ctx.beginPath()
-    ctx.lineWidth = 2
+    ctx.lineWidth = 3
     ctx.lineCap = "round"
     ctx.strokeStyle = "#000"
-    ctx.moveTo(pos.x, pos.y)
+    ctx.moveTo(
+      cursor.x + ctx.canvas.offsetLeft,
+      cursor.y + ctx.canvas.offsetTop,
+    )
     onPosition(pos)
     ctx.lineTo(pos.x, pos.y)
     ctx.stroke()
+    //ctx.endPath()
   }
 
   //listenTo("resize", onResize, window)
