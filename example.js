@@ -105,9 +105,10 @@ window.onload = () => {
 
   const relativePoint = (e) => {
     const { offsetX: x, offsetY: y } = e
-    const x2 = (x * ctx.canvas.width) / ctx.canvas.clientWidth
-    const y2 = (y * ctx.canvas.height) / ctx.canvas.clientHeight
-    return { x: x2, y: y2 }
+    //const x2 = (x * ctx.canvas.width) / ctx.canvas.clientWidth
+    //const y2 = (y * ctx.canvas.height) / ctx.canvas.clientHeight
+    //return { x: x2, y: y2 }
+    return { x, y }
   }
 
   const onPosition = ({ x, y }) => {
@@ -125,9 +126,12 @@ window.onload = () => {
     ctx.lineWidth = 3
     ctx.lineCap = "round"
     ctx.strokeStyle = "#000"
+    console.log(">>>", ctx.canvas.offsetLeft, "<><", cursor.x)
     ctx.moveTo(
-      cursor.x + ctx.canvas.offsetLeft,
-      cursor.y + ctx.canvas.offsetTop,
+      //(cursor.x * ctx.canvas.width) / ctx.canvas.clientWidth,
+      //(cursor.y * ctx.canvas.height) / ctx.canvas.clientHeight,
+      ctx.canvas.offsetLeft + cursor.x,
+      cursor.y, // - ctx.canvas.offsetTop / 2,
     )
     onPosition(pos)
     ctx.lineTo(pos.x, pos.y)
