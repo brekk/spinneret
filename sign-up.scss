@@ -1,10 +1,11 @@
 @import "./base";
 $mq-one: 36rem;
 
-#twork-logo {
-  fill: $color-bg;
-  max-width: 40rem;
+#twork-logo, .SignUp__logo {
+  fill: $color-accent;
+  min-width: 20rem;
   width: 50%;
+  max-width: 24rem;
   display: inline-block;
   margin: 1rem auto;
 }
@@ -15,12 +16,16 @@ $mq-one: 36rem;
   align-items: center;
   justify-content: center;
   width: 100%;
+  &__logo--retro {
+    mix-blend-mode: luminosity;
+  }
 
   &__panel {
     display: flex;
     flex-direction: column;
-    background-color: $color-accent;
-    color: $color-fg;
+    background-color: #000c6fcc;
+    background-image: url(./nnnoise-purple.svg);
+    color: $color-accent;
     padding: 1rem;
     margin: 1rem;
     width: auto;
@@ -32,12 +37,12 @@ $mq-one: 36rem;
   }
   &__button {
     @include font;
-    border-radius: 0.5rem;
     padding: 0.5rem;
     text-transform: uppercase;
-    background: $color-bg;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-      text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    color: $color-fg;
+    background: $color-accent;
+    border: 0 solid transparent;
+    border-radius: 1rem;
     width: 100%;
     font-size: 1rem;
   }
@@ -48,6 +53,7 @@ $mq-one: 36rem;
   &__label {
     width: 100%;
     margin-bottom: 1rem;
+    color: $color-fg;
   }
   &__label-text {
     display: inline-block;

@@ -9,10 +9,10 @@ const bem = blem("SignUp")
 const stag = styled(bem)
 
 const SignUpPanel = stag("div", { em: "panel" }, [
-  stag(
-    "form",
-    { em: "login" },
-    map(
+  stag("form", { em: "login" }, [
+    TworkLogo,
+    //stag("img", { em: ["logo", "retro"], src: "./twork-retro.svg" }, []),
+    ...map(
       ([l, f, placeholder]) =>
         stag("label", { em: ["label", f] }, [
           stag("span", { em: ["label-text", f] }, l),
@@ -30,10 +30,11 @@ const SignUpPanel = stag("div", { em: "panel" }, [
         ["Email", "username", "Your email address"],
         ["Password", "password", "Your password"],
       ],
-    ).concat([stag("button", { em: ["button", "login"] }, "Login")]),
-  ),
+    ),
+    stag("button", { em: ["button", "login"] }, "Login"),
+  ]),
 ])
 
-const SignUp = stag("main", { em: "" }, [TworkLogo, SignUpPanel])
+const SignUp = stag("main", { em: "" }, [SignUpPanel])
 
 document.querySelector("#app").append(SignUp)

@@ -1,8 +1,9 @@
 @use "sass:color";
 
-$color-bg: #fef8f8;
-$color-fg: #cc007c;
-$color-accent: #0fc;
+$color-bg: #b5c5d2;
+// $color-bg: #0fc;
+$color-fg: white;
+$color-accent: #cc007c;
 
 // $color-bg: #0f2444;
 // $color-fg: #d9e1f0;
@@ -23,7 +24,7 @@ $font: "Atkinson Hyperlegible Mono", serif;
 @mixin font {
   font-family: $font, sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -37,11 +38,18 @@ html,
 body {
   @include font;
   font-size: 16px;
-  background-color: $color-fg;
-  background-image: url(./nnnoise-red.svg);
-  color: $color-bg;
+  background-color: $color-bg;
+  background-image: url(./nnnoise.svg);
+  color: $color-fg;
   margin: 0;
   padding: 0;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 *:visible {
   box-sizing: border-box;
