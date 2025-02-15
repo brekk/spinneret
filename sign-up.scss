@@ -2,7 +2,7 @@
 $mq-one: 36rem;
 
 #twork-logo, .SignUp__logo {
-  fill: $color-accent;
+  fill: yellow;
   min-width: 20rem;
   width: 50%;
   max-width: 24rem;
@@ -23,8 +23,10 @@ $mq-one: 36rem;
   &__panel {
     display: flex;
     flex-direction: column;
-    background-color: #000c6fcc;
-    background-image: url(./nnnoise-purple.svg);
+    // background-color: #000c6fcc;
+    // background-image: url(./nnnoise-purple.svg);
+    background-image: url(./nnnoise-red.svg);
+    background-color: #e5008c;
     color: $color-accent;
     padding: 1rem;
     margin: 1rem;
@@ -36,15 +38,15 @@ $mq-one: 36rem;
     }
   }
   &__button {
-    @include font;
+    font-family: "Spicy Rice", sans-serif;
     padding: 0.5rem;
     text-transform: uppercase;
     color: $color-fg;
     background: $color-accent;
     border: 0 solid transparent;
-    border-radius: 1rem;
+    border-radius: 0.25rem;
     width: 100%;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   &__login {
     display: flex;
@@ -54,13 +56,20 @@ $mq-one: 36rem;
     width: 100%;
     margin-bottom: 1rem;
     color: $color-fg;
+    margin: 0;
+    padding: 0 0 1rem;
   }
   &__label-text {
+    font-family: "Spicy Rice", sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
     display: inline-block;
     width: 100%;
     padding-bottom: 0.25rem;
     @media screen and (min-width: $mq-one) {
-      width: calc(25% - 1rem);
+      width: calc(30% - 1rem);
       padding-bottom: 0;
     }
   }
@@ -68,8 +77,10 @@ $mq-one: 36rem;
     @include font;
     padding: 0.5rem;
     width: calc(100% - 1.25rem);
+    border: none;
+    border-radius: 0.25rem;
     @media screen and (min-width: $mq-one) {
-      width: calc(75% - 0.25rem);
+      width: 70%;
     }
   }
 }
