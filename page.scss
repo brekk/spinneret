@@ -153,9 +153,9 @@ a {
       }
       &--disabled {
         cursor: not-allowed;
-        color: rgba(255,255,255,0.2);
+        color: rgba(255, 255, 255, 0.6);
         &:hover {
-          background-color: rgba(255,255,255,0.22);
+          background-color: rgba(255, 255, 255, 0.6);
         }
       }
     }

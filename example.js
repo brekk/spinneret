@@ -99,7 +99,7 @@ const App = stag("main", { em: "" }, [
 window.onload = () => {
   const canvasEl = document.getElementById("canvas")
   const ctx = get2dContext(canvasEl)
-  ctx.imageSmoothingEnabled = false
+  //ctx.imageSmoothingEnabled = false
 
   const cursor = { x: 0, y: 0 }
 
@@ -111,7 +111,9 @@ window.onload = () => {
     return { x, y }
   }
 
-  const onPosition = ({ x, y }) => {
+  const onPosition = (event) => {
+    console.log("EV", event)
+    const { x, y } = event
     cursor.x = x
     cursor.y = y
   }
@@ -119,19 +121,24 @@ window.onload = () => {
   const onResize = () => {}
 
   const onMove = (e) => {
-    const pos = relativePoint(e)
     const { buttons } = e
     if (buttons !== 1) return
+
+    const pos = relativePoint(e)
+    console.log(">>>", cursor, pos)
+    ctx.closePath()
     ctx.beginPath()
     ctx.lineWidth = 3
     ctx.lineCap = "round"
     ctx.strokeStyle = "#000"
-    console.log(">>>", ctx.canvas.offsetLeft, "<><", cursor.x)
+    console.log(">>>", ctx.canvas.offsetLeft, "<><", cursor, "@@@", e)
     ctx.moveTo(
+      cursor.x,
+      cursor.y,
       //(cursor.x * ctx.canvas.width) / ctx.canvas.clientWidth,
       //(cursor.y * ctx.canvas.height) / ctx.canvas.clientHeight,
-      ctx.canvas.offsetLeft + cursor.x,
-      cursor.y, // - ctx.canvas.offsetTop / 2,
+      //cursor.x - ctx.canvas.offsetLeft / 2,
+      //cursor.y - ctx.canvas.offsetTop / 2,
     )
     onPosition(pos)
     ctx.lineTo(pos.x, pos.y)
