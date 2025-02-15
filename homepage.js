@@ -17,7 +17,6 @@ import {
   pipe,
   map,
 } from "ramda"
-import { setupCounter } from "@/counter"
 import { toString } from "@/object"
 import { spin, tag, svg, svgTag } from "@/dom"
 import Debug from "@/components/Debug"

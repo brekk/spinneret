@@ -22,7 +22,6 @@ import {
 } from "ramda"
 import { get2dContext, clearRect } from "@/canvas"
 import { listenTo } from "@/events"
-import { setupCounter } from "@/counter"
 import { toString } from "@/object"
 import { spin, tag, svg, svgTag } from "@/dom"
 import Debug from "@/components/Debug"

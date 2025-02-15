@@ -4452,7 +4452,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"madge@npm:8.0.0":
+"madge@npm:^8.0.0":
   version: 8.0.0
   resolution: "madge@npm:8.0.0"
   dependencies:
@@ -6151,7 +6151,7 @@ __metadata:
     husky: "npm:^8.0.0"
     jsdom: "npm:^26.0.0"
     lint-staged: "npm:^15.4.3"
-    madge: "npm:8.0.0"
+    madge: "npm:^8.0.0"
     nps: "npm:^5.10.0"
     prettier: "npm:^3.4.2"
     ramda: "npm:0.29.1"
