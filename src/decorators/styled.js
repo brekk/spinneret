@@ -16,7 +16,8 @@ export const styledWithScope = inscribe(
             "bem",
             ({ em, ..._props }) => ({
               ..._props,
-              className: Array.isArray(em) ? fn(...em) : fn(em),
+              className: Array.isArray(em) ? fn(...em) : fn(...[em]),
+              //className: fn(...em),
             }),
           ],
         ],

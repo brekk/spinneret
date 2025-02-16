@@ -6,23 +6,23 @@ import { handleForm } from "@/form"
 import { withState } from "@/decorators/state"
 import { $, inscribe } from "@/function"
 import { trace } from "@/side-effect"
+import { autobox } from "@/array"
 
 import "#/twork/page-login.scss"
 
 const bem = blem("Login")
 let $loggedIn = true
-const stag = styledWithScope(bem, {})
-/*
+//const stag = styledWithScope(bem, {})
+
 const stag = inscribe("styledWithBemAndState", (t, p, k) =>
   pipe(
     trace("yo"),
     //////
-    styledWithScope(bem, $, t, p),
+    styledWithScope(bem, $, t, p, k),
     ////////
-    //withState(["loggedIn", false], $, t, p, k),
+    withState(["loggedIn", false], {}, t, p),
   )({}),
 )
-*/
 const LoginPanel = stag(
   "div",
   // this doesn't actually work yet, but now we can think about
@@ -32,7 +32,7 @@ const LoginPanel = stag(
     stag(
       "form",
       {
-        em: "login",
+        em: ["login"],
         onSubmit: pipe(handleForm, (form) => {
           console.log("FORM!", form)
           // any non-empty values will submit for now
@@ -77,6 +77,6 @@ const LoginPanel = stag(
   ],
 )
 
-const Login = stag("main", { em: "" }, [LoginPanel])
+const Login = stag("main", { em: [""] }, [LoginPanel])
 
 export default Login
