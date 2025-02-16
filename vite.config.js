@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": local("src"),
+      "#": local("."),
     },
   },
   build: {

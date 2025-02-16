@@ -4,6 +4,7 @@ module.exports = function config() {
     resolve: {
       alias: {
         "@": "./src",
+        "#": ".",
       },
     },
   }

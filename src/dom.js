@@ -21,6 +21,7 @@ import { NAMESPACES } from "@/constants"
 
 import { captureListeners } from "@/events"
 import { remap, attr } from "@/attribute"
+import { trace } from "@/side-effect"
 
 export const text = (x) => document.createTextNode(x)
 export const _textify = when(is(String), text)
@@ -31,8 +32,12 @@ export const htmlText = (txt) => {
 }
 
 export const _processChildren = cond([
-  [is(Function), pipe(toString, defaultTo("<???>"))],
-  [is(String), ifElse(includes("&"), htmlText, text)],
+  [is(Function), pipe(trace("YO"), toString, defaultTo("<???>"))],
+  [
+    is(String),
+    // not sure if we want to include this, but for now it seems ok
+    ifElse(includes("&"), htmlText, text),
+  ],
   [() => true, identity],
 ])
 /*
@@ -119,6 +124,7 @@ export const spin = inscribe(
       children,
       createStrand = createElementNS,
     } = firstProcessing
+    const { state = {} } = scope
     const newEl = createStrand(ns, kind)
     // we need to do more to wire the scope to the children, so that we can override what happens below
     // for something like the decorator literal
