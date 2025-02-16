@@ -1,5 +1,7 @@
 import {
   reduce,
+  ifElse,
+  includes,
   when,
   join,
   equals,
@@ -22,10 +24,15 @@ import { remap, attr } from "@/attribute"
 
 export const text = (x) => document.createTextNode(x)
 export const _textify = when(is(String), text)
+export const htmlText = (txt) => {
+  const el = document.createElement("div")
+  el.innerHTML = txt
+  return el.innerText || el.textContent || txt
+}
 
 export const _processChildren = cond([
   [is(Function), pipe(toString, defaultTo("<???>"))],
-  [is(String), text],
+  [is(String), ifElse(includes("&"), htmlText, text)],
   [() => true, identity],
 ])
 /*

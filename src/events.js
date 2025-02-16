@@ -6,10 +6,17 @@ export const listenTo = inscribe("listenTo", (name, fn, x) => {
 })
 
 export const onClick = listenTo("click")
+export const onSubmit = listenTo("submit")
 
 export const captureListeners = inscribe("listenToElement", (newEl, [k, v]) => {
-  if (k === "onClick" && v) {
-    onClick(v, newEl)
+  if (v) {
+    if (k === "onClick") {
+      onClick(v, newEl)
+      return [k, null]
+    } else if (k === "onSubmit") {
+      onSubmit(v, newEl)
+      return [k, null]
+    }
   }
   return [k, v]
 })

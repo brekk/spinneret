@@ -2,8 +2,11 @@
 
 $color-bg: #b5c5d2;
 // $color-bg: #0fc;
-$color-fg: yellow;
+$color-fg: white;
 $color-accent: #cc007c;
+
+$color-panel: #000c6f;
+$color-button: #ff9b00;
 
 // $color-bg: #0f2444;
 // $color-fg: #d9e1f0;
@@ -27,6 +30,11 @@ $font: "Atkinson Hyperlegible Mono", serif;
   font-style: normal;
 }
 
+@mixin altfont {
+  font-family: "Michroma";
+  text-transform: uppercase;
+}
+
 .atkinson-hyperlegible-mono-typeface {
   @include font;
 }
@@ -37,8 +45,8 @@ html,
 body {
   @include font;
   font-size: 16px;
-  background-color: $color-bg;
-  background-image: url(./nnnoise.svg);
+  background-color: $color-panel;
+  background-image: url(./nnnoise-purple.svg);
   color: $color-fg;
   margin: 0;
   padding: 0;

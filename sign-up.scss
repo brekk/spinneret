@@ -2,7 +2,7 @@
 $mq-one: 36rem;
 
 #twork-logo, .SignUp__logo {
-  fill: yellow;
+  fill: $color-accent;
   min-width: 20rem;
   width: 50%;
   max-width: 24rem;
@@ -10,7 +10,7 @@ $mq-one: 36rem;
   margin: 1rem auto;
 }
 
-.SignUp {
+.Login {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,10 +23,8 @@ $mq-one: 36rem;
   &__panel {
     display: flex;
     flex-direction: column;
-    // background-color: #000c6fcc;
-    // background-image: url(./nnnoise-purple.svg);
-    background-image: url(./nnnoise-red.svg);
-    background-color: #e5008c;
+    background-color: $color-bg;
+    background-image: url(./nnnoise.svg);
     color: $color-accent;
     padding: 1rem;
     margin: 1rem;
@@ -38,15 +36,23 @@ $mq-one: 36rem;
     }
   }
   &__button {
-    font-family: "Spicy Rice", sans-serif;
+    @include altfont;
     padding: 0.5rem;
     text-transform: uppercase;
-    color: $color-fg;
-    background: $color-accent;
+    color: white;
+    font-size: 1.25rem;
+    background: url(./nnnoise-yellow.svg);
+    background-color: $color-button;
     border: 0 solid transparent;
+    transition: background 0.3s ease-out, color 0.3s ease-out;
     border-radius: 0.25rem;
+    cursor: pointer;
     width: 100%;
-    font-size: 1.5rem;
+    &:hover {
+      background-color: #06cca7;
+      // background-image: url(./nnnoise-red.svg);
+      color: $color-panel;
+    }
   }
   &__login {
     display: flex;
@@ -54,22 +60,30 @@ $mq-one: 36rem;
   }
   &__label {
     width: 100%;
-    margin-bottom: 1rem;
-    color: $color-fg;
+    color: $color-panel;
     margin: 0;
-    padding: 0 0 1rem;
+    margin-bottom: 1rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media screen and (min-width: $mq-one) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
   }
   &__label-text {
-    font-family: "Spicy Rice", sans-serif;
-    text-transform: uppercase;
+    @include altfont;
     margin: 0;
     padding: 0;
-    font-size: 1.25rem;
+    font-size: 1rem;
     display: inline-block;
     width: 100%;
     padding-bottom: 0.25rem;
     @media screen and (min-width: $mq-one) {
-      width: calc(30% - 1rem);
+      width: 35%;
       padding-bottom: 0;
     }
   }
@@ -80,7 +94,7 @@ $mq-one: 36rem;
     border: none;
     border-radius: 0.25rem;
     @media screen and (min-width: $mq-one) {
-      width: 70%;
+      width: calc(65% - 1rem);
     }
   }
 }

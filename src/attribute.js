@@ -17,7 +17,7 @@ export const _attr = inscribe("createAttribute", (el, k, v) => {
 
 export const attr = inscribe("createAttributeTuple", (el, [k, v]) =>
   // resilient™ to bad data
-  k && typeof v !== "undefined" ? _attr(el, k, v) : el,
+  k && v ? _attr(el, k, v) : el,
 )
 
 export const remap = ([k, v]) => [
