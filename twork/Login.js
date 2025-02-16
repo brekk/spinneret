@@ -7,6 +7,7 @@ import { withState } from "@/decorators/state"
 import { $, inscribe } from "@/function"
 import { trace } from "@/side-effect"
 import { autobox } from "@/array"
+import { spin } from "@/dom"
 
 import "#/twork/page-login.scss"
 
@@ -14,15 +15,16 @@ const bem = blem("Login")
 let $loggedIn = true
 //const stag = styledWithScope(bem, {})
 
-const stag = inscribe("styledWithBemAndState", (t, p, k) =>
+const stagWithScope = inscribe("styledWithBemAndState", (s, t, p, k) =>
   pipe(
-    trace("yo"),
     //////
-    styledWithScope(bem, $, t, p, k),
+    styledWithScope(bem),
     ////////
-    withState(["loggedIn", false], {}, t, p),
-  )({}),
+    withState(["loggedIn", false]),
+    spin($, t, p, k),
+  )(s),
 )
+const stag = stagWithScope({})
 const LoginPanel = stag(
   "div",
   // this doesn't actually work yet, but now we can think about
