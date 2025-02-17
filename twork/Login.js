@@ -79,6 +79,6 @@ const LoginPanel = stag(
   ],
 )
 
-const Login = stag("main", { em: [""] }, [LoginPanel])
+const Login = () => stag("main", { em: [""] }, [LoginPanel])
 
 export default Login

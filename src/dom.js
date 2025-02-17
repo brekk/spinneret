@@ -79,6 +79,12 @@ const defaultScope = {
   ]
 }
 */
+
+// TOMORROW TASK
+//
+// patch appendOnChild so that the _processChildren function takes outside inputs for conditions
+// make the conditions factor in the parent when processing
+
 // though we could curry this, that would require the user also curry /
 // closure their function, so we will eschew that for now
 const appendOnChild = (scope, parent, child) =>
@@ -161,7 +167,7 @@ export const spin = inscribe(
       )(props)
     }
     if (scope.post) {
-      return scope.post(newEl)
+      return scope.post(newEl, scope)
     }
     return newEl
   },
