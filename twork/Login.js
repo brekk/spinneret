@@ -80,14 +80,7 @@ const LoginPanel = stag(
               const error = "Email and password are required fields"
               scope.setters.error(error)
               const errorEl = selector(bem, ["error"])
-              console.log("errorEl", errorEl)
-              el.replaceWith(
-                web.spin(raw.scope, raw.kind, raw.props, [
-                  ...raw.children.slice(0, -1),
-                  stag("em", { em: ["error"] }, error),
-                  ...raw.children.slice(-1),
-                ]),
-              )
+              errorEl.innerText = error
             } else if (form.username && form.password) {
               scope.setters.loggedIn(true)
               el.replaceWith(
