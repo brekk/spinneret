@@ -19,22 +19,27 @@ export const withState = inscribe("tagWithState", ([key, initial], scope) => {
     return el
   }
   // const state = { ...(scope.state || {}), [key]: [initial }
+  const dynKey = {
+    get: () => $STATE,
+    set: (z) => {
+      λ.signal(key, ["set", z])
+      $STATE = z
+      return $STATE
+    },
+  }
   scope = {
     ...scope,
+    dynamic: {
+      ...scope.dynamic,
+      [key]: dynKey,
+    },
     configure: ({ props, ...rest }) => ({
       ...rest,
       props: {
         ...props,
         dynamic: {
           ...(props.dynamic || {}),
-          [key]: {
-            get: () => $STATE,
-            set: (z) => {
-              λ.signal(key, ["set", z])
-              $STATE = z
-              return $STATE
-            },
-          },
+          [key]: dynKey,
         },
       },
     }),

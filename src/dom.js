@@ -87,8 +87,10 @@ const defaultScope = {
 
 // though we could curry this, that would require the user also curry /
 // closure their function, so we will eschew that for now
-const appendOnChild = (scope, parent, child) =>
+const appendOnChild = (scope, parent, child) => {
+  console.log("WHAT IS PARENT", scope, "><", parent, child)
   parent.append(_processChildren(child))
+}
 
 export const nsFromString = (x) =>
   x.toLowerCase() === "svg" ? NAMESPACES.SVG : NAMESPACES.XHTML
