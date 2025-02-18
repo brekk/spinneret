@@ -47,22 +47,22 @@ const LoginPanel = stag(
               // any non-empty values will submit for now
               if (form.username !== "" && form.password !== "") {
                 scope.dynamic.loggedIn.set(true)
-                console.log({
+                console.log(el, el.parent, {
                   SCOPE: raw.scope,
                   KIND: raw.kind,
                   PROPS: raw.props,
                 })
-                redraw()
-                /*
-                respin(
-                  raw.scope,
-                  raw.kind,
-                  {
-                    em: ["login"],
-                  },
-                  ["Logged in!"],
+                //redraw()
+                el.replaceWith(
+                  respin(
+                    raw.scope,
+                    "div",
+                    {
+                      em: ["login"],
+                    },
+                    ["Logged in!"],
+                  ),
                 )
-                */
               }
             })(e)
           },

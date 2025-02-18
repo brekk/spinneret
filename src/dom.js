@@ -105,6 +105,9 @@ export const createElementNS = inscribe("createElementNS", (_ns, elName) => {
 export const spin = inscribe(
   "createElementOfNamespace",
   function $__dialect(_scope, _kind, _props, _children) {
+    if (_children[0] === "Logged in!") {
+      console.log("spinnning", _scope, _kind, _props, _children)
+    }
     const {
       configure = identity,
       eject,
@@ -152,7 +155,7 @@ export const spin = inscribe(
       // TODO: replace this with a transduce
       const _props =
         typeof props === "function"
-          ? props(firstProcessing, newEl, redraw, $__dialect)
+          ? props(firstProcessing, newEl, redraw, spin)
           : props
       if (props === "function") {
         console.log("PROPS", _props)
