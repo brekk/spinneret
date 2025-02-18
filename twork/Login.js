@@ -52,7 +52,7 @@ const loginPanelKids = [
     (raw, el, web) => ({
       type: "submit",
       onClick: (e) => {
-        raw.scope.dynamic.error.set(false)
+        raw.scope.setters.error(false)
       },
       em: ["button", "login"],
     }),
@@ -74,13 +74,9 @@ const LoginPanel = stag(
           em: ["login"],
           onSubmit: pipe(handleForm, (form) => {
             // any non-empty values will submit for now
-
-            if (
-              (!form.username || !form.password) &&
-              !scope.dynamic.error.get()
-            ) {
+            if ((!form.username || !form.password) && !scope.dynamic.error) {
               const error = "Email and password are required fields"
-              scope.dynamic.error.set(error)
+              scope.setters.error(error)
               el.replaceWith(
                 web.spin(raw.scope, raw.kind, raw.props, [
                   ...raw.children.slice(0, -1),
@@ -89,13 +85,13 @@ const LoginPanel = stag(
                 ]),
               )
             } else if (form.username && form.password) {
-              scope.dynamic.loggedIn.set(true)
+              scope.setters.loggedIn(true)
               el.replaceWith(
                 web.spin(
                   raw.scope,
                   "div",
                   {
-                    em: ["login"],
+                    em: ["logged-in"],
                   },
                   ["Logged in!"],
                 ),

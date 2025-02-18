@@ -8,22 +8,22 @@ export const withState = inscribe("tagWithState", ([key, initial], scope) => {
     return scope
   }
   let $STATE = initial
-
-  const dynKey = {
-    get: () => $STATE,
-    set: (z) => {
-      $STATE = z
+  const dynamicScope = scope.dynamic || {}
+  const setters = scope.setters || {}
+  if (!dynamicScope[key]) {
+    // we're effectively writing a proxy here
+    Object.defineProperty(dynamicScope, key, {
+      get: () => $STATE,
+    })
+    setters[key] = (x) => {
+      $STATE = x
       return $STATE
-    },
+    }
   }
-  const prevDyn = scope.dynamic || {}
-  return {
+  const val = {
     ...scope,
-    dynamic: prevDyn[key]
-      ? prevDyn
-      : {
-          ...prevDyn,
-          [key]: dynKey,
-        },
+    setters,
+    dynamic: dynamicScope,
   }
+  return val
 })
