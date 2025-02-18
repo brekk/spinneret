@@ -20,6 +20,7 @@ const stagWithScope = inscribe("styledWithBemAndState", (s, t, p, k) =>
     styledWithScope(bem),
     ////////
     withState(["loggedIn", false]),
+    withState(["error", ""]),
     spin($, t, p, k),
   )(s),
 )
@@ -38,9 +39,27 @@ const LoginPanel = stag(
           em: ["login"],
           onSubmit: pipe(handleForm, (form) => {
             // any non-empty values will submit for now
-            if (form.username !== "" && form.password !== "") {
+            console.log(
+              "form.username",
+              form.username,
+              "<> form.password",
+              form.password,
+            )
+
+            if (!form.username || !form.password) {
+              console.log("firing error for missing fields")
+              scope.dynamic.error.set("Email and password are required fields")
+              console.log("uhhh", scope.dynamic.error.get())
+              el.replaceWith(
+                web.spin(
+                  raw.scope,
+                  raw.kind,
+                  { em: ["login", "with-error"] },
+                  raw.children,
+                ),
+              )
+            } else {
               scope.dynamic.loggedIn.set(true)
-              console.log("<><>", scope.dynamic.loggedIn.get())
               el.replaceWith(
                 web.spin(
                   raw.scope,
@@ -48,7 +67,7 @@ const LoginPanel = stag(
                   {
                     em: ["login"],
                   },
-                  [TworkLogo, "Logged in!"],
+                  ["Logged in!"],
                 ),
               )
             }
@@ -56,8 +75,6 @@ const LoginPanel = stag(
         }
       },
       [
-        TworkLogo,
-        //stag("img", { em: ["logo", "retro"], src: "./twork-retro.svg" }, []),
         ...map(
           ([l, f, placeholder]) =>
             stag("label", { em: ["label", f] }, [
@@ -78,6 +95,24 @@ const LoginPanel = stag(
             ["Password", "password", "Your password"],
           ],
         ),
+        stagWithScope(
+          {
+            post: (el, scope) => {
+              console.log("@>@>@", el, scope)
+              const raw = scope?.dynamic?.error?.get() ?? ""
+              console.log("RAW", raw)
+              return raw
+            },
+          },
+          "span",
+          (raw, el, web) => ({
+            em: [
+              "error",
+              raw?.scope?.dynamic?.error?.get() ? "visible" : "invisible",
+            ],
+          }),
+          [],
+        ),
         stag(
           "button",
           {
@@ -91,6 +126,11 @@ const LoginPanel = stag(
   ],
 )
 
-const Login = () => stag("main", { em: [""] }, [LoginPanel])
+const Login = () =>
+  stag("main", { em: [""] }, [
+    TworkLogo,
+    LoginPanel,
+    stag("a", { href: "#", em: ["link"] }, "Forgot your password?"),
+  ])
 
 export default Login

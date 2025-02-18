@@ -38,7 +38,8 @@ export const processChildren = cond([
     // not sure if we want to include this, but for now it seems ok
     ifElse(includes("&"), htmlText, text),
   ],
-  [() => true, identity],
+  [(x) => x instanceof HTMLElement || x instanceof SVGElement, identity],
+  [() => true, () => ""],
 ])
 /*
 const nsCreateElement = inscribe("createElementOfNamespace", (ns, elName) =>
@@ -132,6 +133,7 @@ export const spin = inscribe(
       children,
       createStrand = createElementNS,
     } = firstProcessing
+    const redraw = () => $__dialect(scope, kind, props, children)
     const { state = {} } = scope
     const newEl = createStrand(ns, kind)
     // we need to do more to wire the scope to the children, so that we can override what happens below
@@ -148,7 +150,6 @@ export const spin = inscribe(
       )(children)
     }
     if (props) {
-      const redraw = () => $__dialect(scope, kind, props, children)
       // TODO: replace this with a transduce
       const _props =
         typeof props === "function"
