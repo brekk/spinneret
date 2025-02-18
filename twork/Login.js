@@ -26,46 +26,33 @@ const stagWithScope = inscribe("styledWithBemAndState", (s, t, p, k) =>
 const stag = stagWithScope({})
 const LoginPanel = stag(
   "div",
-  // this doesn't actually work yet, but now we can think about
-  // wiring state to scope
-  ({ scope }) =>
-    console.log(">>>", scope.dynamic.loggedIn.get()) || {
-      em: ["panel", scope.dynamic.loggedIn.get() ? "active" : "inactive"],
-    },
+  {
+    em: ["panel"],
+  },
   [
     stag(
       "form",
-      (raw, el, redraw, respin) => {
+      (raw, el, web) => {
         const { scope } = raw
         return {
           em: ["login"],
-          onSubmit: (e) => {
-            e.preventDefault()
-            console.log("EVENT PREV", e)
-            return pipe(handleForm, (form) => {
-              console.log("FORM!", form, scope)
-              // any non-empty values will submit for now
-              if (form.username !== "" && form.password !== "") {
-                scope.dynamic.loggedIn.set(true)
-                console.log(el, el.parent, {
-                  SCOPE: raw.scope,
-                  KIND: raw.kind,
-                  PROPS: raw.props,
-                })
-                //redraw()
-                el.replaceWith(
-                  respin(
-                    raw.scope,
-                    "div",
-                    {
-                      em: ["login"],
-                    },
-                    ["Logged in!"],
-                  ),
-                )
-              }
-            })(e)
-          },
+          onSubmit: pipe(handleForm, (form) => {
+            // any non-empty values will submit for now
+            if (form.username !== "" && form.password !== "") {
+              scope.dynamic.loggedIn.set(true)
+              console.log("<><>", scope.dynamic.loggedIn.get())
+              el.replaceWith(
+                web.spin(
+                  raw.scope,
+                  "div",
+                  {
+                    em: ["login"],
+                  },
+                  [TworkLogo, "Logged in!"],
+                ),
+              )
+            }
+          }),
         }
       },
       [
