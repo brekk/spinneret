@@ -149,6 +149,11 @@ export const spin = inscribe(
     }
     if (props) {
       // TODO: replace this with a transduce
+      const _props =
+        typeof props === "function" ? props(firstProcessing, newEl) : props
+      if (props === "function") {
+        console.log("PROPS", _props)
+      }
       pipe(
         reduce(
           function processEffect(agg, step) {
@@ -166,7 +171,7 @@ export const spin = inscribe(
         map(remap),
         map(captureListeners(newEl)),
         forEach(attr(newEl)),
-      )(props)
+      )(_props)
     }
     if (scope.post) {
       return scope.post(newEl, scope)

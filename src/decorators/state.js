@@ -12,7 +12,7 @@ export const withState = inscribe("tagWithState", ([key, initial], scope) => {
 
   const λ = Electric([[key, initial]])
   const stateHandler = (el, _scope) => {
-    console.log("WE NEED TO WIRE THIS TO SOMETHING", [key, $STATE, _scope], el)
+    //console.log("WE NEED TO WIRE THIS TO SOMETHING", [key, $STATE, _scope], el)
     λ.on(key, (action, x) => {
       console.log("ACTION", action, "<><><X", x)
     })
@@ -33,18 +33,8 @@ export const withState = inscribe("tagWithState", ([key, initial], scope) => {
       ...scope.dynamic,
       [key]: dynKey,
     },
-    configure: ({ props, ...rest }) => ({
-      ...rest,
-      props: {
-        ...props,
-        dynamic: {
-          ...(props.dynamic || {}),
-          [key]: dynKey,
-        },
-      },
-    }),
   }
-  console.log("something is gonna happen soon", scope, key)
+  //console.log("something is gonna happen soon", scope, key)
 
   // Object.defineProperty(scope.state, key, {
   //   configurable: false,
@@ -58,7 +48,7 @@ export const withState = inscribe("tagWithState", ([key, initial], scope) => {
   //   enumerable: true,
   //   get: () => () => $STATE,
   // })
-  console.log("HOHO", { key, initial, scope, λ })
+  //console.log("HOHO", { key, initial, scope, λ })
   return {
     ...scope,
     post: scope.post ? pipe(scope.post, stateHandler) : stateHandler,
