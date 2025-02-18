@@ -8,6 +8,7 @@ import { $, inscribe } from "@/function"
 import { trace } from "@/side-effect"
 import { autobox } from "@/array"
 import { spin } from "@/dom"
+import selector from "@/selector"
 
 import "#/twork/page-login.scss"
 
@@ -47,6 +48,7 @@ const loginPanelKids = [
       ["Password", "password", "Your password"],
     ],
   ),
+  stag("span", { em: ["error"] }, []),
   stag(
     "button",
     (raw, el, web) => ({
@@ -77,6 +79,8 @@ const LoginPanel = stag(
             if ((!form.username || !form.password) && !scope.dynamic.error) {
               const error = "Email and password are required fields"
               scope.setters.error(error)
+              const errorEl = selector(bem, ["error"])
+              console.log("errorEl", errorEl)
               el.replaceWith(
                 web.spin(raw.scope, raw.kind, raw.props, [
                   ...raw.children.slice(0, -1),
