@@ -40,6 +40,10 @@ export const withState = inscribe("tagWithState", ([key, initial], scope) => {
   }
   return {
     ...scope,
+    onChild: (raw, parent, child) => {
+      console.log(raw.scope.dynamic, "<<<")
+      return parent.append(child)
+    },
     post: scope.post ? pipe(scope.post, stateHandler) : stateHandler,
   }
 })

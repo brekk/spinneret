@@ -31,7 +31,7 @@ export const htmlText = (txt) => {
   return el.innerText || el.textContent || txt
 }
 
-export const _processChildren = cond([
+export const processChildren = cond([
   [is(Function), pipe(trace("YO"), toString, defaultTo("<???>"))],
   [
     is(String),
@@ -82,14 +82,14 @@ const defaultScope = {
 
 // TOMORROW TASK
 //
-// patch appendOnChild so that the _processChildren function takes outside inputs for conditions
+// patch appendOnChild so that the processChildren function takes outside inputs for conditions
 // make the conditions factor in the parent when processing
 
 // though we could curry this, that would require the user also curry /
 // closure their function, so we will eschew that for now
 const appendOnChild = (scope, parent, child) => {
-  console.log("WHAT IS PARENT", scope, "><", parent, child)
-  parent.append(_processChildren(child))
+  //console.log("WHAT IS PARENT", scope, "><", parent, child)
+  parent.append(processChildren(child))
 }
 
 export const nsFromString = (x) =>
@@ -142,15 +142,18 @@ export const spin = inscribe(
         forEach(
           // closure needed
           function appendChildToWeb(_kid) {
-            onChild(scope, newEl, _kid)
+            onChild(firstProcessing, newEl, _kid)
           },
         ),
       )(children)
     }
     if (props) {
+      const redraw = () => $__dialect(scope, kind, props, children)
       // TODO: replace this with a transduce
       const _props =
-        typeof props === "function" ? props(firstProcessing, newEl) : props
+        typeof props === "function"
+          ? props(firstProcessing, newEl, redraw, $__dialect)
+          : props
       if (props === "function") {
         console.log("PROPS", _props)
       }

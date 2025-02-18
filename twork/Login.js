@@ -35,20 +35,39 @@ const LoginPanel = stag(
   [
     stag(
       "form",
-      ({ scope }) => ({
-        em: ["login"],
-        onSubmit: (e) => {
-          e.preventDefault()
-          console.log("EVENT PREV", e)
-          return pipe(handleForm, (form) => {
-            console.log("FORM!", form, scope)
-            // any non-empty values will submit for now
-            if (form.username !== "" && form.password !== "") {
-              scope.dynamic.loggedIn.set(true)
-            }
-          })(e)
-        },
-      }),
+      (raw, el, redraw, respin) => {
+        const { scope } = raw
+        return {
+          em: ["login"],
+          onSubmit: (e) => {
+            e.preventDefault()
+            console.log("EVENT PREV", e)
+            return pipe(handleForm, (form) => {
+              console.log("FORM!", form, scope)
+              // any non-empty values will submit for now
+              if (form.username !== "" && form.password !== "") {
+                scope.dynamic.loggedIn.set(true)
+                console.log({
+                  SCOPE: raw.scope,
+                  KIND: raw.kind,
+                  PROPS: raw.props,
+                })
+                redraw()
+                /*
+                respin(
+                  raw.scope,
+                  raw.kind,
+                  {
+                    em: ["login"],
+                  },
+                  ["Logged in!"],
+                )
+                */
+              }
+            })(e)
+          },
+        }
+      },
       [
         TworkLogo,
         //stag("img", { em: ["logo", "retro"], src: "./twork-retro.svg" }, []),
