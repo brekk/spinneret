@@ -27,28 +27,17 @@ export const withState = inscribe("tagWithState", ([key, initial], scope) => {
       return $STATE
     },
   }
+  const prevDyn = scope.dynamic || {}
   scope = {
     ...scope,
-    dynamic: {
-      ...scope.dynamic,
-      [key]: dynKey,
-    },
+    λ,
+    dynamic: prevDyn[key]
+      ? prevDyn
+      : {
+          ...prevDyn,
+          [key]: dynKey,
+        },
   }
-  //console.log("something is gonna happen soon", scope, key)
-
-  // Object.defineProperty(scope.state, key, {
-  //   configurable: false,
-  //   writable: false,
-  //   enumerable: true,
-  //   get: () => $STATE,
-  // })
-  // Object.defineProperty(scope.state, `strand::${key}`, {
-  //   configurable: false,
-  //   writable: false,
-  //   enumerable: true,
-  //   get: () => () => $STATE,
-  // })
-  //console.log("HOHO", { key, initial, scope, λ })
   return {
     ...scope,
     post: scope.post ? pipe(scope.post, stateHandler) : stateHandler,

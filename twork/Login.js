@@ -14,7 +14,6 @@ import "#/twork/page-login.scss"
 const bem = blem("Login")
 let $loggedIn = true
 //const stag = styledWithScope(bem, {})
-
 const stagWithScope = inscribe("styledWithBemAndState", (s, t, p, k) =>
   pipe(
     //////
@@ -29,7 +28,10 @@ const LoginPanel = stag(
   "div",
   // this doesn't actually work yet, but now we can think about
   // wiring state to scope
-  { em: ["panel", $loggedIn ? "active" : "inactive"] },
+  ({ scope }) =>
+    console.log(">>>", scope.dynamic.loggedIn.get()) || {
+      em: ["panel", scope.dynamic.loggedIn.get() ? "active" : "inactive"],
+    },
   [
     stag(
       "form",
