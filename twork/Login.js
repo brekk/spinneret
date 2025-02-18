@@ -20,11 +20,46 @@ const stagWithScope = inscribe("styledWithBemAndState", (s, t, p, k) =>
     styledWithScope(bem),
     ////////
     withState(["loggedIn", false]),
-    withState(["error", ""]),
+    withState(["error", false]),
     spin($, t, p, k),
   )(s),
 )
 const stag = stagWithScope({})
+
+const loginPanelKids = [
+  ...map(
+    ([l, f, placeholder]) =>
+      stag("label", { em: ["label", f] }, [
+        stag("span", { em: ["label-text", f] }, l),
+        stag(
+          "input",
+          {
+            em: ["input", f],
+            name: f,
+            type: f === "password" ? f : "text",
+            placeholder,
+          },
+          [],
+        ),
+      ]),
+    [
+      ["Email", "username", "Your email address"],
+      ["Password", "password", "Your password"],
+    ],
+  ),
+  stag(
+    "button",
+    (raw, el, web) => ({
+      type: "submit",
+      onClick: (e) => {
+        raw.scope.dynamic.error.set(false)
+      },
+      em: ["button", "login"],
+    }),
+    "Login",
+  ),
+]
+
 const LoginPanel = stag(
   "div",
   {
@@ -39,26 +74,21 @@ const LoginPanel = stag(
           em: ["login"],
           onSubmit: pipe(handleForm, (form) => {
             // any non-empty values will submit for now
-            console.log(
-              "form.username",
-              form.username,
-              "<> form.password",
-              form.password,
-            )
 
-            if (!form.username || !form.password) {
-              console.log("firing error for missing fields")
-              scope.dynamic.error.set("Email and password are required fields")
-              console.log("uhhh", scope.dynamic.error.get())
+            if (
+              (!form.username || !form.password) &&
+              !scope.dynamic.error.get()
+            ) {
+              const error = "Email and password are required fields"
+              scope.dynamic.error.set(error)
               el.replaceWith(
-                web.spin(
-                  raw.scope,
-                  raw.kind,
-                  { em: ["login", "with-error"] },
-                  raw.children,
-                ),
+                web.spin(raw.scope, raw.kind, raw.props, [
+                  ...raw.children.slice(0, -1),
+                  stag("em", { em: ["error"] }, error),
+                  ...raw.children.slice(-1),
+                ]),
               )
-            } else {
+            } else if (form.username && form.password) {
               scope.dynamic.loggedIn.set(true)
               el.replaceWith(
                 web.spin(
@@ -74,54 +104,7 @@ const LoginPanel = stag(
           }),
         }
       },
-      [
-        ...map(
-          ([l, f, placeholder]) =>
-            stag("label", { em: ["label", f] }, [
-              stag("span", { em: ["label-text", f] }, l),
-              stag(
-                "input",
-                {
-                  em: ["input", f],
-                  name: f,
-                  type: f === "password" ? f : "text",
-                  placeholder,
-                },
-                [],
-              ),
-            ]),
-          [
-            ["Email", "username", "Your email address"],
-            ["Password", "password", "Your password"],
-          ],
-        ),
-        stagWithScope(
-          {
-            post: (el, scope) => {
-              console.log("@>@>@", el, scope)
-              const raw = scope?.dynamic?.error?.get() ?? ""
-              console.log("RAW", raw)
-              return raw
-            },
-          },
-          "span",
-          (raw, el, web) => ({
-            em: [
-              "error",
-              raw?.scope?.dynamic?.error?.get() ? "visible" : "invisible",
-            ],
-          }),
-          [],
-        ),
-        stag(
-          "button",
-          {
-            type: "submit",
-            em: ["button", "login"],
-          },
-          "Login",
-        ),
-      ],
+      loginPanelKids,
     ),
   ],
 )
