@@ -20,4 +20,4 @@ export const styledWithScope = inscribe("bemTag", (fn, scope) => ({
 }))
 export const styled = styledWithScope($, {})
 
-export const base = pipe(blem, styled)
+export const base = pipe(blem, styled, spin)

@@ -1,18 +1,17 @@
-export { tag, svgTag, svg } from "@/dom"
-export { attr } from "@/attribute"
-export { isPlaceholder, getSignature, isMarked, inscribe, $ } from "@/function"
-
-// in all likelihood this should be a separate export / package
-import Debug from "@/components/Debug"
-import Disclosable from "@/components/Disclosable"
-import Heading from "@/components/Heading"
-import Flex from "@/components/Flex"
-import Logo from "@/components/Logo"
-
-export const components = {
-  Debug,
-  Disclosable,
-  Heading,
-  Flex,
-  Logo,
-}
+export * from "@/array"
+export * from "@/attribute"
+export * from "@/canvas"
+export * from "@/constants"
+export * from "@/dom"
+export * from "@/event-system"
+export * from "@/events"
+export * from "@/form"
+export * from "@/function"
+export * from "@/json"
+export * from "@/object"
+export * from "@/selector"
+export * from "@/side-effect"
+export * from "@/spider"
+export * from "@/string"
+export * from "@/style"
+export * from "@/transform"
