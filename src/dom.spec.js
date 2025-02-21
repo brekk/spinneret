@@ -52,9 +52,11 @@ test("tag", () => {
 test("spin", () => {
   const container = mount(rawtag([svgTag("huh")]))
   const rendered = getByTestId(container, "yoyoyo")
-  expect(rendered).toHaveTextContent("⧗createElementOfNamespace")
+  expect(rendered).toHaveTextContent("")
   const stag = base("Spin")
-  const container2 = mount(stag("em", { em: "test" }, "this is an output"))
+  const container2 = mount(
+    spin(stag({}), "em", { em: "test" }, "this is an output"),
+  )
   expect(container2.outerHTML).toEqual(
     `<div><em class="Spin__test">this is an output</em></div>`,
   )

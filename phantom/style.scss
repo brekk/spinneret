@@ -1,0 +1,71 @@
+html, body {
+  font-family: "Crimson Pro", sans-serif;
+  font-size: 16px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "League Gothic", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+h1 {
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+  margin: 1rem 0;
+}
+h2 {
+  font-size: 3rem;
+  line-height: 3rem;
+  margin: 0.75rem 0;
+}
+h3 {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  margin: 0.5rem 0;
+}
+h4 {
+  font-size: 2rem;
+  line-height: 2rem;
+  margin: 0.25rem 0;
+}
+
+*:visible {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+.Cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__author-note {
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+.TableOfContents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Chapter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  &__image {
+    margin: 0 auto;
+  }
+  &__paragraph {
+    max-width: 28em;
+    min-width: 20rem;
+  }
+}
