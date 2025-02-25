@@ -100,14 +100,14 @@ test("basic with function props", () => {
   const raw = mount(
     tag(
       "div",
-      (raw, el, actions) => {
-        expect(raw.children).toEqual("test")
-        expect(raw.kind).toEqual("div")
-        expect(raw.ns).toEqual(NAMESPACES.XHTML)
-        expect(raw.scope).toEqual({})
+      (x, el, actions) => {
+        expect(x.children).toEqual("test")
+        expect(x.kind).toEqual("div")
+        expect(x.ns).toEqual(NAMESPACES.XHTML)
+        expect(x.scope).toEqual({})
         expect(el.outerHTML).toEqual("<div>test</div>")
         expect(Object.keys(actions)).toEqual(["spin"])
-        // expect(actions.redraw().outerHTML).toEqual("")
+        // expect(actions.redx().outerHTML).toEqual("")
         return { className: "test", "data-testid": "yoyoyo" }
       },
       "test",

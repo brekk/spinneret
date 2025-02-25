@@ -1,6 +1,5 @@
-import { listenTo, onClick, onSubmit, captureListeners } from "@/events"
-
 import { test, expect } from "vitest"
+import { listenTo, onClick, onSubmit, captureListeners } from "@/events"
 
 test("listenTo", () => {
   const fx = () => {}

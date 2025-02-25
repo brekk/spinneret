@@ -1,6 +1,5 @@
-import ElectricWeb from "@/event-system"
-
 import { test, expect, vi } from "vitest"
+import ElectricWeb from "@/event-system"
 
 test("smoke test", () => {
   const e = ElectricWeb()

@@ -151,7 +151,7 @@ export const spin = inscribe(
     }
     if (props) {
       // TODO: replace this with a transduce
-      const _props =
+      const propscessed =
         typeof props === "function"
           ? props(firstProcessing, newEl, { spin })
           : props
@@ -172,7 +172,7 @@ export const spin = inscribe(
         map(remap),
         map(captureListeners(newEl)),
         forEach(attr(newEl)),
-      )(_props)
+      )(propscessed)
     }
     if (scope.post) {
       return scope.post(newEl, scope)

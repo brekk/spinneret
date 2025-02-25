@@ -1,6 +1,6 @@
-import { inscribe } from "@/function"
 import blem from "blem"
 import { pipe, last } from "ramda"
+import { inscribe } from "@/function"
 import { trace } from "@/side-effect"
 
 export const makeSelector = inscribe("queryConstructor", (bem, em) => {

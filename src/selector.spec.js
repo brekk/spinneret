@@ -1,8 +1,7 @@
-import { makeSelector } from "@/selector"
 import blem from "blem"
-const bem = blem("test")
-
 import { test, expect } from "vitest"
+import { makeSelector } from "@/selector"
+const bem = blem("test")
 
 test("makeSelector", () => {
   expect(makeSelector(bem, ["yo", "cool"])).toEqual(".test__yo--cool")

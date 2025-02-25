@@ -1,3 +1,4 @@
+import { test, expect } from "vitest"
 import {
   getContextWithOptions,
   getContext,
@@ -5,8 +6,6 @@ import {
   set,
   clearRect,
 } from "@/canvas"
-
-import { test, expect } from "vitest"
 
 test("getContextWithOptions", () => {
   getContextWithOptions("blah", "test", {

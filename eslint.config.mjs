@@ -5,7 +5,13 @@ import pluginJs from "@eslint/js"
 //import pkg from "./package.json" with { type: "json" }
 
 export default [
-  pluginJs.configs.recommended,
+  //pluginJs.configs.recommended,
+  {
+    plugins: { prettier },
+    rules: {
+      "prettier/prettier": [2, { semi: false }],
+    },
+  },
   {
     ignores: ["*.config.mjs", ".pnp*", "dist/*"],
   },
@@ -19,12 +25,7 @@ export default [
       sourceType: "module",
     },
   },
-  {
-    plugins: { prettier },
-    rules: {
-      "prettier/prettier": [2, { semi: false }],
-    },
-  },
+
   {
     plugins: { import: importables },
     rules: {
