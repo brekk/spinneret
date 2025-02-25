@@ -28,7 +28,7 @@ export const _textify = when(is(String), text)
 export const htmlText = (txt) => {
   const el = document.createElement("div")
   el.innerHTML = txt
-  return el.innerText || el.textContent || txt
+  return el.textContent
 }
 
 export const processChildren = cond([
@@ -133,7 +133,7 @@ export const spin = inscribe(
       children,
       createStrand = createElementNS,
     } = firstProcessing
-    const redraw = () => $__dialect(scope, kind, props, children)
+    //const redraw = () => $__dialect(scope, kind, props, children)
     const { state = {} } = scope
     const newEl = createStrand(ns, kind)
     // we need to do more to wire the scope to the children, so that we can override what happens below
@@ -153,7 +153,7 @@ export const spin = inscribe(
       // TODO: replace this with a transduce
       const _props =
         typeof props === "function"
-          ? props(firstProcessing, newEl, { redraw, spin })
+          ? props(firstProcessing, newEl, { spin })
           : props
       pipe(
         reduce(

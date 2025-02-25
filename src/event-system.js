@@ -5,7 +5,6 @@ function ElectricWeb(autolisten = [], autolistenOnce = []) {
     }
   }
   const yellAbout = (lookup) => (name, fn) => {
-    if (!name || !fn) return
     ensureField(lookup, name, [])
     const ref = lookup[name]
     if (!ref.includes(fn)) {

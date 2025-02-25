@@ -3,7 +3,8 @@ import { test, expect } from "vitest"
 import Unusual from "unusual"
 
 import { getByTestId } from "@testing-library/dom"
-import { mount, tag, svgTag, svg, spin } from "@/dom"
+import { mount, nsFromString, htmlText, tag, svgTag, svg, spin } from "@/dom"
+import { NAMESPACES } from "@/constants"
 import { styledTag, base } from "@/decorators/styled"
 
 const rawtag = (raw) =>
@@ -93,4 +94,38 @@ test("basic", () => {
   )
   const rendered = getByTestId(raw, "yoyoyo")
   expect(rendered).toHaveTextContent("test")
+})
+
+test("basic with function props", () => {
+  const raw = mount(
+    tag(
+      "div",
+      (raw, el, actions) => {
+        expect(raw.children).toEqual("test")
+        expect(raw.kind).toEqual("div")
+        expect(raw.ns).toEqual(NAMESPACES.XHTML)
+        expect(raw.scope).toEqual({})
+        expect(el.outerHTML).toEqual("<div>test</div>")
+        expect(Object.keys(actions)).toEqual(["spin"])
+        // expect(actions.redraw().outerHTML).toEqual("")
+        return { className: "test", "data-testid": "yoyoyo" }
+      },
+      "test",
+    ),
+  )
+  const rendered = getByTestId(raw, "yoyoyo")
+  expect(rendered).toHaveTextContent("test")
+})
+
+test("htmlText", () => {
+  const raw = mount(
+    tag("div", { "data-testid": "yoyoyo" }, htmlText("High &amp; Mighty")),
+  )
+  const rendered = getByTestId(raw, "yoyoyo")
+  expect(rendered).toHaveTextContent("High & Mighty")
+})
+
+test("nsFromString", () => {
+  expect(nsFromString("SVG")).toEqual(NAMESPACES.SVG)
+  expect(nsFromString("HTML")).toEqual(NAMESPACES.XHTML)
 })
