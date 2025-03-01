@@ -14,6 +14,7 @@ export default defineConfig({
     },
   },
   build: {
+    minify: false,
     rollupOptions: {
       input: {
         main: local("index.html"),
