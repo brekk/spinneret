@@ -1,4 +1,4 @@
-## 0.1.0 (2025-02-25)
+## 0.1.0 (2025-03-01)
 
 
 ### Features
@@ -13,6 +13,7 @@
 * **form:** lots of improvements ([2c0fbf6](https://github.com/brekk/spinneret/commit/2c0fbf626a33757a235b6b64551b3e86b2c16430))
 * **function:** more work on overloading `toString`, but I think we ought to bite the bullet and have an optimized version for debugging vs. not ([4ce59cf](https://github.com/brekk/spinneret/commit/4ce59cf7d5dc0ecaa1426a14c36ff238223d1945))
 * **function:** segmented out the signature behavior further ([7d7f5c1](https://github.com/brekk/spinneret/commit/7d7f5c1320083397f85a235488f9a008556b71e7))
+* **homepage:** explain more, prep for release ([1254997](https://github.com/brekk/spinneret/commit/1254997ee79c8a9a3a1b5b33d5e7dc46aa75916e))
 * **lines:** still wrong, but a lot cleaner except for the initial click ([d6f1fa1](https://github.com/brekk/spinneret/commit/d6f1fa1a472b8fcf97e9d31834eb6f65af3688bf))
 * **literal:** closer, but still janky ([1712ff0](https://github.com/brekk/spinneret/commit/1712ff0db01d99a77f03d0704363eb7be6137cf9))
 * **literal:** literal renderer is pretty awesome, though not fully working yet ([e639869](https://github.com/brekk/spinneret/commit/e639869088bcd968afa11b84ba587cdcb2a10f27))
