@@ -46,7 +46,6 @@ body {
   @include font;
   font-size: 16px;
   background-color: $color-panel;
-  background-image: url(./nnnoise-purple.svg);
   background-size: contain;
   color: $color-fg;
   margin: 0;
@@ -85,6 +84,7 @@ body {
 }
 
 .Logo {
+  display: inline-block;
   max-width: 28rem;
   width: 100%;
   min-width: 10rem;

@@ -10,11 +10,16 @@ export const styledWithScope = inscribe("bemTag", (fn, scope) => ({
     ...(scope.effects || []),
     [
       "bem",
-      ({ em, ..._props }) => ({
-        ..._props,
-        className: Array.isArray(em) ? fn(...em) : fn(...[em]),
-        //className: fn(...em),
-      }),
+      ({ em, ..._props }) =>
+        // empty string is _essential_
+        // but otherwise anything non-empty
+        // (so coerce nullish away)
+        em === "" || em
+          ? {
+              ..._props,
+              className: Array.isArray(em) ? fn(...em) : fn(...[em]),
+            }
+          : _props,
     ],
   ],
 }))

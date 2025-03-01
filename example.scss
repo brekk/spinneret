@@ -1,0 +1,146 @@
+@use "sass:color";
+
+$break-sm: 32rem;
+
+$color-bg: #b5c5d2;
+// $color-bg: #0fc;
+$color-fg: #0f2444;
+$color-accent: #cc007c;
+
+$color-panel: #000c6f;
+$color-button: #ff9b00;
+
+// $color-bg: #0f2444;
+// $color-fg: #d9e1f0;
+// $color-accent: #ff4545;
+
+// $color-red: #feccde;
+// $color-orange: #fedccc;
+// $color-yellow: #fefedc;
+// $color-green: #dcfedc;
+// $color-blue: #dcecfe;
+// $color-purple: #eedcee;
+
+$font: "Atkinson Hyperlegible Mono", serif;
+
+@mixin font {
+  font-family: $font, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.atkinson-hyperlegible-mono-typeface {
+  @include font;
+}
+
+html,
+body {
+  @include font;
+  font-size: 16px;
+  background-color: $color-bg;
+  background-size: contain;
+  color: $color-fg;
+  margin: 0;
+  padding: 0;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // max-height: 100vh;
+}
+*:visible {
+  box-sizing: border-box;
+}
+.example-list {
+  padding: 0 2rem 0 0.5rem;
+  margin: 0;
+}
+.Logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 30rem;
+  height: auto;
+}
+.Spinneret {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  &__section {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: calc(100% - 2rem);
+  }
+  &__header,
+  &__nav,
+  &__section > * {
+    max-width: 50rem;
+    margin: 1rem auto;
+    width: 100%;
+  }
+  &__figure--code {
+    padding: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  &__example-wrapper {
+    outline: 1px dashed $color-fg;
+    display: flex;
+    flex-direction: row;
+    min-height: 4rem;
+  }
+  &__caption {
+    font-size: 0.8rem;
+    font-weight: bolder;
+    justify-self: flex-start;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  &__code {
+    background: $color-fg;
+    color: $color-bg;
+    &--inline {
+      padding: 0.125rem 0.25rem;
+      border-radius: 0.25rem;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+  }
+  &__example--code {
+    background: $color-fg;
+    color: $color-bg;
+    overflow: auto;
+    margin: 0;
+  }
+  &__example-wrapper {
+    display: flex;
+    flex-direction: column;
+    .Spinneret__example--code {
+      display: flex;
+      flex: 2 2 1;
+      padding: 0.5rem;
+    }
+    .Spinneret__render-wrapper {
+      display: flex;
+      flex: 1 1 1;
+      width: 30%;
+      max-width: 10rem;
+
+      padding: 1rem;
+    }
+    @media screen and (min-width: $break-sm) {
+      flex-direction: row;
+    }
+  }
+  &__render-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
