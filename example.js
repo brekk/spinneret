@@ -8,6 +8,7 @@ import {
   when,
   join,
   map,
+  last,
   replace,
   slice,
   indexOf,
@@ -15,6 +16,7 @@ import {
 import { base } from "@/decorators/styled"
 import { slugify } from "@/string"
 import { spin } from "@/dom"
+import { trace } from "@/side-effect"
 import Logo from "@/spider"
 import { literalTag } from "@/decorators/literal"
 import "./example.scss"
@@ -59,20 +61,30 @@ const Example = (title, description, rawCode, rendered) =>
   )
 
 const exampleCodeAsString = (fn) => {
-  const fun = fn.toString()
+  const fun = fn.toString().slice(`() => `.length)
   const hasNoNewlines = includes("\n", fun)
   if (!hasNoNewlines) {
-    return fun.slice(`() => `.length)
+    return fun
   }
-  const hasCurlies = includes("{", fun.slice(0, fun.indexOf("\n")))
-  console.log("A SMALL CURLIES?", hasCurlies, fun)
+  const hasCurlies = fun.trim().startsWith("{")
   const parts = pipe(
-    (x) => slice(indexOf("\n", x), Infinity, x),
+    when(always(hasCurlies), (z) => slice(z.indexOf("{") + 1, Infinity, z)),
     split("\n"),
-    map(replace(/\s{4}/, "  ")),
+    map(
+      pipe(
+        replace(/\s{8}/, "    "),
+        replace(/\s{4}/, "  "),
+        replace(/;$/g, ""),
+      ),
+    ),
+    (pz) => {
+      const z = last(pz)
+      return [...pz.slice(0, -1), z.trim()]
+    },
     join("\n"),
     when(always(hasCurlies), (z) => z.slice(0, z.lastIndexOf("}"))),
-  )(fun)
+    (z) => z + "\n",
+  )(fun.trim())
   return parts
 }
 
@@ -90,14 +102,16 @@ const LINKS = {
 
 const EXAMPLES = {
   spinBasic: () => spin({}, "div", { className: "info" }, ["Hello, web"]),
-  list: () =>
-    tag(
-      "ul",
-      { className: "example-list" },
-      ["alpha", "beta", "gamma", "delta"]
-        .map(tag("a", { href: "#" }))
-        .map(tag("li", {})),
-    ),
+  list:
+    /////////////////////
+    () =>
+      tag(
+        "ul",
+        { className: "example-list" },
+        ["alpha", "beta", "gamma", "delta"]
+          .map(tag("a", { href: "#" }))
+          .map(tag("li", {})),
+      ),
   listWithNamedMorphism: () => {
     const liA = pipe(tag("a", { href: "#" }), tag("li", {}))
     return tag(
