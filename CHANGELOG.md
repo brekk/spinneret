@@ -1,3 +1,10 @@
+## [0.0.8](https://github.com/brekk/spinneret/compare/v0.0.7...v0.0.8) (2025-03-03)
+
+
+### Bug Fixes
+
+* **exports:** Correct main exports ([#6](https://github.com/brekk/spinneret/issues/6)) ([195441a](https://github.com/brekk/spinneret/commit/195441af120a96095b015a315f17aba343fe3e3f))
+
 ## [0.0.7](https://github.com/brekk/spinneret/compare/v0.0.6...v0.0.7) (2025-03-03)
 
 ## [0.0.6](https://github.com/brekk/spinneret/compare/v0.0.5...v0.0.6) (2025-03-03)
