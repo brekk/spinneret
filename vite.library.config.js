@@ -12,6 +12,11 @@ export default defineConfig({
     },
   },
   build: {
+    rollupOptions: {
+      output: {
+        exports: "named",
+      },
+    },
     lib: {
       entry: local("src/spinneret.js"),
       name: "Spinneret",
