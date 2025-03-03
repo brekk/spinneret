@@ -27,65 +27,65 @@
 <path fill="none" stroke="#757575" d="M43.62,-336.16C49.29,-367.11 68.39,-449.23 117.25,-493.93 122.19,-498.45 127.96,-502.19 134.06,-505.29"/>
 <polygon fill="#757575" stroke="#757575" points="132.62,-508.48 143.18,-509.29 135.44,-502.07 132.62,-508.48"/>
 </g>
-<!-- src/decorators/literal.js -->
+<!-- spider.js -->
 <g id="node3" class="node">
+<title>spider.js</title>
+<path fill="none" stroke="#c6c5fe" d="M219.08,-295.8C219.08,-295.8 169.42,-295.8 169.42,-295.8 165.46,-295.8 161.5,-291.85 161.5,-287.89 161.5,-287.89 161.5,-279.97 161.5,-279.97 161.5,-276.01 165.46,-272.05 169.42,-272.05 169.42,-272.05 219.08,-272.05 219.08,-272.05 223.04,-272.05 227,-276.01 227,-279.97 227,-279.97 227,-287.89 227,-287.89 227,-291.85 223.04,-295.8 219.08,-295.8"/>
+<text text-anchor="middle" x="194.25" y="-278.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">spider.js</text>
+</g>
+<!-- example.js&#45;&gt;spider.js -->
+<g id="edge2" class="edge">
+<title>example.js&#45;&gt;spider.js</title>
+<path fill="none" stroke="#757575" d="M81.46,-313.42C102.68,-307.82 128.8,-300.93 150.45,-295.22"/>
+<polygon fill="#757575" stroke="#757575" points="151.07,-298.68 159.85,-292.74 149.29,-291.91 151.07,-298.68"/>
+</g>
+<!-- src/decorators/literal.js -->
+<g id="node4" class="node">
 <title>src/decorators/literal.js</title>
 <path fill="none" stroke="#c6c5fe" d="M261.83,-375.8C261.83,-375.8 126.67,-375.8 126.67,-375.8 122.71,-375.8 118.75,-371.85 118.75,-367.89 118.75,-367.89 118.75,-359.97 118.75,-359.97 118.75,-356.01 122.71,-352.05 126.67,-352.05 126.67,-352.05 261.83,-352.05 261.83,-352.05 265.79,-352.05 269.75,-356.01 269.75,-359.97 269.75,-359.97 269.75,-367.89 269.75,-367.89 269.75,-371.85 265.79,-375.8 261.83,-375.8"/>
 <text text-anchor="middle" x="194.25" y="-358.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/decorators/literal.js</text>
 </g>
 <!-- example.js&#45;&gt;src/decorators/literal.js -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>example.js&#45;&gt;src/decorators/literal.js</title>
 <path fill="none" stroke="#757575" d="M81.46,-334.44C97.96,-338.79 117.41,-343.92 135.42,-348.67"/>
 <polygon fill="#757575" stroke="#757575" points="134.39,-352.02 144.95,-351.19 136.17,-345.25 134.39,-352.02"/>
 </g>
 <!-- src/decorators/styled.js -->
-<g id="node4" class="node">
+<g id="node5" class="node">
 <title>src/decorators/styled.js</title>
 <path fill="none" stroke="#c6c5fe" d="M263.33,-134.8C263.33,-134.8 125.17,-134.8 125.17,-134.8 121.21,-134.8 117.25,-130.85 117.25,-126.89 117.25,-126.89 117.25,-118.97 117.25,-118.97 117.25,-115.01 121.21,-111.05 125.17,-111.05 125.17,-111.05 263.33,-111.05 263.33,-111.05 267.29,-111.05 271.25,-115.01 271.25,-118.97 271.25,-118.97 271.25,-126.89 271.25,-126.89 271.25,-130.85 267.29,-134.8 263.33,-134.8"/>
 <text text-anchor="middle" x="194.25" y="-117.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/decorators/styled.js</text>
 </g>
 <!-- example.js&#45;&gt;src/decorators/styled.js -->
-<g id="edge3" class="edge">
+<g id="edge4" class="edge">
 <title>example.js&#45;&gt;src/decorators/styled.js</title>
 <path fill="none" stroke="#757575" d="M50.88,-311.66C75.94,-278.44 145.35,-186.43 177.06,-144.39"/>
 <polygon fill="#757575" stroke="#757575" points="179.78,-146.59 183.01,-136.5 174.19,-142.38 179.78,-146.59"/>
 </g>
 <!-- src/dom.js -->
-<g id="node5" class="node">
+<g id="node6" class="node">
 <title>src/dom.js</title>
 <path fill="none" stroke="#c6c5fe" d="M377.58,-254.8C377.58,-254.8 315.17,-254.8 315.17,-254.8 311.21,-254.8 307.25,-250.85 307.25,-246.89 307.25,-246.89 307.25,-238.97 307.25,-238.97 307.25,-235.01 311.21,-231.05 315.17,-231.05 315.17,-231.05 377.58,-231.05 377.58,-231.05 381.54,-231.05 385.5,-235.01 385.5,-238.97 385.5,-238.97 385.5,-246.89 385.5,-246.89 385.5,-250.85 381.54,-254.8 377.58,-254.8"/>
 <text text-anchor="middle" x="346.38" y="-237.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/dom.js</text>
 </g>
 <!-- example.js&#45;&gt;src/dom.js -->
-<g id="edge4" class="edge">
+<g id="edge5" class="edge">
 <title>example.js&#45;&gt;src/dom.js</title>
 <path fill="none" stroke="#757575" d="M52.25,-311.79C65.74,-297.31 90.5,-273.71 117.25,-262.93 175.33,-239.52 248.3,-237.35 295.85,-239.14"/>
 <polygon fill="#757575" stroke="#757575" points="295.41,-242.62 305.56,-239.58 295.73,-235.63 295.41,-242.62"/>
 </g>
 <!-- src/side&#45;effect.js -->
-<g id="node6" class="node">
+<g id="node7" class="node">
 <title>src/side&#45;effect.js</title>
 <path fill="none" stroke="#c6c5fe" d="M527.08,-336.8C527.08,-336.8 429.42,-336.8 429.42,-336.8 425.46,-336.8 421.5,-332.85 421.5,-328.89 421.5,-328.89 421.5,-320.97 421.5,-320.97 421.5,-317.01 425.46,-313.05 429.42,-313.05 429.42,-313.05 527.08,-313.05 527.08,-313.05 531.04,-313.05 535,-317.01 535,-320.97 535,-320.97 535,-328.89 535,-328.89 535,-332.85 531.04,-336.8 527.08,-336.8"/>
 <text text-anchor="middle" x="478.25" y="-319.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/side&#45;effect.js</text>
 </g>
 <!-- example.js&#45;&gt;src/side&#45;effect.js -->
-<g id="edge5" class="edge">
+<g id="edge6" class="edge">
 <title>example.js&#45;&gt;src/side&#45;effect.js</title>
 <path fill="none" stroke="#757575" d="M81.44,-324.02C156.07,-324.19 317.73,-324.56 409.69,-324.77"/>
 <polygon fill="#757575" stroke="#757575" points="409.57,-328.27 419.58,-324.8 409.59,-321.27 409.57,-328.27"/>
-</g>
-<!-- src/spider.js -->
-<g id="node7" class="node">
-<title>src/spider.js</title>
-<path fill="none" stroke="#c6c5fe" d="M229.96,-295.8C229.96,-295.8 158.54,-295.8 158.54,-295.8 154.58,-295.8 150.62,-291.85 150.62,-287.89 150.62,-287.89 150.62,-279.97 150.62,-279.97 150.62,-276.01 154.58,-272.05 158.54,-272.05 158.54,-272.05 229.96,-272.05 229.96,-272.05 233.92,-272.05 237.88,-276.01 237.88,-279.97 237.88,-279.97 237.88,-287.89 237.88,-287.89 237.88,-291.85 233.92,-295.8 229.96,-295.8"/>
-<text text-anchor="middle" x="194.25" y="-278.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/spider.js</text>
-</g>
-<!-- example.js&#45;&gt;src/spider.js -->
-<g id="edge6" class="edge">
-<title>example.js&#45;&gt;src/spider.js</title>
-<path fill="none" stroke="#757575" d="M81.46,-313.42C99.14,-308.76 120.21,-303.2 139.27,-298.17"/>
-<polygon fill="#757575" stroke="#757575" points="139.98,-301.6 148.76,-295.67 138.2,-294.83 139.98,-301.6"/>
 </g>
 <!-- src/string.js -->
 <g id="node8" class="node">
@@ -99,8 +99,14 @@
 <path fill="none" stroke="#757575" d="M54.32,-336.17C93.86,-372.95 219.7,-479.93 345.38,-479.93 345.38,-479.93 345.38,-479.93 479.25,-479.93 589.71,-479.93 696.93,-385.69 739.63,-343.24"/>
 <polygon fill="#757575" stroke="#757575" points="741.91,-345.9 746.45,-336.33 736.93,-340.98 741.91,-345.9"/>
 </g>
+<!-- spider.js&#45;&gt;src/dom.js -->
+<g id="edge8" class="edge">
+<title>spider.js&#45;&gt;src/dom.js</title>
+<path fill="none" stroke="#757575" d="M227.46,-275.13C247.36,-269.7 273.3,-262.61 295.78,-256.47"/>
+<polygon fill="#757575" stroke="#757575" points="296.65,-259.86 305.38,-253.85 294.81,-253.11 296.65,-259.86"/>
+</g>
 <!-- src/decorators/literal.js&#45;&gt;src/dom.js -->
-<g id="edge11" class="edge">
+<g id="edge12" class="edge">
 <title>src/decorators/literal.js&#45;&gt;src/dom.js</title>
 <path fill="none" stroke="#757575" d="M211.4,-351.67C226.87,-339.85 250.83,-321.39 271.25,-304.93 288.67,-290.89 308.05,-274.66 322.62,-262.33"/>
 <polygon fill="#757575" stroke="#757575" points="324.5,-265.32 329.86,-256.18 319.97,-259.98 324.5,-265.32"/>
@@ -112,7 +118,7 @@
 <text text-anchor="middle" x="620.25" y="-277.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/function.js</text>
 </g>
 <!-- src/decorators/literal.js&#45;&gt;src/function.js -->
-<g id="edge12" class="edge">
+<g id="edge13" class="edge">
 <title>src/decorators/literal.js&#45;&gt;src/function.js</title>
 <path fill="none" stroke="#757575" d="M269.94,-372.15C340.47,-377.13 448.09,-377.41 535,-345.93 560.07,-336.85 583.94,-317.64 599.83,-302.81"/>
 <polygon fill="#757575" stroke="#757575" points="601.95,-305.63 606.7,-296.16 597.08,-300.6 601.95,-305.63"/>
@@ -124,7 +130,7 @@
 <text text-anchor="middle" x="760" y="-236.5" font-family="Arial" font-size="14.00" fill="#cfffac">src/constants.js</text>
 </g>
 <!-- src/decorators/literal.js&#45;&gt;src/constants.js -->
-<g id="edge10" class="edge">
+<g id="edge11" class="edge">
 <title>src/decorators/literal.js&#45;&gt;src/constants.js</title>
 <path fill="none" stroke="#757575" d="M212.03,-376.14C233.05,-390.61 270.77,-413.91 307.25,-422.93 405.79,-447.3 440.46,-442.88 535,-405.93 620.61,-372.47 702.98,-297.85 739.43,-261.96"/>
 <polygon fill="#757575" stroke="#757575" points="741.61,-264.73 746.21,-255.19 736.66,-259.77 741.61,-264.73"/>
@@ -136,31 +142,31 @@
 <text text-anchor="middle" x="346.38" y="-396.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/json.js</text>
 </g>
 <!-- src/decorators/literal.js&#45;&gt;src/json.js -->
-<g id="edge13" class="edge">
+<g id="edge14" class="edge">
 <title>src/decorators/literal.js&#45;&gt;src/json.js</title>
 <path fill="none" stroke="#757575" d="M243.99,-376.27C261.13,-380.6 280.36,-385.47 297.43,-389.79"/>
 <polygon fill="#757575" stroke="#757575" points="296.27,-393.11 306.83,-392.17 297.99,-386.32 296.27,-393.11"/>
 </g>
 <!-- src/decorators/styled.js&#45;&gt;src/dom.js -->
-<g id="edge15" class="edge">
+<g id="edge16" class="edge">
 <title>src/decorators/styled.js&#45;&gt;src/dom.js</title>
 <path fill="none" stroke="#757575" d="M210.47,-135.1C236.55,-155.94 289.96,-198.64 321.19,-223.6"/>
 <polygon fill="#757575" stroke="#757575" points="318.93,-226.28 328.93,-229.79 323.31,-220.81 318.93,-226.28"/>
 </g>
 <!-- src/decorators/styled.js&#45;&gt;src/function.js -->
-<g id="edge16" class="edge">
+<g id="edge17" class="edge">
 <title>src/decorators/styled.js&#45;&gt;src/function.js</title>
 <path fill="none" stroke="#757575" d="M213.52,-110.67C268.73,-75.29 436.13,19.59 535,-59.93 593.15,-106.7 538.49,-156.76 571,-223.93 577.85,-238.07 588.72,-251.79 598.42,-262.43"/>
 <polygon fill="#757575" stroke="#757575" points="595.7,-264.66 605.13,-269.5 600.78,-259.83 595.7,-264.66"/>
 </g>
 <!-- src/decorators/styled.js&#45;&gt;src/constants.js -->
-<g id="edge14" class="edge">
+<g id="edge15" class="edge">
 <title>src/decorators/styled.js&#45;&gt;src/constants.js</title>
 <path fill="none" stroke="#757575" d="M205.47,-110.7C223.53,-90.1 263.37,-49.04 307.25,-31.93 401.6,4.86 441.04,12.85 535,-24.93 634.95,-65.11 714.84,-173.9 745.48,-220.39"/>
 <polygon fill="#757575" stroke="#757575" points="742.38,-222.05 750.75,-228.54 748.26,-218.24 742.38,-222.05"/>
 </g>
 <!-- src/dom.js&#45;&gt;src/side&#45;effect.js -->
-<g id="edge23" class="edge">
+<g id="edge24" class="edge">
 <title>src/dom.js&#45;&gt;src/side&#45;effect.js</title>
 <path fill="none" stroke="#757575" d="M359.54,-255.11C373.49,-268.54 397.55,-290.08 421.5,-303.93 423.93,-305.33 426.47,-306.68 429.07,-307.96"/>
 <polygon fill="#757575" stroke="#757575" points="427.35,-311.02 437.91,-311.94 430.23,-304.64 427.35,-311.02"/>
@@ -172,7 +178,7 @@
 <text text-anchor="middle" x="478.25" y="-117.5" font-family="Arial" font-size="14.00" fill="#cfffac">src/array.js</text>
 </g>
 <!-- src/dom.js&#45;&gt;src/array.js -->
-<g id="edge17" class="edge">
+<g id="edge18" class="edge">
 <title>src/dom.js&#45;&gt;src/array.js</title>
 <path fill="none" stroke="#757575" d="M354.36,-230.76C366.07,-211.26 391.36,-172.8 421.5,-148.93 425.42,-145.82 429.77,-142.99 434.27,-140.42"/>
 <polygon fill="#757575" stroke="#757575" points="435.62,-143.66 442.88,-135.94 432.39,-137.45 435.62,-143.66"/>
@@ -184,19 +190,19 @@
 <text text-anchor="middle" x="478.25" y="-197.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/attribute.js</text>
 </g>
 <!-- src/dom.js&#45;&gt;src/attribute.js -->
-<g id="edge18" class="edge">
+<g id="edge19" class="edge">
 <title>src/dom.js&#45;&gt;src/attribute.js</title>
 <path fill="none" stroke="#757575" d="M385.99,-231.04C398.61,-227.15 412.82,-222.77 426.21,-218.65"/>
 <polygon fill="#757575" stroke="#757575" points="427.23,-222 435.76,-215.71 425.17,-215.31 427.23,-222"/>
 </g>
 <!-- src/dom.js&#45;&gt;src/function.js -->
-<g id="edge21" class="edge">
+<g id="edge22" class="edge">
 <title>src/dom.js&#45;&gt;src/function.js</title>
 <path fill="none" stroke="#757575" d="M385.69,-245.19C423.76,-247.82 483.72,-252.99 535,-261.93 544.39,-263.57 554.29,-265.68 563.86,-267.93"/>
 <polygon fill="#757575" stroke="#757575" points="562.89,-271.29 573.44,-270.25 564.54,-264.49 562.89,-271.29"/>
 </g>
 <!-- src/dom.js&#45;&gt;src/constants.js -->
-<g id="edge19" class="edge">
+<g id="edge20" class="edge">
 <title>src/dom.js&#45;&gt;src/constants.js</title>
 <path fill="none" stroke="#757575" d="M357.36,-230.66C370.33,-215.82 394.52,-191.6 421.5,-181.93 525.25,-144.73 564.05,-149.85 669.5,-181.93 695.32,-189.78 720.47,-207.84 737.5,-222.11"/>
 <polygon fill="#757575" stroke="#757575" points="735.08,-224.65 744.93,-228.56 739.67,-219.37 735.08,-224.65"/>
@@ -208,7 +214,7 @@
 <text text-anchor="middle" x="478.25" y="-277.5" font-family="Arial" font-size="14.00" fill="#c6c5fe">src/events.js</text>
 </g>
 <!-- src/dom.js&#45;&gt;src/events.js -->
-<g id="edge20" class="edge">
+<g id="edge21" class="edge">
 <title>src/dom.js&#45;&gt;src/events.js</title>
 <path fill="none" stroke="#757575" d="M385.99,-254.82C398.61,-258.71 412.82,-263.09 426.21,-267.21"/>
 <polygon fill="#757575" stroke="#757575" points="425.17,-270.55 435.76,-270.15 427.23,-263.86 425.17,-270.55"/>
@@ -220,25 +226,19 @@
 <text text-anchor="middle" x="478.25" y="-75.5" font-family="Arial" font-size="14.00" fill="#cfffac">src/object.js</text>
 </g>
 <!-- src/dom.js&#45;&gt;src/object.js -->
-<g id="edge22" class="edge">
+<g id="edge23" class="edge">
 <title>src/dom.js&#45;&gt;src/object.js</title>
 <path fill="none" stroke="#757575" d="M350.51,-230.9C358.12,-204.01 380.05,-138.55 421.5,-101.93 422.59,-100.97 423.73,-100.05 424.91,-99.17"/>
 <polygon fill="#757575" stroke="#757575" points="426.62,-102.22 433.29,-93.98 422.94,-96.26 426.62,-102.22"/>
 </g>
 <!-- src/side&#45;effect.js&#45;&gt;src/function.js -->
-<g id="edge28" class="edge">
+<g id="edge29" class="edge">
 <title>src/side&#45;effect.js&#45;&gt;src/function.js</title>
 <path fill="none" stroke="#757575" d="M520.5,-312.56C535.17,-308.15 551.87,-303.14 567.32,-298.51"/>
 <polygon fill="#757575" stroke="#757575" points="568.28,-301.88 576.85,-295.65 566.26,-295.17 568.28,-301.88"/>
 </g>
-<!-- src/spider.js&#45;&gt;src/dom.js -->
-<g id="edge29" class="edge">
-<title>src/spider.js&#45;&gt;src/dom.js</title>
-<path fill="none" stroke="#757575" d="M238.27,-272.18C256.29,-267.26 277.35,-261.51 296,-256.41"/>
-<polygon fill="#757575" stroke="#757575" points="296.77,-259.83 305.5,-253.82 294.93,-253.08 296.77,-259.83"/>
-</g>
 <!-- src/attribute.js&#45;&gt;src/function.js -->
-<g id="edge8" class="edge">
+<g id="edge9" class="edge">
 <title>src/attribute.js&#45;&gt;src/function.js</title>
 <path fill="none" stroke="#757575" d="M507.69,-215.3C516.56,-219.4 526.3,-224.14 535,-228.93 554.66,-239.75 575.93,-253.4 592.19,-264.27"/>
 <polygon fill="#757575" stroke="#757575" points="590.1,-267.08 600.34,-269.78 594.01,-261.28 590.1,-267.08"/>
@@ -250,31 +250,31 @@
 <text text-anchor="middle" x="620.25" y="-197.5" font-family="Arial" font-size="14.00" fill="#cfffac">src/style.js</text>
 </g>
 <!-- src/attribute.js&#45;&gt;src/style.js -->
-<g id="edge9" class="edge">
+<g id="edge10" class="edge">
 <title>src/attribute.js&#45;&gt;src/style.js</title>
 <path fill="none" stroke="#757575" d="M528.61,-202.93C541.76,-202.93 555.98,-202.93 569.17,-202.93"/>
 <polygon fill="#757575" stroke="#757575" points="568.93,-206.43 578.93,-202.93 568.93,-199.43 568.93,-206.43"/>
 </g>
 <!-- src/function.js&#45;&gt;src/string.js -->
-<g id="edge26" class="edge">
+<g id="edge27" class="edge">
 <title>src/function.js&#45;&gt;src/string.js</title>
 <path fill="none" stroke="#757575" d="M663.7,-295.26C677.18,-299.17 692.24,-303.54 706.34,-307.64"/>
 <polygon fill="#757575" stroke="#757575" points="705.36,-311 715.94,-310.43 707.32,-304.28 705.36,-311"/>
 </g>
 <!-- src/function.js&#45;&gt;src/constants.js -->
-<g id="edge25" class="edge">
+<g id="edge26" class="edge">
 <title>src/function.js&#45;&gt;src/constants.js</title>
 <path fill="none" stroke="#757575" d="M662.58,-270.63C676.47,-266.49 692.16,-261.82 706.78,-257.47"/>
 <polygon fill="#757575" stroke="#757575" points="707.66,-260.86 716.25,-254.65 705.67,-254.15 707.66,-260.86"/>
 </g>
 <!-- src/json.js&#45;&gt;src/function.js -->
-<g id="edge27" class="edge">
+<g id="edge28" class="edge">
 <title>src/json.js&#45;&gt;src/function.js</title>
 <path fill="none" stroke="#757575" d="M384.58,-404.91C424.19,-406.43 487.56,-404 535,-378.93 566.99,-362.02 592.42,-327.67 606.67,-304.98"/>
 <polygon fill="#757575" stroke="#757575" points="609.62,-306.86 611.79,-296.49 603.63,-303.24 609.62,-306.86"/>
 </g>
 <!-- src/events.js&#45;&gt;src/function.js -->
-<g id="edge24" class="edge">
+<g id="edge25" class="edge">
 <title>src/events.js&#45;&gt;src/function.js</title>
 <path fill="none" stroke="#757575" d="M523.93,-282.93C535.21,-282.93 547.5,-282.93 559.4,-282.93"/>
 <polygon fill="#757575" stroke="#757575" points="559.12,-286.43 569.12,-282.93 559.12,-279.43 559.12,-286.43"/>
