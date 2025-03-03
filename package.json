@@ -17,6 +17,10 @@
     "simple",
     "dumb"
   ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "exports": {
     ".": {
       "import": "./dist/spinneret.js",
