@@ -1,3 +1,3 @@
-![Spinneret Logo](./src/spinneret-with-spider.svg)
+![Spinneret Logo](./public/spider-logo.svg)
 
 Build the web with functional programming patterns wrapped around native APIs
