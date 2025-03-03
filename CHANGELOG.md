@@ -1,3 +1,10 @@
+## [0.0.4](https://github.com/brekk/spinneret/compare/v0.0.3...v0.0.4) (2025-03-03)
+
+
+### Bug Fixes
+
+* **release:** Fix CI and update some basics in the library ([#1](https://github.com/brekk/spinneret/issues/1)) ([bceb0bb](https://github.com/brekk/spinneret/commit/bceb0bbfa0e4de8a0e1fb51066b1bbc99b21bc4d))
+
 ## [0.0.3](https://github.com/brekk/spinneret/compare/v0.0.2...v0.0.3) (2025-03-03)
 
 

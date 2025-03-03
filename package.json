@@ -1,6 +1,6 @@
 {
   "name": "spinneret",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "functional web components",
   "main": "./dist/spinneret.js",
   "module": "./dist/spinneret.js",
