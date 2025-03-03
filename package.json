@@ -68,7 +68,9 @@
     "test": "vitest --coverage src",
     "test-ci": "vitest --run src",
     "care": "yarn lint && yarn test-ci && yarn build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "meta-graph": "madge example.js --image spinneret.svg --ts-config jsconfig.json",
+    "meta": "yarn meta-graph"
   },
   "packageManager": "yarn@4.5.1"
 }
