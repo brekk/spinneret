@@ -1,3 +1,10 @@
+## [0.0.3](https://github.com/brekk/spinneret/compare/v0.0.2...v0.0.3) (2025-03-03)
+
+
+### Bug Fixes
+
+* **workflow:** build pages independently of library? ([8090220](https://github.com/brekk/spinneret/commit/80902200a59d87c4fbe9f6ff689565d1259a0d78))
+
 ## [0.0.2](https://github.com/brekk/spinneret/compare/v0.0.1...v0.0.2) (2025-03-03)
 
 
