@@ -21,12 +21,6 @@
     "dist",
     "src"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/spinneret.js",
-      "require": "./dist/spinneret.umd.cjs"
-    }
-  },
   "type": "module",
   "repository": "brekk/spinneret",
   "author": "brekk",
