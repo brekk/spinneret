@@ -1561,7 +1561,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"blem@npm:^0.0.9":
+"blem@npm:0.0.9":
   version: 0.0.9
   resolution: "blem@npm:0.0.9"
   dependencies:
@@ -5896,13 +5896,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"smol-toml@npm:1.1.3":
-  version: 1.1.3
-  resolution: "smol-toml@npm:1.1.3"
-  checksum: 10c0/42571ef1b1b1fc1f4cbc10fd0b294915b53ba7ed93010363737f7e1fd3fd6d8ce175011fdc24dafcbed3cdc83cdd744edfaef48c8d5959b61f54c3e40b15eb79
-  languageName: node
-  linkType: hard
-
 "socks-proxy-agent@npm:^8.0.3":
   version: 8.0.5
   resolution: "socks-proxy-agent@npm:8.0.5"
@@ -5990,7 +5983,7 @@ __metadata:
     "@testing-library/svelte": "npm:^5.2.6"
     "@vitest/coverage-v8": "npm:3.0.5"
     "@vitest/ui": "npm:^3.0.5"
-    blem: "npm:^0.0.9"
+    blem: "npm:0.0.9"
     dotenv-cli: "npm:7.3.0"
     eslint: "npm:^9.21.0"
     eslint-plugin-import: "npm:^2.31.0"
@@ -6005,8 +5998,6 @@ __metadata:
     prettier: "npm:^3.4.2"
     ramda: "npm:0.29.1"
     sass: "npm:^1.84.0"
-    smol-toml: "npm:1.1.3"
-    strip-ansi: "npm:^7.1.0"
     svelte: "npm:^5.19.9"
     unusual: "npm:^0.0.3"
     vite: "npm:^6.1.0"
