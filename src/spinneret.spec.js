@@ -1,9 +1,28 @@
 import { expect, test } from "vitest"
 import { keys } from "ramda"
-import * as Spinneret from "@/spinneret"
+import Spinneret from "@/spinneret"
+import * as raw from "@/spinneret"
 
-test("base exports", () => {
+test("default import", () => {
   expect(keys(Spinneret).sort()).toEqual([
+    "$",
+    "constants",
+    "decorators",
+    "getSignature",
+    "inscribe",
+    "isMarked",
+    "isPlaceholder",
+    "makeSelector",
+    "mount",
+    "selector",
+    "spin",
+    "svg",
+    "tag",
+  ])
+})
+
+test("wildcard import", () => {
+  expect(keys(raw).sort()).toEqual([
     "$",
     "HTML_TAGS",
     "MARKED",
@@ -14,10 +33,12 @@ test("base exports", () => {
     "_textify",
     "attr",
     "autobox",
+    "base",
     "capitalize",
     "captureListeners",
     "clearRect",
     "createElementNS",
+    "default",
     "formValues",
     "get2dContext",
     "getContext",
@@ -29,6 +50,11 @@ test("base exports", () => {
     "isMarked",
     "isPlaceholder",
     "listenTo",
+    "literalSvg",
+    "literalSvgWithScope",
+    "literalTag",
+    "literalTagWithScope",
+    "literalWithScope",
     "makeSelector",
     "mapKids",
     "mapProps",
@@ -50,12 +76,15 @@ test("base exports", () => {
     "spin",
     "stamp",
     "styleAttr",
+    "styled",
+    "styledWithScope",
     "svg",
     "svgTag",
     "tag",
     "text",
     "toString",
     "trace",
+    "withState",
     "xtrace",
   ])
 })
