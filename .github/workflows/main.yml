@@ -49,6 +49,7 @@ jobs:
         with:
           path: "./dist"
       - name: 🚢 Shipping to Github...
+        if: github.ref == 'refs/heads/main'
         id: deployment
         uses: actions/deploy-pages@v4
       - name: 📚 Compiling the library...
