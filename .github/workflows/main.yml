@@ -37,11 +37,10 @@ jobs:
         id: lint
         run: |
           yarn lint
-      - name: 🏗️ Building the library...
+      - name: 🏗️ Building the pages...
         id: build-pages
         run: |
           yarn build-pages
-          yarn build-lib
       - name: 📚 Setting up the pages...
         id: pages
         uses: actions/configure-pages@v4
@@ -52,7 +51,10 @@ jobs:
       - name: 🚢 Shipping to Github...
         id: deployment
         uses: actions/deploy-pages@v4
-
+      - name: 📚 Compiling the library...
+        id: build-lib
+        run: |
+          yarn build-lib
       - name: 🪵 Capturing changelog...
         id: changelog
         uses: TriPSs/conventional-changelog-action@v5
@@ -61,7 +63,7 @@ jobs:
           release-count: 0
           github-token: ${{ secrets.github_token }}
           fallback-version: "0.0.1"
-          skip-on-empty: false
+          # skip-on-empty: false
       - name: 🐣 Creating release...
         uses: actions/create-release@v1
         if: ${{ steps.changelog.outputs.skipped == 'false' }}
