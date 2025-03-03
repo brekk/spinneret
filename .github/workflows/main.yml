@@ -41,6 +41,7 @@ jobs:
         id: build-pages
         run: |
           yarn build-pages
+          yarn build-lib
       - name: 📚 Setting up the pages...
         id: pages
         uses: actions/configure-pages@v4
