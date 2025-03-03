@@ -4,6 +4,19 @@
   "description": "functional web components",
   "main": "./dist/spinneret.js",
   "module": "./dist/spinneret.js",
+  "keywords": [
+    "functional",
+    "fp",
+    "dom",
+    "web",
+    "framework",
+    "library",
+    "spider",
+    "spinneret",
+    "generic",
+    "simple",
+    "dumb"
+  ],
   "exports": {
     ".": {
       "import": "./dist/spinneret.js",
