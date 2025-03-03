@@ -4,6 +4,19 @@
   "description": "functional web components",
   "main": "./dist/spinneret.js",
   "module": "./dist/spinneret.js",
+  "keywords": [
+    "functional",
+    "fp",
+    "dom",
+    "web",
+    "framework",
+    "library",
+    "spider",
+    "spinneret",
+    "generic",
+    "simple",
+    "dumb"
+  ],
   "exports": {
     ".": {
       "import": "./dist/spinneret.js",
@@ -15,7 +28,7 @@
   "author": "brekk",
   "license": "MIT",
   "dependencies": {
-    "blem": "^0.0.9",
+    "blem": "0.0.9",
     "ramda": "0.29.1"
   },
   "devDependencies": {
@@ -39,8 +52,6 @@
     "nps": "^5.10.0",
     "prettier": "^3.4.2",
     "sass": "^1.84.0",
-    "smol-toml": "1.1.3",
-    "strip-ansi": "^7.1.0",
     "svelte": "^5.19.9",
     "unusual": "^0.0.3",
     "vite": "^6.1.0",
@@ -57,7 +68,9 @@
     "test": "vitest --coverage src",
     "test-ci": "vitest --run src",
     "care": "yarn lint && yarn test-ci && yarn build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "meta-graph": "madge example.js --image spinneret.svg --ts-config jsconfig.json",
+    "meta": "yarn meta-graph"
   },
   "packageManager": "yarn@4.5.1"
 }

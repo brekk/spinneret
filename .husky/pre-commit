@@ -4,3 +4,4 @@
 yarn test-ci
 yarn build
 yarn lint-staged
+yarn meta
