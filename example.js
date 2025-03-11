@@ -148,7 +148,7 @@ const SpinneretHomePage = tag("main", { em: "" }, [
   ),
   Section("Motivation", [
     p([
-      `Spinneret is an attempt at creating a simple web framework that is largely a functional wrapper around native DOM behavior. It uses easy-to-reason-about patterns to make simple and reusable building blocks to construct a webpage with. It is performant, accessible and has a tiny footprint (20k gzipped). This page is created entirely with Spinneret, see the source code `,
+      `Spinneret is an attempt at creating a simple web framework that is largely a functional wrapper around native DOM behavior. It uses easy-to-reason-about patterns to make simple and reusable building blocks to construct a webpage with. It is performant, accessible and complete. This page is created entirely with Spinneret, see the source code `,
       tag(
         "a",
         {

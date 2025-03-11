@@ -71,6 +71,7 @@ test("wildcard import", () => {
     "safeStringifyWithIndent",
     "schonfinkel",
     "selector",
+    "selectorOnElement",
     "set",
     "slugify",
     "spin",
