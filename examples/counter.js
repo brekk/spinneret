@@ -51,14 +51,10 @@ const sel = selector(bem)
 const button = (onClick, kids) =>
   tag(
     "button",
-    (prev, el, actions) => {
-      const propObj = typeof prev.props !== "function"
-      return {
-        ...(propObj ? prev.props : {}),
-        ["data-testid"]: kids,
-        em: ["button", "counter"],
-        onClick,
-      }
+    {
+      ["data-testid"]: kids,
+      em: ["button", "counter"],
+      onClick,
     },
     kids,
   )
