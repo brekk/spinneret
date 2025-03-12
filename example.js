@@ -1,3 +1,6 @@
+import "./examples/counter"
+
+/*
 import blem from "blem"
 import {
   always,
@@ -255,3 +258,4 @@ const SpinneretHomePage = tag("main", { em: "" }, [
 document.querySelector("#app").append(SpinneretHomePage)
 
 window.onload = () => {}
+*/

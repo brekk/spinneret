@@ -1,0 +1,95 @@
+import Spinneret from "@/spinneret"
+import {
+  trace,
+  handleForm,
+  inscribe,
+  spin,
+  $,
+  slugify,
+  processChildren,
+  makeSelector,
+} from "@/spinneret"
+
+import { identity, times, pipe, map } from "ramda"
+import Unusual from "unusual"
+
+import blem from "blem"
+
+// console.log("SPINNERET", Spinneret, Object.keys(Spinneret));
+
+const { decorators } = Spinneret
+
+// const tag = decorators.styled.base("App")
+
+const { styled } = decorators
+const { withScope: styledWithScope } = styled
+
+const bem = blem("App")
+
+const stagWithScope = inscribe("styledWithBemAndState", (s, t, p, k) =>
+  pipe(styledWithScope(bem), spin($, t, p, k))(s),
+)
+
+const tag = stagWithScope({})
+
+const nav = pipe(
+  map(
+    pipe(
+      (z) => tag("a", { em: "link", href: "#" + slugify(z) }, z),
+      tag("li", { em: "list-item" }),
+    ),
+  ),
+  tag("ul", { em: "list" }),
+)
+
+const selector = inscribe("querySelector", (_bem, em) =>
+  pipe(makeSelector(_bem), (x) => document.querySelector(x))(em),
+)
+
+const sel = selector(bem)
+
+const button = (onClick, kids) =>
+  tag(
+    "button",
+    (prev, el, actions) => {
+      const propObj = typeof prev.props !== "function"
+      return {
+        ...(propObj ? prev.props : {}),
+        ["data-testid"]: kids,
+        em: ["button", "counter"],
+        onClick,
+      }
+    },
+    kids,
+  )
+
+const App = () => {
+  let prior = 0
+  const go = inscribe("clickcount", (fn, e) => {
+    e.preventDefault()
+    const next = fn(prior)
+    prior = next
+    pipe(sel, (x) => {
+      if (x) {
+        x.innerText = next
+      }
+    })(["section"])
+  })
+  return tag("main", { em: "" }, [
+    nav(["uno", "dos", "tres", "cuatro", "cinco"]),
+    button(
+      go((z) => z - 1),
+      "down",
+    ),
+    tag(
+      "span",
+      { ["data-testid"]: "counter", id: "counter", em: "section" },
+      "0",
+    ),
+    button(
+      go((z) => z + 1),
+      "up",
+    ),
+  ])
+}
+document.querySelector("#app").append(App())
