@@ -18,8 +18,7 @@
     "dumb"
   ],
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "type": "module",
   "repository": "brekk/spinneret",
@@ -31,6 +30,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -42,6 +42,7 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-prettier": "^5.2.3",
+    "export-size": "^0.7.0",
     "globals": "^15.11.0",
     "husky": "^8.0.0",
     "jsdom": "^26.0.0",
@@ -51,6 +52,7 @@
     "prettier": "^3.4.2",
     "sass": "^1.84.0",
     "svelte": "^5.19.9",
+    "terser": "^5.39.0",
     "unusual": "^0.0.3",
     "vite": "^6.1.0",
     "vitest": "^3.0.5"

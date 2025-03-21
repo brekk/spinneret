@@ -1,27 +1,24 @@
-import Spinneret from "@/spinneret"
+import { identity, times, pipe, map } from "ramda"
+import Unusual from "unusual"
+
+import blem from "blem"
 import {
   trace,
   handleForm,
   inscribe,
   spin,
   $,
-  slugify,
   processChildren,
-  makeSelector,
+  string,
 } from "@/spinneret"
-
-import { identity, times, pipe, map } from "ramda"
-import Unusual from "unusual"
-
-import blem from "blem"
+import { styled } from "@/decorators"
+import { makeSelector } from "@/selector"
+const { slugify } = string
 
 // console.log("SPINNERET", Spinneret, Object.keys(Spinneret));
 
-const { decorators } = Spinneret
-
 // const tag = decorators.styled.base("App")
 
-const { styled } = decorators
 const { withScope: styledWithScope } = styled
 
 const bem = blem("App")

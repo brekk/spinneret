@@ -1,4 +1,7 @@
-import Spinneret from "@/spinneret"
+import { identity, times, pipe, map } from "ramda"
+import Unusual from "unusual"
+
+import blem from "blem"
 import {
   trace,
   handleForm,
@@ -9,11 +12,7 @@ import {
   processChildren,
   makeSelector,
 } from "@/spinneret"
-
-import { identity, times, pipe, map } from "ramda"
-import Unusual from "unusual"
-
-import blem from "blem"
+import Spinneret from "@/spinneret"
 
 // console.log("SPINNERET", Spinneret, Object.keys(Spinneret));
 

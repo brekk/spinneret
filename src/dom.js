@@ -24,7 +24,7 @@ import { remap, attr } from "@/attribute"
 import { trace } from "@/side-effect"
 
 export const text = (x) => document.createTextNode(x)
-export const _textify = when(is(String), text)
+export const textify = when(is(String), text)
 export const htmlText = (txt) => {
   const el = document.createElement("div")
   el.innerHTML = txt

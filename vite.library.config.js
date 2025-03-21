@@ -1,6 +1,7 @@
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { defineConfig } from "vite"
+import terser from "@rollup/plugin-terser"
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const local = (x) => path.resolve(dirname, x)
@@ -12,15 +13,25 @@ export default defineConfig({
     },
   },
   build: {
+    minify: "terser",
     rollupOptions: {
-      // output: {
-      //   exports: "named",
-      // },
+      output: {
+        //   exports: "named",
+        globals: { ramda: "R", blem: "blem" },
+      },
+      external: ["ramda", "blem"],
     },
     lib: {
-      entry: local("src/spinneret.js"),
+      entry: [
+        "src/spinneret.js",
+        "src/decorators.js",
+        "src/canvas.js",
+        "src/form.js",
+      ].map((z) => local(z)),
       name: "Spinneret",
-      fileName: "spinneret",
+      fileName: (f, e) =>
+        // console.log({ f, e }, "<><>") ||
+        `spinneret/${e}.${f === "es" ? "js" : "cjs"}`,
     },
   },
 })
