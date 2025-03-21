@@ -85,7 +85,6 @@ test("wildcard import", () => {
     "text",
     "toString",
     "trace",
-    "withState",
     "xtrace",
   ])
 })

@@ -16,7 +16,6 @@ export * from "@/string"
 export * from "@/style"
 export * from "@/transform"
 export * from "@/decorators/literal"
-export * from "@/decorators/state"
 export * from "@/decorators/styled"
 
 // DEFAULT EXPORT
@@ -32,7 +31,6 @@ import {
   literalTag,
   literalSvg,
 } from "@/decorators/literal"
-import { withState } from "@/decorators/state"
 import { styledWithScope, styled, base } from "@/decorators/styled"
 
 export default {
@@ -55,7 +53,6 @@ export default {
       tag: literalTag,
       svg: literalSvg,
     },
-    state: { withState },
     styled: {
       withScope: styledWithScope,
       styled,
