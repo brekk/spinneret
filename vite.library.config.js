@@ -31,7 +31,7 @@ export default defineConfig({
       name: "Spinneret",
       fileName: (f, e) =>
         // console.log({ f, e }, "<><>") ||
-        `spinneret/${e}.${f === "es" ? "js" : "cjs"}`,
+        `${f === "es" ? "js" : "cjs"}/${e}.${f === "es" ? "js" : "cjs"}`,
     },
   },
 })
