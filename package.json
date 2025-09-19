@@ -2,8 +2,9 @@
   "name": "spinneret",
   "version": "0.0.8",
   "description": "functional web components",
-  "main": "./dist/spinneret.umd.cjs",
-  "module": "./dist/spinneret.js",
+  "main": "./dist/spinneret/spinneret.cjs",
+  "browser": "./dist/spinneret.browser.js",
+  "module": "./dist/spinneret/spinneret.js",
   "keywords": [
     "functional",
     "fp",
@@ -18,8 +19,7 @@
     "dumb"
   ],
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "type": "module",
   "repository": "brekk/spinneret",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -42,6 +43,7 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-prettier": "^5.2.3",
+    "export-size": "^0.7.0",
     "globals": "^15.11.0",
     "husky": "^8.0.0",
     "jsdom": "^26.0.0",
@@ -51,6 +53,7 @@
     "prettier": "^3.4.2",
     "sass": "^1.84.0",
     "svelte": "^5.19.9",
+    "terser": "^5.39.0",
     "unusual": "^0.0.3",
     "vite": "^6.1.0",
     "vitest": "^3.0.5"
@@ -60,8 +63,12 @@
     "build-pages": "vite build --config vite.config.js",
     "preview-pages": "vite preview --config vite.config.js",
     "build-lib": "vite build --config vite.library.config.js",
+    "build-browser": "vite build --config vite.browser.config.js",
     "preview-lib": "vite build --config vite.library.config.js",
-    "build": "yarn build-pages && yarn build-lib",
+    "preview-browser": "vite build --config vite.browser.config.js",
+    "TODO": "vite wipes out `dist` for this",
+    "build": "yarn build-pages && yarn build-lib && yarn build-browser",
+    "build-local": "yalc publish",
     "lint": "eslint --fix .",
     "test": "vitest --coverage src",
     "test-ci": "vitest --run src",
